@@ -1,0 +1,37 @@
+# Local Python environments
+.venv/
+venv/
+
+# Python caches and build artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Test and tooling caches
+.coverage
+htmlcov/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Jupyter transient files
+.ipynb_checkpoints/
+
+# Local secrets and editor/OS state
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+
+# Obsidian workspace state is user-specific
+Quant_Documents/.obsidian/
+Quant_Documents/Logic_Documents/.obsidian/
+Quant_Documents/.trash/
+
+# Generated reports may be recreated; keep their documentation
+reports/figures/
+reports/tables/
+
