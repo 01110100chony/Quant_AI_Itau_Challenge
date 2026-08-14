@@ -1,0 +1,64 @@
+Quant_AI_Itau_Challenge/
+├── config/
+│   └── README.md
+├── contexts/
+│   ├── challenge/
+│   │   ├── constraints.md
+│   │   └── evaluation.md
+│   ├── cross_market/
+│   │   ├── data_contract.md
+│   │   ├── specification.md
+│   │   ├── timing.md
+│   │   └── validation_plan.md
+│   ├── research/
+│   │   ├── current_thesis.md
+│   │   ├── experiment_registry.md
+│   │   ├── hypothesis_template.md
+│   │   ├── oos_policy.md
+│   │   ├── protocol.md
+│   │   └── rejected_hypotheses.md
+│   └── CONTEXT_MAP.md
+├── data/
+│   ├── processed/
+│   │   └── README.md
+│   └── README.md
+├── notebooks/
+│   ├── 01_er_feasibility_v0_1.ipynb
+│   ├── 01_er_feasibility_v0_2.ipynb
+│   ├── 01_er_feasibility_v0_3.ipynb
+│   ├── 01_er_feasibility_v0_4.ipynb
+│   ├── 01_er_feasibility_v0_5_1.ipynb
+│   ├── 01_er_feasibility_v0_5.ipynb
+│   └── README.md
+├── Quant_Documents/
+│   ├── .obsidian/
+│   │   ├── app.json
+│   │   ├── appearance.json
+│   │   ├── core-plugins.json
+│   │   └── workspace.json
+│   ├── .trash/
+│   └── Logic_Documents/
+│       └── .obsidian/
+├── reports/
+│   └── README.md
+├── research/
+│   └── experiments/
+│       └── CM_001/
+├── scripts/
+│   └── verify_research.py
+├── src/
+│   └── README.md
+├── tests/
+│   ├── research/
+│   │   ├── __init__.py
+│   │   └── test_verify_research.py
+│   └── README.md
+├── .gitignore
+├── AGENTS.md
+├── AI_USE_LOG.md
+├── LICENSE
+├── PROJECT_STATUS.md
+├── README.md
+├── requirements.txt
+├── Research_Log_Desafio_Quant_AI_2026.md
+└── TASKS.md

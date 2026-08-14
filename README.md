@@ -1,47 +1,55 @@
-# Desafio Quant AI 2026
+# Desafio Quant AI 2026 — Research Harness
 
-Repositório de pesquisa quantitativa para o Desafio Quant AI 2026. O projeto está na fase de seleção e falsificação da tese principal; nenhum resultado exploratório deve ser interpretado como alpha validado.
+Repositório de pesquisa quantitativa falsification-first para o Desafio Quant AI 2026. O harness organiza contratos, specifications, proveniência e verificações do processo; ele não substitui julgamento metodológico humano nem mede performance de estratégias.
 
 ## Estado atual
 
-- Effective Rank, Opportunity Set e Adaptive Factor Neutralization estão encerrados como tese principal.
-- Residual Momentum 12–1 está preservado apenas como baseline exploratório.
+- Nenhuma tese está oficialmente promovida.
+- Effective Rank, Opportunity Set e Adaptive Factor Neutralization estão encerrados.
+- Residual Momentum 12–1 é apenas baseline/fallback exploratório.
 - O holdout 2018–2026 da linha anterior permanece fechado.
-- Cross-Market Lead-Lag é o próximo feasibility candidato, condicionado à aprovação da specification.
+- Cross-Market Information Transmission é a candidata atual, ainda em specification `DRAFT`.
 
-Consulte, nesta ordem, `PROJECT_STATUS.md`, `Research_Log_Desafio_Quant_AI_2026.md` e `TASKS.md` antes de iniciar trabalho não trivial.
+O estado canônico está em [`PROJECT_STATUS.md`](PROJECT_STATUS.md). Comece qualquer pesquisa pelo [`Context Map`](contexts/CONTEXT_MAP.md).
+
+## Rotas principais
+
+| Necessidade | Fonte canônica |
+|---|---|
+| Estado científico atual | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) |
+| Histórico e decisões anteriores | [`Research_Log_Desafio_Quant_AI_2026.md`](Research_Log_Desafio_Quant_AI_2026.md) |
+| Contexto mínimo para uma tarefa | [`contexts/CONTEXT_MAP.md`](contexts/CONTEXT_MAP.md) |
+| Protocolo de research | [`contexts/research/protocol.md`](contexts/research/protocol.md) |
+| Governança de OOS | [`contexts/research/oos_policy.md`](contexts/research/oos_policy.md) |
+| Registry de experimentos | [`contexts/research/experiment_registry.md`](contexts/research/experiment_registry.md) |
+| Uso material de GenAI | [`AI_USE_LOG.md`](AI_USE_LOG.md) |
 
 ## Estrutura
 
 ```text
 .
-├── data/
-│   ├── raw/          # snapshots de origem; não sobrescrever silenciosamente
-│   └── processed/    # dados derivados e reproduzíveis
-├── notebooks/        # specification, feasibility e interpretação
-├── src/              # lógica reutilizável após estabilização
-├── tests/            # testes de dados, tempo e ausência de look-ahead
-├── config/           # parâmetros aprovados e não secretos
-├── reports/          # tabelas, figuras e entregáveis derivados
-└── Quant_Documents/  # material auxiliar e histórico do projeto
+├── contexts/              # contratos científicos com disclosure progressivo
+├── research/experiments/  # artefatos autocontidos por experimento
+├── notebooks/             # specification, feasibility e interpretação
+├── src/                   # lógica reutilizável após estabilização
+├── tests/research/        # garantias mecânicas do processo
+├── scripts/               # verificação determinística e offline
+├── data/                  # snapshots raw e derivados reproduzíveis
+├── config/                # parâmetros aprovados/congelados
+└── reports/               # artefatos derivados
 ```
 
-As pastas possuem documentação própria. Módulos vazios não são criados apenas para preencher a estrutura.
+Pastas e módulos só são criados quando têm responsabilidade real. O checkout `.references/quant-mind/` é referência externa, está ignorado e nunca é dependência do projeto.
 
-## Ambiente
+## Ambiente e verificação
 
-Requer Python 3.11 ou superior. As versões auditadas das dependências diretas estão em `requirements.txt`.
+Requer Python 3.11 ou superior. As versões auditadas das dependências dos notebooks estão em `requirements.txt`.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+python scripts/verify_research.py
+python -m unittest discover -s tests -p "test_*.py"
 ```
 
-Execute notebooks a partir de `notebooks/`, preservando os caminhos relativos existentes. Downloads devem ser separados de transformações, ter período fixo e não substituir snapshots raw sem registro explícito.
-
-## Governança científica
-
-- Features usam somente informação disponível no timestamp da decisão.
-- OOS só pode ser aberto depois do freeze da specification.
-- Resultados negativos são registrados sem ajuste retrospectivo de parâmetros.
-- Mudanças de universo, sinal, target, horizonte, benchmark, split ou critério de sucesso exigem aprovação humana.
+O verificador testa integridade do processo e metadados, não retorno, Sharpe ou validade econômica.

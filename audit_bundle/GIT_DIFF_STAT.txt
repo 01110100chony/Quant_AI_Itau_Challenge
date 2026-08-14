@@ -1,0 +1,4 @@
+ .gitignore |   2 +
+ AGENTS.md  | 415 +++++++++----------------------------------------------------
+ README.md  |  60 +++++----
+ 3 files changed, 92 insertions(+), 385 deletions(-)
