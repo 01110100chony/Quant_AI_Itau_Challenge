@@ -16,21 +16,24 @@ nao foi aberto.
 
 ## Required human approvals
 
-Aprovar explicitamente, e commitar, antes de qualquer abertura do OOS:
+As 13 caixas abaixo correspondem, uma a uma e sem conteudo adicional, as 13
+decisoes congeladas na autorizacao humana. Universo, rebalanceamento mensal,
+metrica primaria e implementacao canonica nao possuem caixa propria: sao
+aprovados por referencia a `spec.md` atraves dos itens 2, 6 e 12.
 
-- [ ] formula exata do sinal, incluindo cardinalidade das janelas
-- [ ] estimacao point-in-time, com `W_d = {d-252, ..., d-1}`
-- [ ] universo dos 9 ETFs setoriais
-- [ ] carteira Top 3 / Bottom 3, peso igual
-- [ ] rebalanceamento mensal no ultimo pregao
-- [ ] `S = 21` como primary; `S = 42` permanece exploratory e nunca sera promovido
-- [ ] custo primario de 10 bps por perna; 5 e 20 bps apenas como sensibilidade
-- [ ] metrica primaria Rank IC e secundaria de retorno liquido
-- [ ] placebos `P1`, `P2` e `P3` conforme escritos, sem alteracao posterior
-- [ ] exclusao permanente de 2018-11-30 a 2019-02-28
-- [ ] intervalo do OOS limpo, 2019-03-29 a 2026-07-31
-- [ ] criterio `ScientificPass` e `EconomicPass`, incluindo os tres blocos
-- [ ] implementacao canonica: `scripts/rsr_001.py`
+- [ ] **1.** `Residual Momentum PIT = NO_GO` definitivo.
+- [ ] **2.** Construct do `RSR_001` = `Residual Short-Term Reversal`, conforme `spec.md`.
+- [ ] **3.** Correcao off-by-one: `W_d = {d-252,...,d-1}`, `S_t = {t-20,...,t}` com `S = 21`, e `F_t = {t-251,...,t-21}`.
+- [ ] **4.** `S = 21` como parametro **PRIMARY**.
+- [ ] **5.** `S = 42` como **EXPLORATORY ONLY**, sem promocao futura caso `S = 21` falhe.
+- [ ] **6.** Pesos `+1/3`, `-1/3` e `0`, com retorno long-short exatamente como na specification.
+- [ ] **7.** Custo primario de `10 bps`, calculado por `Cost_t = c * sum_i |w_{i,t} - w_{i,t-1}|`, com `w_{i,-1} = 0`; sensibilidades de 5 e 20 bps sao secundarias.
+- [ ] **8.** `P1` cross-sectional permutation placebo exatamente como pre-registrado.
+- [ ] **9.** `P2` temporal block permutation placebo exatamente como pre-registrado.
+- [ ] **10.** `P1` e `P2` unilaterais, `N_perm = 5000`, `seed = 7` e `p = (1 + #{null >= observed}) / (N + 1)`.
+- [ ] **11.** `A1` residualization ablation como evidencia secundaria, fora do gate de GO.
+- [ ] **12.** `ScientificPass`, `EconomicPass` e os vereditos `GO / CONDITIONAL_GO / NO_GO` exatamente como aprovados, incluindo a regra de positividade em pelo menos 2 de 3 blocos.
+- [ ] **13.** Quarentena permanente `2018-11-30` a `2019-02-28`; OOS unico `2019-03-29` a `2026-07-31`, `n = 89`, dividido previamente em meses `1..30`, `31..60` e `61..89`; nenhum parametro muda apos a abertura.
 
 ## OOS state
 

@@ -1,7 +1,11 @@
 experiment_id = "RSR_001"
 thesis = "Residual Short-Term Reversal in Sector ETFs"
 spec_version = "v1.0"
-created_at = "2026-08-14T18:30:00-03:00"
+# Momento de criacao real dos artefatos RSR_001, conferido por mtime.
+# Nao e um timestamp historico reconstruido: e o horario de criacao do
+# manifesto. A proveniencia autoritativa e o historico Git a partir do
+# commit de conformidade.
+created_at = "2026-08-14T20:27:13-03:00"
 
 # Vocabulario do harness: RESEARCH significa specification completa e ainda
 # nao congelada. Corresponde ao conceito READY_FOR_FREEZE do parecer.

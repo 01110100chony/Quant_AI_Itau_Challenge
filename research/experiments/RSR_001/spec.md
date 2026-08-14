@@ -101,9 +101,22 @@
 
   `P2 — embaralhamento temporal.` Mantem o sinal de cada ativo e embaralha os meses dos retornos futuros. 5.000 sorteios, semente 7. Destroi a associacao temporal, preservando a estrutura cross-sectional.
 
-  `P3 — inversao de sinal.` Avalia `+soma(eps)` no lugar de `-soma(eps)`, isto e, a direcao de momentum residual em vez de reversao. Serve como verificacao de direcionalidade: se o efeito for real, esta variante deve apresentar IC de sinal oposto.
+  Ambos unilaterais, pois `H_A: mean IC > 0`. `N_perm = 5000`, `seed = 7`.
 
-  Criterio: `P1` e `P2` sao considerados nao invalidantes quando o IC observado fica acima do percentil 90 de ambas as distribuicoes nulas, equivalente a `p < 0,10` unilateral em cada uma.
+  p-valor, estimador nao enviesado de Monte Carlo:
+  `p = (1 + #{nulo >= observado}) / (N_perm + 1)`
+
+  Criterio: `P1` e `P2` sao considerados nao invalidantes quando `p < 0,10` unilateral em cada um.
+
+- **Ablacao (nao e placebo e nao entra no criterio):**
+
+  `A1 — Residualization Ablation.` Compara o IC do sinal residual com o da mesma reversao de 21 pregoes calculada sobre o retorno bruto, sem descontar o mercado.
+
+  `delta_IC_A1 = IC_residual - IC_raw`, esperado positivo.
+
+  `A1` e **evidencia secundaria**. Nao integra `ScientificPass` nem `EconomicPass` e nao pode resgatar falha de nenhum dos dois.
+
+  Nota de correcao: uma versao anterior deste documento listava um `P3 — inversao de sinal`. Aquele teste era vazio, porque `rho_Spearman(-x, y) = -rho_Spearman(x, y)` por identidade, devolvendo o simetrico por construcao e sem conteudo informativo. Foi substituido por `A1`.
 
 - **Sensibilidade de custo:** `10 bps por perna` e o custo primario e esta congelado. Sensibilidades a `5 bps` e `20 bps` podem ser reportadas como secundarias, e nenhuma delas altera o criterio de decisao.
 
