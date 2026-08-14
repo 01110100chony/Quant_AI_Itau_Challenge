@@ -1,0 +1,31 @@
+experiment_id = "RSR_001"
+thesis = "Residual Short-Term Reversal in Sector ETFs"
+spec_version = "v1.0"
+created_at = "2026-08-14"
+status = "FROZEN_PENDING_APPROVAL"
+
+research_start = "2001-02-28"
+research_end   = "2018-10-31"
+
+# Trecho observado durante rodada diagnostica descartada.
+# Excluido permanentemente do Final OOS. Ver spec.md secao 10.
+contaminated_start = "2018-11-30"
+contaminated_end   = "2019-02-28"
+
+oos_start = "2019-03-29"
+oos_end   = "2026-07-31"
+oos_months = 89
+oos_opened = false
+oos_opened_at = ""
+oos_approval_ref = ""
+
+predecessor = "Residual Momentum 12-1"
+predecessor_status = "NO_GO_CONSTRUCT"
+
+primary_metric = "rank_ic_spearman"
+frozen_estimation_window = 252
+frozen_reversal_window = 21
+frozen_top_bottom = 3
+frozen_cost_bps_per_leg = 10
+
+git_commit = ""
