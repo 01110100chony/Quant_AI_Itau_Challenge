@@ -72,7 +72,23 @@
   `R_LS[t] = media(R[i,t+1] para i em Long) - media(R[i,t+1] para i em Short)`
   `R_net[t] = R_LS[t] - Cost[t]`
 
-- **Costs:** 10 bps por perna, ida e volta, aplicados ao turnover realizado. No research sample o turnover foi de 2,03 nomes de 3 por mes, equivalente a 1,63% a.a.
+- **Costs:** formula exata, identica a implementada em `scripts/rsr_001.py`.
+
+  Pesos, com `k = 3`:
+  `w[i,t] = +1/k` se `i` em `Long_t`; `-1/k` se `i` em `Short_t`; `0` caso contrario.
+
+  Custo:
+  `Cost_t = c * soma_i |w[i,t] - w[i,t-1]|`, com `c = 0.0010` e `w[i,-1] = 0`
+
+  Retorno liquido:
+  `R_net[t] = R_LS[t] - Cost_t`, onde `R_LS[t] = soma_i w[i,t] * R[i,t+1]`
+
+  No research sample: `soma_i |dw| = 2,751` por mes, equivalente a `3,30% a.a.`
+  de custo.
+
+  Nota de correcao: uma versao anterior deste documento estimava o custo apenas
+  pelo giro da perna comprada, chegando a `1,63% a.a.`. Aquela conta subestimava
+  o custo pela metade. O numero valido e `3,30% a.a.`
 
 - **Controls:** Raw Momentum 12–1 e Residual Momentum 12–1 point-in-time, ambos reportados no mesmo painel.
 
@@ -148,9 +164,30 @@ Somente para registro. **Nao constitui validacao.**
 | Residual Momentum 12–1 PIT | −0,0011 | 0,10% | 0,01 |
 | Raw Momentum 12–1 | +0,0174 | 1,06% | 0,08 |
 
-Spread liquido de custo: **+3,91% a.a.**, vol 10,81%, Sharpe liquido 0,36, meses positivos 54,9%, max drawdown do spread −23,6%.
+Metricas economicas com a formula de custo correta:
 
-Permutacao com 5.000 sorteios: `IC observado +0,0611`, `desvio do nulo 0,0240`, `p = 0,0050`, `z = 2,55`.
+| metrica | valor |
+|---|---:|
+| spread bruto | +5,53% a.a. |
+| turnover `soma \|dw\|` | 2,751 por mes |
+| custo a 10 bps | 3,30% a.a. |
+| **retorno liquido** | **+2,23% a.a.** |
+| volatilidade do liquido | 10,81% |
+| **Sharpe liquido** | **0,21** |
+| meses liquidos positivos | 52,6% |
+| max drawdown do liquido | −31,8% |
+
+Placebos, 5.000 sorteios, semente 7, unilaterais:
+`p_P1 = 0,0052` · `p_P2 = 0,0094`
+
+Ablacao `A1`: IC residual `+0,0611` contra IC sem residualizar `+0,0274`,
+`delta = +0,0337`.
+
+**Leitura honesta.** Apos custos calculados corretamente, o Sharpe cai de 0,21 e
+o drawdown chega a −31,8%. A evidencia estatistica de previsibilidade
+cross-sectional e razoavel, mas a conversao em estrategia liquida e fraca. O
+fenomeno e mais interessante cientificamente do que explorável economicamente
+nesta implementacao.
 
 ## Secao 9 — Encerramento do construct anterior
 

@@ -70,10 +70,25 @@ def painel(ret, mkt, w=W_ESTIMACAO, s=S_REVERSAO):
         fwd = pd.Series(ret.loc[t:t_prox, UNIVERSO].iloc[1:].sum().values, index=UNIVERSO)
         lng = x.nlargest(TOP_BOTTOM).index
         srt = x.nsmallest(TOP_BOTTOM).index
+
+        # pesos: +1/k nos comprados, -1/k nos vendidos, 0 no resto
+        w = pd.Series(0.0, index=UNIVERSO)
+        w[lng] = +1.0 / TOP_BOTTOM
+        w[srt] = -1.0 / TOP_BOTTOM
+
         linhas.append({"data": t, "ic": spearman(x, fwd),
-                       "spread": fwd[lng].mean() - fwd[srt].mean(),
-                       "long": tuple(sorted(lng))})
-    return pd.DataFrame(linhas).set_index("data")
+                       "spread": float(w @ fwd),
+                       **{f"w_{c}": w[c] for c in UNIVERSO}})
+
+    p = pd.DataFrame(linhas).set_index("data")
+
+    # Cost_t = c * soma_i |w_it - w_i,t-1|, com w_i,-1 = 0
+    cols = [f"w_{c}" for c in UNIVERSO]
+    p["turnover"] = p[cols].diff().abs().sum(axis=1)
+    p.loc[p.index[0], "turnover"] = p.loc[p.index[0], cols].abs().sum()
+    p["custo"] = CUSTO_PERNA * p["turnover"]
+    p["liquido"] = p["spread"] - p["custo"]
+    return p
 
 
 def fatiar(p):
@@ -85,28 +100,24 @@ def fatiar(p):
 
 
 def metricas(bloco, rotulo):
-    s = bloco["spread"]
-    troca = np.mean([len(set(bloco["long"].iloc[i]) ^ set(bloco["long"].iloc[i - 1])) / 2
-                     for i in range(1, len(bloco))])
-    custo = troca * 2 / TOP_BOTTOM * CUSTO_PERNA * 12
-    liq   = s.mean() * 12 - custo
-    cum   = s.cumsum()
+    s, n = bloco["spread"], bloco["liquido"]
+    cum  = n.cumsum()
     print(f"\n--- {rotulo}  ({len(bloco)} meses, "
           f"{bloco.index.min().date()} a {bloco.index.max().date()}) ---")
     print(f"  mean IC                 {bloco['ic'].mean():+8.4f}")
     print(f"  hit rate IC > 0         {(bloco['ic']>0).mean()*100:7.1f}%")
     print(f"  spread bruto            {s.mean()*12*100:+7.2f}% a.a.")
-    print(f"  turnover                {troca:7.2f} de {TOP_BOTTOM}")
-    print(f"  custo estimado          {custo*100:7.2f}% a.a.")
-    print(f"  spread LIQUIDO          {liq*100:+7.2f}% a.a.")
-    print(f"  volatilidade            {s.std()*np.sqrt(12)*100:7.2f}%")
-    print(f"  Sharpe liquido          {liq/(s.std()*np.sqrt(12)):7.2f}")
-    print(f"  meses positivos         {(s>0).mean()*100:7.1f}%")
-    print(f"  max drawdown do spread  {(cum-cum.cummax()).min()*100:7.1f}%")
+    print(f"  turnover soma|dw|       {bloco['turnover'].mean():7.3f} por mes")
+    print(f"  custo                   {bloco['custo'].mean()*12*100:7.2f}% a.a.")
+    print(f"  retorno LIQUIDO         {n.mean()*12*100:+7.2f}% a.a.")
+    print(f"  volatilidade (liquido)  {n.std()*np.sqrt(12)*100:7.2f}%")
+    print(f"  Sharpe liquido          {n.mean()*12/(n.std()*np.sqrt(12)):7.2f}")
+    print(f"  meses liquidos positivos{(n>0).mean()*100:7.1f}%")
+    print(f"  max drawdown (liquido)  {(cum-cum.cummax()).min()*100:7.1f}%")
     return {"mean_ic": bloco["ic"].mean(), "spread_bruto_aa": s.mean() * 12,
-            "custo_aa": custo, "spread_liquido_aa": liq,
-            "sharpe_liquido": liq / (s.std() * np.sqrt(12)),
-            "turnover": troca, "n": len(bloco)}
+            "custo_aa": bloco["custo"].mean() * 12, "liquido_aa": n.mean() * 12,
+            "sharpe_liquido": n.mean() * 12 / (n.std() * np.sqrt(12)),
+            "turnover": bloco["turnover"].mean(), "n": len(bloco)}
 
 
 def matrizes(ret, mkt, idx):
@@ -130,13 +141,12 @@ def relatar_placebos(ret, mkt, idx, rotulo):
     print(f"  IC observado                    {obs:+8.4f}")
     print(f"  P1 permutacao cross-sectional   p = {p1:6.4f}")
     print(f"  P2 embaralhamento temporal      p = {p2:6.4f}")
-    # P3: controle de residualizacao. Reversao sobre o retorno BRUTO,
-    # sem descontar o mercado. Testa se a residualizacao agrega algo.
-    bruto = -ret[UNIVERSO].rolling(S_REVERSAO).sum()
-    datas = [d for d in ret.groupby(ret.index.to_period("M")).apply(lambda g: g.index[-1])]
-    Xb = np.array([bruto.loc[t].values for j, t in enumerate(datas[:-1]) if t in idx])
-    print(f"  P3 reversao sem residualizar    IC = {ic_medio(Xb, Y):+.4f}"
-          f"   (se ~igual, residualizar nao agrega)")
+    r_res, r_raw, d = ablacao_a1(ret, idx, X, Y)
+    print(f"\n--- A1 ABLACAO DE RESIDUALIZACAO (evidencia secundaria) ---")
+    print(f"  IC reversao residual            {r_res:+8.4f}")
+    print(f"  IC reversao sem residualizar    {r_raw:+8.4f}")
+    print(f"  delta IC (A1)                   {d:+8.4f}   (esperado > 0)")
+    print("  A1 nao e placebo e nao e condicao de GO.")
 
 
 def robustez(ret, mkt):
@@ -158,33 +168,60 @@ def ic_medio(a, b):
     return ((ra * rb).sum(1) / np.sqrt((ra ** 2).sum(1) * (rb ** 2).sum(1))).mean()
 
 
-def placebos(X, Y, n=5000, semente=7):
+N_PERM, SEMENTE = 5000, 7
+
+
+def placebos(X, Y, n=N_PERM, semente=SEMENTE):
     """
-    P1: permutacao cross-sectional do sinal dentro de cada mes.
-    P2: embaralhamento temporal dos retornos futuros entre meses.
-    Ambos pre-registrados em spec.md. Nao alterar.
+    Placebos pre-registrados. Ambos unilaterais, pois H_A: mean IC > 0.
+
+    P1  permutacao cross-sectional: dentro de cada mes, embaralha os labels
+        do sinal entre os 9 ativos, preservando os retornos daquele mes.
+
+    P2  permutacao temporal em bloco: reordena os meses do vetor
+        cross-sectional completo (R_1,...,R_9)_{t+1}, mantendo cada vetor
+        intacto. Nao permuta ativos independentemente.
+
+    p-valor unilateral, estimador nao enviesado de Monte Carlo:
+
+        p = (1 + #{nulo >= observado}) / (N + 1)
     """
     obs = ic_medio(X, Y)
     rng = np.random.default_rng(semente)
-    n1 = np.array([ic_medio(rng.permuted(X, axis=1), Y) for _ in range(n)])
+    n1  = np.array([ic_medio(rng.permuted(X, axis=1), Y) for _ in range(n)])
     rng = np.random.default_rng(semente)
-    n2 = np.array([ic_medio(X, Y[rng.permutation(len(Y))]) for _ in range(n)])
-    return obs, (n1 >= obs).mean(), (n2 >= obs).mean()
+    n2  = np.array([ic_medio(X, Y[rng.permutation(len(Y))]) for _ in range(n)])
+    p = lambda nulo: (1 + int((nulo >= obs).sum())) / (n + 1)
+    return obs, p(n1), p(n2)
 
 
-def avaliar_criterio(bloco, X, Y, custo_aa):
+def ablacao_a1(ret, idx, X, Y):
+    """
+    A1 — Residualization Ablation. NAO e placebo e NAO e condicao de GO.
+    Compara o IC do sinal residual com o da mesma reversao calculada sobre
+    o retorno bruto. Evidencia secundaria de que residualizar agrega.
+    """
+    bruto = -ret[UNIVERSO].rolling(S_REVERSAO).sum()
+    datas = [d for d in ret.groupby(ret.index.to_period("M")).apply(lambda g: g.index[-1])]
+    Xb = np.array([bruto.loc[t].values for t in datas[:-1] if t in idx])
+    ic_res, ic_raw = ic_medio(X, Y), ic_medio(Xb, Y)
+    return ic_res, ic_raw, ic_res - ic_raw
+
+
+def avaliar_criterio(bloco, X, Y):
     """
     Criterio pre-registrado em spec.md. Nao alterar apos a abertura.
     ScientificPass e EconomicPass sao avaliados separadamente.
+    A1 nao entra no criterio.
     """
-    ic, spread = bloco["ic"], bloco["spread"]
+    ic, liq = bloco["ic"], bloco["liquido"]
     obs, p1, p2 = placebos(X, Y)
 
     # tres blocos cronologicos, definidos por posicao antes da abertura
     cortes = np.array_split(np.arange(len(bloco)), 3)
     ic_blocos  = [ic.iloc[c].mean() for c in cortes]
-    net_blocos = [spread.iloc[c].mean() * 12 - custo_aa for c in cortes]
-    net_total  = spread.mean() * 12 - custo_aa
+    net_blocos = [liq.iloc[c].mean() * 12 for c in cortes]
+    net_total  = liq.mean() * 12
 
     sci = (ic.mean() > 0 and p1 < 0.10 and p2 < 0.10
            and sum(v > 0 for v in ic_blocos) >= 2)
@@ -248,7 +285,7 @@ def main():
         print("abaixo NAO e valido como decisao, porque a amostra ja foi vista.")
         print("#" * 62)
         Xr, Yr = matrizes(ret, mkt, set(res.index))
-        v, _, _ = avaliar_criterio(res, Xr, Yr, m_res["custo_aa"])
+        v, _, _ = avaliar_criterio(res, Xr, Yr)
         print(f"\n  [ensaio] o caminho de codigo executou e retornaria: {v}")
         print("  [ensaio] OOS permanece fechado.")
 
@@ -262,7 +299,7 @@ def main():
 
         m_oos = metricas(oos, "FINAL OOS")
         X, Y = matrizes(ret, mkt, set(oos.index))
-        veredito, p1, p2 = avaliar_criterio(oos, X, Y, m_oos["custo_aa"])
+        veredito, p1, p2 = avaliar_criterio(oos, X, Y)
 
         print("\n" + "=" * 62)
         print(f"VEREDITO  ->  {veredito}")
