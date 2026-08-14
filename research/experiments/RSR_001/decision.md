@@ -2,7 +2,7 @@
 
 ## Current decision
 
-`READY_FOR_FREEZE`
+`RESEARCH`  (equivalente a READY_FOR_FREEZE no vocabulario do harness)
 
 A specification esta completa. Nenhum campo permanece `TBD` e o criterio de
 decisao esta escrito. O experimento **ainda nao esta congelado**: o estado so

@@ -29,6 +29,8 @@ O status descreve estágio, não qualidade econômica. `VALIDATED` não signific
 | OS_001 | Opportunity Set → Residual Momentum | v0.4 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook`](../../notebooks/01_er_feasibility_v0_4.ipynb) |
 | AFN_001 | Adaptive Factor Neutralization | v0.5.1 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook corrigido`](../../notebooks/01_er_feasibility_v0_5_1.ipynb) |
 | CM_001 | Cross-Market Information Transmission | v0.1-draft | DRAFT | NONE | CLOSED | Specification incompleta; nenhuma execução autorizada | [`artifact`](../../research/experiments/CM_001/spec.md) |
+| RM_001 | Residual Momentum 12–1, construct in-sample | v0.4 | NO_GO | 2001–out/2018 research | CLOSED | Construct refutado por identidade de OLS; sinal era reversão de curto prazo | [`artifact`](../../research/experiments/RSR_001/spec.md) |
+| RSR_001 | Residual Short-Term Reversal in Sector ETFs | v1.0 | RESEARCH | 2001-02 a out/2018 research | CLOSED | Specification completa, aguardando aprovação e commit de freeze | [`artifact`](../../research/experiments/RSR_001/spec.md) |
 
 ## Legacy artifact policy
 

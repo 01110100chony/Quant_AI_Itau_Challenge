@@ -4,12 +4,15 @@
 
 - **Experiment ID:** RSR_001
 - **Spec version:** v1.0
-- **Status:** `READY_FOR_FREEZE`
+- **Status:** `RESEARCH`
 
-  O estado so passa a `FROZEN` apos aprovacao humana registrada e commit da
-  specification. `READY_FOR_FREEZE` significa que nenhum campo esta `TBD` e que
-  o criterio de decisao esta escrito, mas que a specification ainda nao foi
-  carimbada temporalmente por um commit.
+  Corresponde ao conceito `READY_FOR_FREEZE`: nenhum campo esta `TBD` e o
+  criterio de decisao esta escrito, mas a specification ainda nao foi carimbada
+  temporalmente por um commit. `READY_FOR_FREEZE` nao pertence ao vocabulario
+  de `contexts/research/experiment_registry.md`, entao adota-se `RESEARCH`.
+
+  Fluxo: `RESEARCH` -> aprovacao humana -> commit `H1` -> `FROZEN` -> abertura
+  unica do OOS -> `OOS_OPENED`.
 - **Created at:** 2026-08-14
 - **Predecessor:** construct do `Residual Momentum 12–1` encerrado como `NO-GO`. Ver secao 9.
 - **Canonical context:** este arquivo.
