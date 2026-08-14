@@ -103,39 +103,40 @@ def metricas(bloco, rotulo):
     print(f"  Sharpe liquido          {liq/(s.std()*np.sqrt(12)):7.2f}")
     print(f"  meses positivos         {(s>0).mean()*100:7.1f}%")
     print(f"  max drawdown do spread  {(cum-cum.cummax()).min()*100:7.1f}%")
-    return {"mean_ic": bloco["ic"].mean(), "spread_liquido_aa": liq,
+    return {"mean_ic": bloco["ic"].mean(), "spread_bruto_aa": s.mean() * 12,
+            "custo_aa": custo, "spread_liquido_aa": liq,
             "sharpe_liquido": liq / (s.std() * np.sqrt(12)),
             "turnover": troca, "n": len(bloco)}
 
 
-def permutacao(ret, mkt, res_idx, n=5000):
-    eps   = residuos_pit(ret, mkt)
-    sinal = -eps.rolling(S_REVERSAO).sum()
+def matrizes(ret, mkt, idx):
+    """Sinal e retorno futuro alinhados, para os meses em idx."""
+    sinal = -residuos_pit(ret, mkt).rolling(S_REVERSAO).sum()
     datas = [d for d in ret.groupby(ret.index.to_period("M")).apply(lambda g: g.index[-1])]
     X, Y = [], []
     for j in range(len(datas) - 1):
         t, t_prox = datas[j], datas[j + 1]
-        if t not in res_idx:
+        if t not in idx:
             continue
         X.append(sinal.loc[t].values)
         Y.append(ret.loc[t:t_prox, UNIVERSO].iloc[1:].sum().values)
-    X, Y = np.array(X), np.array(Y)
+    return np.array(X), np.array(Y)
 
-    def ic_medio(a, b):
-        ra = np.argsort(np.argsort(a, 1), 1).astype(float)
-        rb = np.argsort(np.argsort(b, 1), 1).astype(float)
-        ra -= ra.mean(1, keepdims=True)
-        rb -= rb.mean(1, keepdims=True)
-        return ((ra * rb).sum(1) / np.sqrt((ra ** 2).sum(1) * (rb ** 2).sum(1))).mean()
 
-    obs  = ic_medio(X, Y)
-    rng  = np.random.default_rng(7)
-    nulo = np.array([ic_medio(rng.permuted(X, axis=1), Y) for _ in range(n)])
-    print(f"\n--- PERMUTACAO ({n} sorteios, research sample) ---")
-    print(f"  IC observado            {obs:+8.4f}")
-    print(f"  desvio do nulo          {nulo.std():8.4f}")
-    print(f"  p-valor empirico        {(nulo>=obs).mean():8.4f}")
-    print(f"  z                       {(obs-nulo.mean())/nulo.std():8.2f}")
+def relatar_placebos(ret, mkt, idx, rotulo):
+    X, Y = matrizes(ret, mkt, idx)
+    obs, p1, p2 = placebos(X, Y)
+    print(f"\n--- PLACEBOS ({rotulo}) ---")
+    print(f"  IC observado                    {obs:+8.4f}")
+    print(f"  P1 permutacao cross-sectional   p = {p1:6.4f}")
+    print(f"  P2 embaralhamento temporal      p = {p2:6.4f}")
+    # P3: controle de residualizacao. Reversao sobre o retorno BRUTO,
+    # sem descontar o mercado. Testa se a residualizacao agrega algo.
+    bruto = -ret[UNIVERSO].rolling(S_REVERSAO).sum()
+    datas = [d for d in ret.groupby(ret.index.to_period("M")).apply(lambda g: g.index[-1])]
+    Xb = np.array([bruto.loc[t].values for j, t in enumerate(datas[:-1]) if t in idx])
+    print(f"  P3 reversao sem residualizar    IC = {ic_medio(Xb, Y):+.4f}"
+          f"   (se ~igual, residualizar nao agrega)")
 
 
 def robustez(ret, mkt):
@@ -149,19 +150,76 @@ def robustez(ret, mkt):
               f"{res['spread'].mean()*12*100:>12.2f}%")
 
 
-def avaliar_criterio(m):
-    """Criterio pre-registrado em spec.md. Nao alterar apos a abertura."""
-    if m["mean_ic"] > 0 and m["spread_liquido_aa"] > 0:
-        return "GO"
-    if m["mean_ic"] > 0:
-        return "CONDITIONAL GO"
-    return "NO-GO"
+def ic_medio(a, b):
+    ra = np.argsort(np.argsort(a, 1), 1).astype(float)
+    rb = np.argsort(np.argsort(b, 1), 1).astype(float)
+    ra -= ra.mean(1, keepdims=True)
+    rb -= rb.mean(1, keepdims=True)
+    return ((ra * rb).sum(1) / np.sqrt((ra ** 2).sum(1) * (rb ** 2).sum(1))).mean()
+
+
+def placebos(X, Y, n=5000, semente=7):
+    """
+    P1: permutacao cross-sectional do sinal dentro de cada mes.
+    P2: embaralhamento temporal dos retornos futuros entre meses.
+    Ambos pre-registrados em spec.md. Nao alterar.
+    """
+    obs = ic_medio(X, Y)
+    rng = np.random.default_rng(semente)
+    n1 = np.array([ic_medio(rng.permuted(X, axis=1), Y) for _ in range(n)])
+    rng = np.random.default_rng(semente)
+    n2 = np.array([ic_medio(X, Y[rng.permutation(len(Y))]) for _ in range(n)])
+    return obs, (n1 >= obs).mean(), (n2 >= obs).mean()
+
+
+def avaliar_criterio(bloco, X, Y, custo_aa):
+    """
+    Criterio pre-registrado em spec.md. Nao alterar apos a abertura.
+    ScientificPass e EconomicPass sao avaliados separadamente.
+    """
+    ic, spread = bloco["ic"], bloco["spread"]
+    obs, p1, p2 = placebos(X, Y)
+
+    # tres blocos cronologicos, definidos por posicao antes da abertura
+    cortes = np.array_split(np.arange(len(bloco)), 3)
+    ic_blocos  = [ic.iloc[c].mean() for c in cortes]
+    net_blocos = [spread.iloc[c].mean() * 12 - custo_aa for c in cortes]
+    net_total  = spread.mean() * 12 - custo_aa
+
+    sci = (ic.mean() > 0 and p1 < 0.10 and p2 < 0.10
+           and sum(v > 0 for v in ic_blocos) >= 2)
+    eco = (net_total > 0 and sum(v > 0 for v in net_blocos) >= 2)
+
+    print("\n--- CRITERIO PRE-REGISTRADO ---")
+    print(f"  mean IC no OOS            {ic.mean():+8.4f}   {'ok' if ic.mean()>0 else 'FALHA'}")
+    print(f"  P1 permutacao cross-sec.  p={p1:6.4f}   {'ok' if p1<0.10 else 'FALHA'}")
+    print(f"  P2 embaralhamento tempo.  p={p2:6.4f}   {'ok' if p2<0.10 else 'FALHA'}")
+    print(f"  IC>0 nos blocos           {sum(v>0 for v in ic_blocos)} de 3      "
+          f"{'ok' if sum(v>0 for v in ic_blocos)>=2 else 'FALHA'}")
+    print(f"    B1 {ic_blocos[0]:+.4f}   B2 {ic_blocos[1]:+.4f}   B3 {ic_blocos[2]:+.4f}")
+    print(f"  ScientificPass            {'SIM' if sci else 'NAO'}")
+    print(f"\n  retorno liquido no OOS    {net_total*100:+7.2f}% a.a.   "
+          f"{'ok' if net_total>0 else 'FALHA'}")
+    print(f"  liquido>0 nos blocos      {sum(v>0 for v in net_blocos)} de 3      "
+          f"{'ok' if sum(v>0 for v in net_blocos)>=2 else 'FALHA'}")
+    print(f"    B1 {net_blocos[0]*100:+.2f}%   B2 {net_blocos[1]*100:+.2f}%   "
+          f"B3 {net_blocos[2]*100:+.2f}%")
+    print(f"  EconomicPass              {'SIM' if eco else 'NAO'}")
+
+    if sci and eco:
+        return "GO", p1, p2
+    if sci:
+        return "CONDITIONAL GO", p1, p2
+    return "NO-GO", p1, p2
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--abrir-oos", action="store_true")
     ap.add_argument("--robustez", action="store_true")
+    ap.add_argument("--ensaio", action="store_true",
+                    help="exercita o caminho do criterio no RESEARCH sample, "
+                         "para validar o codigo antes da execucao irreversivel")
     args = ap.parse_args()
 
     px  = pd.read_csv(DADOS, index_col=0, parse_dates=True)
@@ -181,7 +239,18 @@ def main():
 
     if args.robustez:
         robustez(ret, mkt)
-        permutacao(ret, mkt, set(res.index))
+        relatar_placebos(ret, mkt, set(res.index), "research sample")
+
+    if args.ensaio:
+        print("\n" + "#" * 62)
+        print("ENSAIO. Criterio aplicado ao RESEARCH sample, nao ao OOS.")
+        print("Serve apenas para validar o caminho de codigo. O resultado")
+        print("abaixo NAO e valido como decisao, porque a amostra ja foi vista.")
+        print("#" * 62)
+        Xr, Yr = matrizes(ret, mkt, set(res.index))
+        v, _, _ = avaliar_criterio(res, Xr, Yr, m_res["custo_aa"])
+        print(f"\n  [ensaio] o caminho de codigo executou e retornaria: {v}")
+        print("  [ensaio] OOS permanece fechado.")
 
     if args.abrir_oos:
         print("\n" + "=" * 62)
@@ -192,9 +261,11 @@ def main():
             sys.exit("Cancelado. OOS permanece fechado.")
 
         m_oos = metricas(oos, "FINAL OOS")
-        veredito = avaliar_criterio(m_oos)
+        X, Y = matrizes(ret, mkt, set(oos.index))
+        veredito, p1, p2 = avaliar_criterio(oos, X, Y, m_oos["custo_aa"])
+
         print("\n" + "=" * 62)
-        print(f"CRITERIO PRE-REGISTRADO  ->  {veredito}")
+        print(f"VEREDITO  ->  {veredito}")
         print("=" * 62)
         print("Nenhum parametro pode ser reajustado a partir daqui.")
 
@@ -202,6 +273,7 @@ def main():
         oos.drop(columns="long").to_csv(SAIDA / "rsr_001_oos_bruto.csv")
         pd.Series({**{f"research_{k}": v for k, v in m_res.items()},
                    **{f"oos_{k}": v for k, v in m_oos.items()},
+                   "oos_p_P1": p1, "oos_p_P2": p2,
                    "veredito": veredito,
                    "aberto_em": dt.datetime.now().isoformat(timespec="seconds")}
                   ).to_csv(SAIDA / "rsr_001_veredito.csv")

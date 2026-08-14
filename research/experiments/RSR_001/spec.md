@@ -4,7 +4,12 @@
 
 - **Experiment ID:** RSR_001
 - **Spec version:** v1.0
-- **Status:** `FROZEN — PENDING HUMAN APPROVAL`
+- **Status:** `READY_FOR_FREEZE`
+
+  O estado so passa a `FROZEN` apos aprovacao humana registrada e commit da
+  specification. `READY_FOR_FREEZE` significa que nenhum campo esta `TBD` e que
+  o criterio de decisao esta escrito, mas que a specification ainda nao foi
+  carimbada temporalmente por um commit.
 - **Created at:** 2026-08-14
 - **Predecessor:** construct do `Residual Momentum 12–1` encerrado como `NO-GO`. Ver secao 9.
 - **Canonical context:** este arquivo.
@@ -71,23 +76,67 @@
 
 - **Controls:** Raw Momentum 12–1 e Residual Momentum 12–1 point-in-time, ambos reportados no mesmo painel.
 
-- **Placebos:** permutacao do sinal entre ativos dentro de cada mes, preservando datas e retornos futuros, 5.000 sorteios.
+- **Placebos:** definidos integralmente antes da abertura. Nenhum placebo pode ser adicionado, removido ou alterado apos observar o resultado do OOS.
+
+  `P1 — permutacao cross-sectional.` Embaralha o sinal entre os 9 ativos dentro de cada mes, preservando datas e retornos futuros. 5.000 sorteios, semente 7. Destroi a associacao entre ativo e sinal, preservando a estrutura temporal.
+
+  `P2 — embaralhamento temporal.` Mantem o sinal de cada ativo e embaralha os meses dos retornos futuros. 5.000 sorteios, semente 7. Destroi a associacao temporal, preservando a estrutura cross-sectional.
+
+  `P3 — inversao de sinal.` Avalia `+soma(eps)` no lugar de `-soma(eps)`, isto e, a direcao de momentum residual em vez de reversao. Serve como verificacao de direcionalidade: se o efeito for real, esta variante deve apresentar IC de sinal oposto.
+
+  Criterio: `P1` e `P2` sao considerados nao invalidantes quando o IC observado fica acima do percentil 90 de ambas as distribuicoes nulas, equivalente a `p < 0,10` unilateral em cada uma.
+
+- **Sensibilidade de custo:** `10 bps por perna` e o custo primario e esta congelado. Sensibilidades a `5 bps` e `20 bps` podem ser reportadas como secundarias, e nenhuma delas altera o criterio de decisao.
 
 - **Known confounders:** universo pequeno com 9 ativos, o que limita o poder do ranking; custos de execucao nao observados; ausencia de limite de liquidez; sobreposicao setorial entre ETFs.
 
 - **Robustness-only tests:** janela de estimacao de 126 e 504 pregoes; proxy de mercado alternativa igual a media equal-weight dos 9 ETFs; janela de reversao de 10 e 42 pregoes. **Todas reportadas, nenhuma seleciona a especificacao.**
 
+  Registro explicito sobre `S = 42`: no research sample esta variante entregou `IC = 0,0858` e `spread = 8,14% a.a.`, acima da base. Ela foi identificada **depois** de observar o research sample e por isso permanece classificada como `exploratory robustness / future research`. **Nao sera promovida a primary.** Caso `S = 21` resulte em `NO-GO` no OOS e `S = 42` apresente resultado favoravel, o OOS **nao** sera reinterpretado promovendo `S = 42`. A monotonicidade em `S` fica registrada como questao aberta para trabalho futuro, com a ressalva economica de que em 42 pregoes o fenomeno deixa de ser reversao de curto prazo e exigiria outro mecanismo economico.
+
 - **Frozen parameters:** `W = 252`, `S = 21`, `Top/Bottom = 3`, rebalanceamento mensal, custo de 10 bps por perna, metrica primaria Rank IC.
 
 ## Criterio de decisao, pre-registrado
 
-Avaliado **uma unica vez** no Final OOS, apos aprovacao humana:
+Avaliado **uma unica vez** no Final OOS, apos aprovacao humana e commit.
 
-- `GO` se `mean IC > 0` **e** `retorno long-short liquido de custo > 0`
-- `CONDITIONAL GO` se `mean IC > 0` **e** `retorno liquido <= 0`. Interpretacao: existe informacao no ranking, mas ela nao e economicamente explorável apos custos nesta implementacao.
-- `NO-GO` se `mean IC <= 0`
+O criterio separa confirmacao cientifica de utilidade economica. Um retorno
+liquido marginalmente positivo, sem confirmacao estatistica, nao caracteriza
+`GO`.
 
-Nenhum parametro sera reajustado apos a abertura. Um resultado `NO-GO` sera reportado como `NO-GO`.
+### Blocos cronologicos
+
+O OOS de 89 meses e dividido em tres blocos contiguos e de tamanho aproximado,
+definidos **por posicao e antes da abertura**:
+
+`B1 = meses 1 a 30` · `B2 = meses 31 a 60` · `B3 = meses 61 a 89`
+
+### ScientificPass
+
+Todas as condicoes abaixo:
+
+1. `mean IC no OOS > 0`
+2. `p < 0,10` unilateral no placebo `P1`, permutacao cross-sectional
+3. `p < 0,10` unilateral no placebo `P2`, embaralhamento temporal
+4. `mean IC > 0` em pelo menos **2 dos 3** blocos cronologicos
+
+### EconomicPass
+
+Ambas as condicoes abaixo:
+
+1. `retorno long-short liquido de custo no OOS > 0`, a `10 bps` por perna
+2. `retorno liquido > 0` em pelo menos **2 dos 3** blocos cronologicos
+
+### Veredito
+
+| resultado | condicao | interpretacao |
+|---|---|---|
+| `GO` | `ScientificPass` e `EconomicPass` | fenomeno replicado e economicamente utilizavel apos custos |
+| `CONDITIONAL GO` | `ScientificPass` e nao `EconomicPass` | fenomeno replicado, mas nao convertido em estrategia liquida |
+| `NO-GO` | nao `ScientificPass` | previsibilidade residual nao confirmada fora da amostra |
+
+Nenhum parametro, custo, placebo ou limiar sera reajustado apos a abertura. Um
+resultado `NO-GO` sera reportado como `NO-GO`.
 
 ## Evidencia no research sample
 

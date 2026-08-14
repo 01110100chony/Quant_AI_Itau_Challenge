@@ -2,14 +2,17 @@
 
 ## Current decision
 
-`FROZEN — PENDING HUMAN APPROVAL`
+`READY_FOR_FREEZE`
 
-A specification esta completa e congelada. Nenhum campo permanece `TBD`. O
-criterio `GO / CONDITIONAL GO / NO-GO` foi pre-registrado antes de qualquer
-acesso ao Final OOS.
+A specification esta completa. Nenhum campo permanece `TBD` e o criterio de
+decisao esta escrito. O experimento **ainda nao esta congelado**: o estado so
+passa a `FROZEN` apos aprovacao humana registrada e commit da specification,
+que e o carimbo temporal que da validade ao holdout.
 
 Nem `GO`, nem `CONDITIONAL GO`, nem `NO-GO` foi decidido, porque o Final OOS
-ainda nao foi aberto.
+nao foi aberto.
+
+    READY_FOR_FREEZE -> human approval -> commit -> FROZEN -> open OOS once
 
 ## Required human approvals
 
@@ -20,11 +23,13 @@ Aprovar explicitamente, e commitar, antes de qualquer abertura do OOS:
 - [ ] universo dos 9 ETFs setoriais
 - [ ] carteira Top 3 / Bottom 3, peso igual
 - [ ] rebalanceamento mensal no ultimo pregao
-- [ ] tratamento de custo a 10 bps por perna
+- [ ] `S = 21` como primary; `S = 42` permanece exploratory e nunca sera promovido
+- [ ] custo primario de 10 bps por perna; 5 e 20 bps apenas como sensibilidade
 - [ ] metrica primaria Rank IC e secundaria de retorno liquido
+- [ ] placebos `P1`, `P2` e `P3` conforme escritos, sem alteracao posterior
 - [ ] exclusao permanente de 2018-11-30 a 2019-02-28
 - [ ] intervalo do OOS limpo, 2019-03-29 a 2026-07-31
-- [ ] criterio `GO / CONDITIONAL GO / NO-GO`
+- [ ] criterio `ScientificPass` e `EconomicPass`, incluindo os tres blocos
 - [ ] implementacao canonica: `scripts/rsr_001.py`
 
 ## OOS state
