@@ -22,8 +22,9 @@
 - [x] Create H1-LAF scientific-content commit
   `cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`.
 - [x] Record exact H1-LAF and authorization in a metadata-only commit.
-- [ ] Execute the frozen Research association exactly once.
-- [ ] Record literal Research result without optimization or variant.
+- [x] Execute the frozen Research association exactly once from authorization
+  commit `842a87c2ca4ff7e65627f29d93726e9cae22c169`.
+- [x] Record literal Research result `NO_GO` without optimization or variant.
 
 ## Invariantes vigentes — LAF_001
 

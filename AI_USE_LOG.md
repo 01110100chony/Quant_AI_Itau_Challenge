@@ -115,3 +115,13 @@ Registre somente contribuições materiais de GenAI que sejam relevantes para au
 - **Human decision:** Researchers fixed every material field, sample, timestamp, formula, missingness rule, split protection, model, threshold and verdict, closed Tiingo/A1d without a scientific result and prohibited variants, holdouts, portfolio and backtest.
 - **Verification:** Five immutable Yahoo hashes; XNYS boundary; scale factors `0.5` and `2.0`; target-only mutation; synthetic manual cases; LAF/full tests; harness verifier; Git diff review.
 - **Impact on project:** Prepared `v1.0-frozen` without observing a feature-target association. Only 8 complete Research months remain under the literal rules; no rule was relaxed, and Validation/Final OOS remain closed.
+
+## 2026-08-15 — LAF_001 frozen Research execution
+
+- **Date:** 2026-08-15
+- **Tool/model:** OpenAI Codex
+- **Task:** Execute the human-authorized frozen LAF_001 Research association exactly once and apply its literal prospective gates.
+- **AI contribution:** Ran the registered full and RV-only OLS/HAC(3) models, fixed stability blocks and expanding prior-only Q80 state diagnostic; persisted the receipt, provenance, tables and the informative coefficient figure; synchronized the literal result without a variant.
+- **Human decision:** Researchers fixed all inputs, formulas, sample boundaries, controls, inference, gates and verdict logic; explicitly authorized the one execution while keeping Validation and Final OOS closed.
+- **Verification:** H1/auth commits, immutable hashes, one-shot receipt, scale invariance, target independence, no-2017 boundary, tests, harness verifier and scoped Git review.
+- **Impact on project:** All four gates failed and the frozen verdict is `NO_GO`. No optimization, holdout, strategy, portfolio or backtest followed.

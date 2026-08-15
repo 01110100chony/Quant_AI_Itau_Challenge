@@ -2,16 +2,16 @@
 
 ## Desafio Quant AI 2026 — Estado Atual
 
-**Fase:** `LAF_001 v1.0-frozen` — execução Research única autorizada
-**Status:** `FROZEN`
+**Fase:** `LAF_001 v1.0-frozen` — Research executado uma vez e encerrado
+**Status:** `NO_GO`
 **Última atualização:** 15/08/2026
 
 Nenhuma tese está oficialmente promovida ou validada.
 
-`LAF_001 — Liquidity Absorption Fragility` é a candidata Research atual. A
-ordem humana final aprovou a specification `v1.0-frozen`; H1-LAF
-`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b` foi registrado e a execução Research
-única está autorizada. Nenhuma associação foi executada neste ponto.
+`LAF_001 — Liquidity Absorption Fragility` concluiu sua única execução Research
+congelada. `CorePass`, `IncrementalPass`, `StabilityPass` e `StatePass` foram
+falsos; o veredito literal é `NO_GO`. Nenhuma variante foi executada e não há
+decisão de Validation pendente.
 
 ## LAF_001 — freeze Research pré-associação
 
@@ -44,7 +44,16 @@ ordem humana final aprovou a specification `v1.0-frozen`; H1-LAF
   2004–2010 e nenhum com estado Q80 classificável.
 - Nenhuma regressão, associação ou gate Research foi observado antes de H1-LAF.
 - H1-LAF: `cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`; execução Research única
-  autorizada por commit separado de metadata/proveniência.
+  autorizada por commit de metadata/proveniência
+  `842a87c2ca4ff7e65627f29d93726e9cae22c169`.
+- Execução única: N `8`; `beta_LAF=0.01620172883243451`, HAC SE
+  `0.019928968505894328`, t `0.8129737787303228`, p unilateral
+  `0.22659457277469747`; `beta_RV=-0.4511591592478728`.
+- R² ajustado completo `-0.2816963209821848`, contra `-0.0837671317096973`
+  no RV-only. Bloco 2004–2010 inestimável; bloco 2011–2016 positivo; estados
+  high/normal sem observações classificáveis.
+- Gates: `CorePass=false`, `IncrementalPass=false`, `StabilityPass=false`,
+  `StatePass=false`; `NO_GO`.
 
 ## LAF_001 — escopo e fronteiras vigentes
 

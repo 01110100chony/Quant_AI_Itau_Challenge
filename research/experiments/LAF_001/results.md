@@ -117,5 +117,50 @@ contained 3,525 XNYS rows ending `2016-12-30`, and zero historical rows from
 
 The 156 target-month grid has 8 primary complete cases: zero in 2004–2010 and
 8 in 2011–2016. State-classified complete cases are zero. These are mechanical
-pre-association counts. No coefficient, p-value, adjusted R-squared, state
-mean or Research verdict has yet been calculated.
+pre-association counts and did not change the frozen rules.
+
+## Frozen Research execution
+
+The single authorized association was executed from authorization commit
+`842a87c2ca4ff7e65627f29d93726e9cae22c169`, against scientific freeze H1-LAF
+`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`. Research target months were
+`2004-01` through `2016-12`; Validation and Final OOS remained closed.
+
+| Primary estimate | Result |
+|---|---:|
+| Complete cases | 8 |
+| `beta_LAF` | 0.01620172883243451 |
+| HAC SE (`beta_LAF`) | 0.019928968505894328 |
+| t (`beta_LAF`) | 0.8129737787303228 |
+| HAC p unilateral (`beta_LAF > 0`) | 0.22659457277469747 |
+| `beta_RV` | -0.4511591592478728 |
+| adjusted R² completo | -0.2816963209821848 |
+| adjusted R² RV-only | -0.0837671317096973 |
+
+The 2004–2010 stability block had zero complete cases and was not estimable.
+The 2011–2016 block had all 8 complete cases and positive `beta_LAF`
+(`0.01620172883243451`). No complete case had the minimum 36 prior months
+needed for the expanding Q80 classification, so both high and normal state
+counts were zero and the high-minus-normal TailLoss difference is undefined.
+The coefficient plot was retained. A state plot was not retained because no
+classified observation exists; `state_summary.csv` records the empty groups
+without suggesting an empirical comparison.
+
+| Frozen gate | Result |
+|---|---|
+| `CorePass` | FAIL |
+| `IncrementalPass` | FAIL |
+| `StabilityPass` | FAIL |
+| `StatePass` | FAIL |
+
+```text
+VERDICT = NO_GO
+SAFE_TO_RUN_VALIDATION = NO
+READY_FOR_HUMAN_VALIDATION_DECISION = NO
+```
+
+The positive point estimate does not pass the prospective one-sided Research
+screen, and adjusted R² is lower than RV-only. The other two gates also fail
+literally because the frozen sample cannot evaluate the first block or either
+state. No diagnostic, alternate construction or threshold was run to rescue
+the result. This is a Research-sample result, not validation.

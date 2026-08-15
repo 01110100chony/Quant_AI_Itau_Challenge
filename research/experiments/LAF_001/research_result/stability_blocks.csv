@@ -1,0 +1,3 @@
+block,N,estimable,beta_laf_positive,coefficient,hac_standard_error,t_statistic,one_sided_p_value,ci95_lower,ci95_upper
+2004-2010,0,False,False,,,,,,
+2011-2016,8,True,True,0.01620172883243451,0.019928968505894328,0.8129737787303228,0.22659457277469747,-0.03502731561178563,0.06743077327665464

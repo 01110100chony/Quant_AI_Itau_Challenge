@@ -1153,4 +1153,17 @@ Bloco não estimável e contagem de estados insuficiente não podem passar os
 gates congelados. H1-LAF
 `cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b` registrou o conteúdo científico; a
 autorização metadata-only subsequente permite exatamente uma execução Research,
-ainda não realizada neste ponto.
+realizada uma vez a partir do commit
+`842a87c2ca4ff7e65627f29d93726e9cae22c169`.
+
+A amostra completa foi N `8`. No modelo completo, `beta_LAF` foi
+`0.01620172883243451` (HAC SE `0.019928968505894328`, t
+`0.8129737787303228`, p unilateral `0.22659457277469747`) e `beta_RV` foi
+`-0.4511591592478728`. O R² ajustado completo (`-0.2816963209821848`) ficou
+abaixo do RV-only (`-0.0837671317096973`). O bloco 2004–2010 permaneceu
+inestimável; 2011–2016 teve beta LAF positivo. Nenhum complete case recebeu
+estado Q80, logo a diferença high-minus-normal é indefinida.
+
+Os quatro gates congelados foram falsos e o veredito literal foi `NO_GO`.
+Nenhuma variante, resgate, Validation, Final OOS, estratégia ou backtest foi
+executado.

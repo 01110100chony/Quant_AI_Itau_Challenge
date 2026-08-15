@@ -1,0 +1,131 @@
+{
+  "estimator": {
+    "covariance": "Newey-West HAC",
+    "kernel": "Bartlett",
+    "maxlags": 3,
+    "method": "OLS with intercept",
+    "small_sample_correction": true,
+    "use_t": true
+  },
+  "execution_commit": "842a87c2ca4ff7e65627f29d93726e9cae22c169",
+  "experiment_id": "LAF_001",
+  "final_oos_loaded": false,
+  "frozen_scientific_commit": "cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b",
+  "input_hashes": {
+    "DIA_raw": "30f7b0370a61be244cd0425602c7c4821dbc4ddef9d3598e267f6aaf8e6fbe53",
+    "IWM_raw": "ee972d8c9d5ad737370df7f30d4954e8065316218ae08d64430f28b9f3feb0b3",
+    "MDY_raw": "5dba651a9fa9100ef740eaa27f4a8221b63371a8a44b22b1bf29113a46a41fc5",
+    "QQQ_raw": "1d747eb4f1fc4b7f22e1cfdae40ad4932a9301324c666e101e3bebcd41a9e479",
+    "SPY_raw": "306c43087e3a33048d29b47746250cfeaca6a0ec69532084d3e12e7cb2393153",
+    "stage_a1c_corporate_actions": "155839b90e4d11e10c0d036207625ee5d1198a4875476d785da17b51bdb5bc33"
+  },
+  "preflight": {
+    "boundary_audit": {
+      "complete_cases_2004_2010": 0,
+      "complete_cases_2011_2016": 8,
+      "daily_duplicate_dates": 0,
+      "daily_rows_per_symbol": {
+        "DIA": 3525,
+        "IWM": 3525,
+        "MDY": 3525,
+        "QQQ": 3525,
+        "SPY": 3525
+      },
+      "feature_before_execution": true,
+      "final_oos_loaded": false,
+      "historical_rows_2017_or_later": 0,
+      "laf_available_months": 8,
+      "max_session_date": "2016-12-30",
+      "primary_complete_cases": 8,
+      "rv_available_months": 8,
+      "state_classified_complete_cases": 0,
+      "symbols": [
+        "SPY",
+        "QQQ",
+        "IWM",
+        "DIA",
+        "MDY"
+      ],
+      "target_available_months": 156,
+      "target_months": 156,
+      "validation_loaded": false
+    },
+    "execution_receipt_absent": true,
+    "mode": "PREFLIGHT_ONLY_NO_ASSOCIATION",
+    "raw_hashes_unchanged": true,
+    "results_directory_absent": true,
+    "scale_invariance": {
+      "embargo_end": "2006-06-08",
+      "embargo_start": "2005-06-09",
+      "outside_embargo_daily_rows": 3273,
+      "outside_embargo_months": 97,
+      "pass": true,
+      "scenarios": [
+        {
+          "close_scale": 0.5,
+          "max_abs_daily_difference": 0.0,
+          "max_abs_monthly_difference": 0.0,
+          "pass": true,
+          "volume_scale": 1.0
+        },
+        {
+          "close_scale": 2.0,
+          "max_abs_daily_difference": 0.0,
+          "max_abs_monthly_difference": 0.0,
+          "pass": true,
+          "volume_scale": 1.0
+        },
+        {
+          "close_scale": 1.0,
+          "max_abs_daily_difference": 0.0,
+          "max_abs_monthly_difference": 0.0,
+          "pass": true,
+          "volume_scale": 0.5
+        },
+        {
+          "close_scale": 1.0,
+          "max_abs_daily_difference": 0.0,
+          "max_abs_monthly_difference": 0.0,
+          "pass": true,
+          "volume_scale": 2.0
+        },
+        {
+          "close_scale": 0.5,
+          "max_abs_daily_difference": 0.0,
+          "max_abs_monthly_difference": 0.0,
+          "pass": true,
+          "volume_scale": 2.0
+        },
+        {
+          "close_scale": 2.0,
+          "max_abs_daily_difference": 0.0,
+          "max_abs_monthly_difference": 0.0,
+          "pass": true,
+          "volume_scale": 0.5
+        }
+      ],
+      "tolerance": 1e-12
+    },
+    "spec_version": "v1.0-frozen",
+    "target_independence": {
+      "altered_fields": [
+        "SPY.low"
+      ],
+      "features_exactly_equal": true,
+      "pass": true
+    }
+  },
+  "research_target_months": [
+    "2004-01",
+    "2016-12"
+  ],
+  "spec_version": "v1.0-frozen",
+  "validation_loaded": false,
+  "versions": {
+    "exchange-calendars": "4.13.2",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0"
+  }
+}

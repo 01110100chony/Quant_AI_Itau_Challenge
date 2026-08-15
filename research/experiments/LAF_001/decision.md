@@ -46,10 +46,15 @@ feature-target association and were not used to relax any rule. An
 unestimable stability block and insufficient state counts cannot pass their
 respective frozen gates.
 
-## Current hard stop
+## Frozen Research disposition
 
-H1-LAF is registered and the separate authorization commit authorizes exactly
-one Research association execution. Validation, Final OOS, strategy, portfolio
-and backtest remain prohibited.
+The authorization commit is
+`842a87c2ca4ff7e65627f29d93726e9cae22c169`. The single Research association
+was executed once and produced `CorePass=false`, `IncrementalPass=false`,
+`StabilityPass=false` and `StatePass=false`; the literal verdict is `NO_GO`.
+No variant or secondary diagnostic was used to rescue the result.
+
+Validation, Final OOS, strategy, portfolio and backtest remain prohibited.
 
 SAFE_TO_RUN_VALIDATION = NO
+READY_FOR_HUMAN_VALIDATION_DECISION = NO

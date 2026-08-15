@@ -1,0 +1,189 @@
+{
+  "boundary_audit": {
+    "complete_cases_2004_2010": 0,
+    "complete_cases_2011_2016": 8,
+    "daily_duplicate_dates": 0,
+    "daily_rows_per_symbol": {
+      "DIA": 3525,
+      "IWM": 3525,
+      "MDY": 3525,
+      "QQQ": 3525,
+      "SPY": 3525
+    },
+    "feature_before_execution": true,
+    "final_oos_loaded": false,
+    "historical_rows_2017_or_later": 0,
+    "laf_available_months": 8,
+    "max_session_date": "2016-12-30",
+    "primary_complete_cases": 8,
+    "rv_available_months": 8,
+    "state_classified_complete_cases": 0,
+    "symbols": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "DIA",
+      "MDY"
+    ],
+    "target_available_months": 156,
+    "target_months": 156,
+    "validation_loaded": false
+  },
+  "full_model": {
+    "adjusted_r_squared": -0.2816963209821848,
+    "ci95_lower": [
+      -0.0064967716375498655,
+      -0.03502731561178563,
+      -1.5321119622590749
+    ],
+    "ci95_upper": [
+      0.10974654329528771,
+      0.06743077327665464,
+      0.6297936437633294
+    ],
+    "coefficients": [
+      0.05162488582886892,
+      0.01620172883243451,
+      -0.4511591592478728
+    ],
+    "df_resid": 5,
+    "hac_kernel": "Bartlett",
+    "hac_maxlags": 3,
+    "hac_standard_errors": [
+      0.022610312054909355,
+      0.019928968505894328,
+      0.42050900229115873
+    ],
+    "model": "FULL_LAF_RV",
+    "n": 8,
+    "one_sided_p_values": [
+      0.03562418389894647,
+      0.22659457277469747,
+      0.8338249589177652
+    ],
+    "parameter_names": [
+      "intercept",
+      "laf",
+      "rv"
+    ],
+    "small_sample_correction": true,
+    "t_statistics": [
+      2.2832451716498827,
+      0.8129737787303228,
+      -1.0728882301917808
+    ],
+    "use_t": true
+  },
+  "gates": {
+    "CorePass": false,
+    "IncrementalPass": false,
+    "StabilityPass": false,
+    "StatePass": false,
+    "verdict": "NO_GO"
+  },
+  "rv_only_model": {
+    "adjusted_r_squared": -0.0837671317096973,
+    "ci95_lower": [
+      -0.002568344490496456,
+      -1.126300013573436
+    ],
+    "ci95_upper": [
+      0.08732628582844515,
+      0.5556264818604699
+    ],
+    "coefficients": [
+      0.04237897066897435,
+      -0.2853367658564831
+    ],
+    "df_resid": 6,
+    "hac_kernel": "Bartlett",
+    "hac_maxlags": 3,
+    "hac_standard_errors": [
+      0.01836899647138441,
+      0.3436835075703453
+    ],
+    "model": "RV_ONLY",
+    "n": 8,
+    "one_sided_p_values": [
+      0.030254710942643398,
+      0.780906277599214
+    ],
+    "parameter_names": [
+      "intercept",
+      "rv"
+    ],
+    "small_sample_correction": true,
+    "t_statistics": [
+      2.30709231911461,
+      -0.8302311852950355
+    ],
+    "use_t": true
+  },
+  "stability_blocks": [
+    {
+      "beta_laf_positive": false,
+      "block": "2004-2010",
+      "estimable": false,
+      "n": 0,
+      "result": null
+    },
+    {
+      "beta_laf_positive": true,
+      "block": "2011-2016",
+      "estimable": true,
+      "n": 8,
+      "result": {
+        "adjusted_r_squared": -0.2816963209821848,
+        "ci95_lower": [
+          -0.0064967716375498655,
+          -0.03502731561178563,
+          -1.5321119622590749
+        ],
+        "ci95_upper": [
+          0.10974654329528771,
+          0.06743077327665464,
+          0.6297936437633294
+        ],
+        "coefficients": [
+          0.05162488582886892,
+          0.01620172883243451,
+          -0.4511591592478728
+        ],
+        "df_resid": 5,
+        "hac_kernel": "Bartlett",
+        "hac_maxlags": 3,
+        "hac_standard_errors": [
+          0.022610312054909355,
+          0.019928968505894328,
+          0.42050900229115873
+        ],
+        "model": "FULL_2011-2016",
+        "n": 8,
+        "one_sided_p_values": [
+          0.03562418389894647,
+          0.22659457277469747,
+          0.8338249589177652
+        ],
+        "parameter_names": [
+          "intercept",
+          "laf",
+          "rv"
+        ],
+        "small_sample_correction": true,
+        "t_statistics": [
+          2.2832451716498827,
+          0.8129737787303228,
+          -1.0728882301917808
+        ],
+        "use_t": true
+      }
+    }
+  ],
+  "state": {
+    "high_count": 0,
+    "high_mean_tail_loss": null,
+    "high_minus_normal": null,
+    "normal_count": 0,
+    "normal_mean_tail_loss": null
+  }
+}

@@ -14,6 +14,7 @@
 - [Promoted specification](#promoted-specification)
 - [Active candidate](#active-candidate)
 - [Most recently closed experiment](#most-recently-closed-experiment)
+- [Previously closed experiment](#previously-closed-experiment)
 
 ## Promoted specification
 
@@ -21,11 +22,14 @@ No thesis is officially promoted or validated.
 
 ## Active candidate
 
-`LAF_001 — Liquidity Absorption Fragility` is the active Research candidate.
-Its `v1.0-frozen` scientific content is frozen at H1-LAF
-`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`; the separate metadata authorization
-permits its single Research association execution. It is not yet predictively
-tested, validated or promoted.
+There is no active Research candidate.
+
+## Most recently closed experiment
+
+`LAF_001 — Liquidity Absorption Fragility` completed its single frozen Research
+execution at H1-LAF `cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`, authorized by
+`842a87c2ca4ff7e65627f29d93726e9cae22c169`. All four prospective gates were
+false and the literal verdict is `NO_GO`. It is not validated or promoted.
 
 The fixed universe is `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, with `SPY` as target.
 Warm-up is 2003 and Research target months are 2004-01–2016-12. Validation
@@ -43,9 +47,11 @@ Stage A1d ended without payload and has no scientific result. Positive-scale
 invariance and target independence passed pre-association. The literal
 missingness contract yields only 8 complete Research months, zero in the first
 stability block and zero state-classified complete rows; these limitations were
-not used to alter the frozen design. Validation and Final OOS remain closed.
+not used to alter the frozen design. The primary estimate was
+`beta_LAF=0.01620172883243451`, with one-sided HAC p
+`0.22659457277469747`. Validation and Final OOS remain closed.
 
-## Most recently closed experiment
+## Previously closed experiment
 
 `CM_001 — Cross-Market Information Transmission` completed its one authorized Research Stage B execution at corrective version `v1.0.1-frozen` with status `NO_GO`. `CorePass=false`; H1 and secondary diagnostics were not used to rescue H2. Original H1/H2 remain immutable, and H2c records corrective H1c `417ffa85f954bd3ee87d11b35dbbef3b4da941e6`.
 
