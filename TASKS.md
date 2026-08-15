@@ -1,6 +1,6 @@
 # TASKS.md
 
-## NOW — CM_001 v1.0-frozen provenance and Stage B
+## Archived — CM_001 v1.0.1-frozen provenance and Stage B
 
 - [x] Close Stage A structurally with `PASS_READY_FOR_SPEC_FREEZE`.
 - [x] Record reviewed Stage A baseline H0 `78d9f6e`.
@@ -13,17 +13,18 @@
 - [x] Execute corrected frozen Research Stage B exactly once; literal verdict `NO_GO`.
 - [x] Verify and persist Stage B results in a separate commit; stop without optimization.
 
-## Closed samples
+## Invariantes vigentes — amostras fechadas de CM_001
 
-- [ ] Do not load Validation `2019-01-01`–`2022-12-31`.
-- [ ] Do not load Final OOS `2023-01-01`–`2025-12-31`.
-- [ ] Exclude 2026 entirely.
-- [ ] Do not request holdout access until a later, separate human decision.
+- Validation `2019-01-01`–`2022-12-31` permanece CLOSED e não pode ser carregada.
+- Final OOS `2023-01-01`–`2025-12-31` permanece CLOSED e não pode ser carregado.
+- 2026 permanece integralmente excluído.
+- Nenhum acesso a holdout pode ser solicitado sem decisão humana posterior e separada.
 
-## Prohibitions
+## Invariantes vigentes — encerramento de CM_001
 
-- [ ] No asset/sample/window/target/control change.
-- [ ] No new variants or parameter search after results.
-- [ ] H1 and secondary results cannot rescue primary H2.
-- [ ] No backtest, strategy, portfolio, costs or execution inference in this task.
-- [ ] Do not revive closed research lines.
+- Ativos, amostras, janelas, target e controles congelados não podem ser alterados.
+- Nenhuma variante nova ou parameter search pode ser executada após os resultados.
+- H1 e resultados secundários não podem resgatar a H2 primária.
+- Nenhum backtest, estratégia, portfolio, custo ou inferência de execução pode ser
+  derivado para resgatar CM_001.
+- Linhas de pesquisa encerradas não podem ser revividas sem decisão humana explícita.

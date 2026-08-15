@@ -8,7 +8,8 @@ Repositório de pesquisa quantitativa falsification-first para o Desafio Quant A
 - Effective Rank, Opportunity Set e Adaptive Factor Neutralization estão encerrados.
 - Residual Momentum 12–1 é apenas baseline/fallback exploratório.
 - O holdout 2018–2026 da linha anterior permanece fechado.
-- Cross-Market Information Transmission é a candidata atual, ainda em specification `DRAFT`.
+- `CM_001 — Cross-Market Information Transmission` foi encerrado como
+  `v1.0.1-frozen / NO_GO` no Research; seus holdouts permanecem fechados.
 
 O estado canônico está em [`PROJECT_STATUS.md`](PROJECT_STATUS.md). Comece qualquer pesquisa pelo [`Context Map`](contexts/CONTEXT_MAP.md).
 
@@ -48,8 +49,8 @@ Requer Python 3.11 ou superior. As versões auditadas das dependências dos note
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-python scripts/verify_research.py
-python -m unittest discover -s tests -p "test_*.py"
+.\.venv\Scripts\python.exe scripts/verify_research.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -p "test_*.py"
 ```
 
 O verificador testa integridade do processo e metadados, não retorno, Sharpe ou validade econômica.
