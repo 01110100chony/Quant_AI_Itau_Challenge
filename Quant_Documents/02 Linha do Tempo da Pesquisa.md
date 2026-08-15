@@ -1,6 +1,6 @@
 ---
 tags: [historico, timeline]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Linha do Tempo da Pesquisa
@@ -45,6 +45,20 @@ Pivô para `RSR_001`, quatro rodadas de revisão da specification, correção da
 
 **Veredito: `NO-GO`.** Ver [[04 RSR_001 - Spec e Veredito do OOS]].
 
+## 15/08 — reauditoria e fechamento
+
+Branch `relatorio-final` criada a partir de `relatorio-epsilon`.
+
+Reauditoria estática dos artefatos congelados, sem reexecução e sem parâmetros novos. Os números do OOS passaram em 20 identidades aritméticas e o veredito se reproduziu mecanicamente a partir deles.
+
+Três achados que ninguém tinha visto:
+
+- **`reports/rsr_001_oos_terminal.txt` está vazio.** O arquivo apontado em 14/08 como registro preservado da execução tem 1 byte. Somado ao crash de persistência, nenhum artefato de máquina do Final OOS existe.
+- **Quatro artefatos ainda declaravam o OOS fechado** — manifesto, results, decision e registry. Corrigidos para `FINAL` / `NO-GO`.
+- **O harness não conseguia representar o estado terminal deste desenho.** `verify_research.py` exigia intervalo de validação para `OOS_OPENED` e `FINAL`, e o `RSR_001` foi desenhado sem validação intermediária. Não havia status válido para o estado real. Corrigido restringindo a exigência a `VALIDATION` e `VALIDATED`, com dois testes novos.
+
+Relatório de 5 páginas refeito sobre o resultado real: páginas 4 e 5 reescritas, placeholders removidos, conclusões das páginas 2 e 3 corrigidas.
+
 ## Erros cometidos no caminho, e corrigidos
 
 Registrados porque são material de relatório e porque evitam repetição.
@@ -59,4 +73,6 @@ Registrados porque são material de relatório e porque evitam repetição.
 | `created_at` inventado no manifesto | parecer externo (Gate B) | substituído pelo mtime real |
 | Primeiro `H1` marcou 12 de 13 caixas | contagem de linhas do commit | corrigido por `--amend` |
 | `spec.md` descrevia `P3` enquanto o código usava `A1` | varredura antes do freeze | divergência spec-código corrigida |
-| `drop(columns="long")` na persistência | crash na abertura do OOS | bug ainda aberto, ver [[01 Estado Atual e Proximos Passos]] |
+| `drop(columns="long")` na persistência | crash na abertura do OOS | mantido no código de propósito: corrigir só teria efeito com reexecução, que está vedada |
+| Terminal do OOS declarado como "preservado" mas com arquivo vazio | reauditoria de 15/08 | não recuperável; números transcritos com proveniência declarada |
+| Verificador exigia validação intermediária para chegar a `FINAL` | reauditoria de 15/08 | exigência restrita aos estados que são *sobre* validação, com testes |

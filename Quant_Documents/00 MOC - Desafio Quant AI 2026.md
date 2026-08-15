@@ -1,7 +1,7 @@
 ---
 tags: [moc, desafio-quant-ai, epsilon]
-atualizado: 2026-08-14
-status: OOS aberto, veredito NO-GO
+atualizado: 2026-08-15
+status: relatorio pronto, falta renomear e enviar
 ---
 
 # MOC — Desafio Quant AI 2026
@@ -14,7 +14,7 @@ Nota mestra. Comece por aqui em qualquer sessão nova.
 
 ## Estado em uma frase
 
-O OOS foi aberto uma única vez em 14/08 e deu **`NO-GO`**. O sinal que parecia funcionar no research sample não sobreviveu fora da amostra. O relatório deixa de ser sobre uma estratégia e passa a ser sobre a cadeia de falsificação que levou até lá.
+O OOS foi aberto uma única vez em 14/08 e deu **`NO-GO`**. Os artefatos foram reauditados em 15/08 sem reexecução, o repositório passou a registrar o estado real, e o relatório de 5 páginas está pronto. **Falta renomear com a chave de envio e enviar.**
 
 ## Índice
 
@@ -25,7 +25,7 @@ O OOS foi aberto uma única vez em 14/08 e deu **`NO-GO`**. O sinal que parecia 
 | [[03 Cadeia de Falsificacao]] | as cinco hipóteses e o número que encerrou cada uma |
 | [[04 RSR_001 - Spec e Veredito do OOS]] | a tese final, especificação congelada e resultado |
 | [[05 Aprendizados Metodologicos]] | o que foi aprendido, transferível para qualquer projeto quant |
-| [[06 Edital e Plano do Relatorio]] | regras da entrega e estrutura das 5 páginas |
+| [[06 Edital e Plano do Relatorio]] | regras da entrega e o relatório que foi entregue |
 | [[07 Artefatos, Scripts e Runbook]] | onde está cada arquivo e como rodar |
 | [[08 Governanca, Hashes e Uso de IA]] | commits de freeze, regras do harness, registro de IA |
 
@@ -34,7 +34,7 @@ O OOS foi aberto uma única vez em 14/08 e deu **`NO-GO`**. O sinal que parecia 
 - **Equipe:** Delta Vega. **NUNCA pode aparecer no relatório** (anonimato obrigatório, §5 do edital).
 - **Robô:** **ε / ÉPSILON**. Pode e deve aparecer.
 - **Repositório:** `github.com/01110100chony/Quant_AI_Itau_Challenge`
-- **Branch de trabalho:** `relatorio-epsilon`
+- **Branch final:** `relatorio-final`, saído de `relatorio-epsilon`. Contém a reauditoria e o relatório entregue.
 - **Equipe:** 3 integrantes. O parceiro (`01110100chony`) tocou a frente de pesquisa e o harness; a frente de relatório e auditoria foi a outra.
 
 ## Frase-síntese do projeto

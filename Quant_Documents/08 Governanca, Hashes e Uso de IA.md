@@ -1,6 +1,6 @@
 ---
 tags: [governanca, hashes, genai]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Governança, Hashes e Uso de IA
@@ -43,7 +43,19 @@ Vocabulário permitido, definido em `contexts/research/experiment_registry.md` e
 - `oos_opened = true` exige status `OOS_OPENED` ou `FINAL`, mais `oos_opened_at` com fuso e `oos_approval_ref`
 - `oos_opened = false` **proíbe** ter metadados de abertura
 - `created_at` exige offset de fuso
+- intervalo de validação exigido **apenas** para `VALIDATION` e `VALIDATED`
 - todo experimento precisa de `spec.md`, `manifest.toml`, `results.md` e `decision.md`
+
+> [!bug] Defeito do harness corrigido em 15/08
+> A regra do intervalo de validação valia também para `OOS_OPENED` e `FINAL`. Como o `RSR_001` foi desenhado sem validação intermediária, **não existia status válido para o estado real do experimento**:
+> ```
+> FINAL      + oos_opened=true  ->  "requires a validation date range"
+> OOS_OPENED + oos_opened=true  ->  "requires a validation date range"
+> NO_GO      + oos_opened=true  ->  "requires OOS_OPENED or FINAL status"
+> ```
+> A exigência passou a valer só para os estados que são *sobre* a validação. `OOS_OPENED` e `FINAL` já exigem intervalo de OOS. Dois testes novos cobrem o desenho de duas etapas, e a `oos_policy.md` registra que ele é admissível quando declarado na specification e aprovado antes do freeze.
+>
+> O defeito só aparece no último estado do ciclo — o único que nenhum experimento tinha alcançado. Ver [[05 Aprendizados Metodologicos]], item 15.
 
 ## Registry — 8 entradas
 
@@ -56,22 +68,26 @@ Vocabulário permitido, definido em `contexts/research/experiment_registry.md` e
 | `AFN_001` | Adaptive Factor Neutralization | NO_GO |
 | `RM_001` | Residual Momentum, construct in-sample | NO_GO |
 | `CM_001` | Cross-Market Information Transmission | DRAFT |
-| `RSR_001` | Residual Short-Term Reversal | FROZEN → a atualizar para OOS_OPENED |
+| `RSR_001` | Residual Short-Term Reversal | **FINAL**, decisão `NO-GO` |
 
-## Pendente após a abertura do OOS
+## Estado do OOS — registrado em 15/08
 
-O manifesto e o registry ainda **não** refletem que o OOS foi aberto. Falta:
+Manifesto e registry passaram a refletir a abertura:
 
 ```toml
-status = "OOS_OPENED"
+status = "FINAL"
 oos_opened = true
-oos_opened_at = "2026-08-14T21:XX:XX-03:00"
+oos_opened_at = "2026-08-14T21:09:04-03:00"
 oos_approval_ref = "66bd72831eb803beeeefe63686ef915385f00b0c"
+oos_verdict = "NO_GO"
 ```
 
-E no registry, `oos_status` de `CLOSED` para `OPENED` e status para `OOS_OPENED`.
+No registry, `oos_status` foi de `CLOSED` para `OPENED` e o status para `FINAL`.
 
-Isso depende da decisão sobre o bug de persistência. Ver [[01 Estado Atual e Proximos Passos]].
+> [!note] Proveniência do `oos_opened_at`
+> O horário exato da abertura não foi registrado por nenhum artefato. O valor adotado é o **mtime de `reports/rsr_001_oos_terminal.txt`**, criado manualmente logo após o crash, com a proveniência escrita em comentário no próprio manifesto — mesmo método já usado no `created_at`.
+>
+> Não foi inventado. Escolher um horário plausível é exatamente o erro que os gates pré-freeze pegaram uma vez.
 
 ---
 
@@ -104,4 +120,13 @@ Texto sugerido, verificável nas seções 4.1 e 7 do `Research_Log`:
 
 ## Registro no AI_USE_LOG
 
-O repo tem `AI_USE_LOG.md` com formato próprio, criado pelo parceiro. Cada entrada distingue contribuição da IA, decisão humana e verificação independente. Entradas de 12/08 e 14/08 já existem; falta a do resultado do OOS.
+O repo tem `AI_USE_LOG.md` com formato próprio. Cada entrada distingue contribuição da IA, decisão humana, verificação independente e **limitação observada**. Quatro entradas, todas fechadas:
+
+| data | entrada |
+|---|---|
+| 12/08 | reestruturação do repositório como research harness |
+| 14/08 | auditoria de construct do Residual Momentum |
+| 14/08 | desenho do teste pré-registrado e abertura do OOS |
+| 15/08 | reauditoria estática dos artefatos congelados |
+
+A linha `ONDE FALHOU` do relatório sai das três limitações registradas: a IA ajudou a construir as duas teses que depois derrubou, só viu o problema algébrico quando perguntada diretamente, e a auditoria assistida cobriu a ciência mas não o código de gravação.

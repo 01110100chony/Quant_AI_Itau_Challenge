@@ -1,6 +1,6 @@
 ---
 tags: [edital, relatorio, entrega]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Edital e Plano do Relatório
@@ -43,49 +43,39 @@ Pontos negativos explícitos: *"apresentação exclusivamente descritiva de mét
 
 **Leitura estratégica:** com um `NO-GO`, o projeto perde força em Modelagem e Análise se for apresentado como derrota. Mas ganha em Backtest, Análise crítica, GenAI e Conclusão se for apresentado como o que é: um teste pré-registrado que a equipe desenhou para poder falhar, e que falhou.
 
-## Estrutura das 5 páginas — versão a reescrever após o NO-GO
+## As 5 páginas — o que foi entregue
 
-O PDF atual (`EPSILON_relatorio_final.pdf`) foi montado assumindo que o holdout confirmaria. **Páginas 1, 3 e 4 precisam de reescrita.**
+Fonte em `reports/EPSILON_relatorio_fonte.html`, PDF em `reports/EPSILON_relatorio_final.pdf`.
 
-### Página 1 — A pergunta e o robô
-Cobre Conceito 20% e Robô 5%. Cerca de 130 palavras.
+| pág | conteúdo | critérios cobertos |
+|---|---|---|
+| 1 | A pergunta em corpo grande, hipótese, ineficiência, identidade do ε com a equação e a explicação do nome. Faixa preta no rodapé já entrega o veredito. | Conceito 20%, Robô 5% |
+| 2 | Funil de falsificação: cinco hipóteses, a pergunta de cada uma, o número que a encerrou e o veredito. Caixa sobre o degrau 4 e a frase-síntese. | Conceito 20%, GenAI 15% |
+| 3 | Fluxograma de cinco passos, as duas equações point-in-time, tabela da especificação congelada com turnover e custo. | Modelagem 20% |
+| 4 | Gráfico de Rank IC por bloco cronológico com os seis valores observados, tabela do critério pré-registrado com as seis falhas, contraste research↔holdout e a caixa de vieses. | Backtest 15%, Análise 15% |
+| 5 | Diagnóstico do resultado negativo, limitações, próximos passos, quadro de GenAI com a linha `ONDE FALHOU`, e a conclusão em faixa. | Conclusão 10%, GenAI 15% |
 
-A pergunta de pesquisa em corpo grande, a identidade do ε com a equação, a explicação do nome (obrigatória, §6), e a ineficiência com seu mecanismo.
+### Decisões de conteúdo que valem lembrar
 
-**O que muda:** o mecanismo deixa de ser subreação e passa a ser sobrerreação de curto prazo no espaço residual. E a pergunta ganha uma segunda camada: *o que sobra quando o mercado é descontado, e isso persiste ou reverte?*
+- **O veredito aparece na página 1.** Um avaliador lendo rápido precisa entender que concluímos, não que ficamos sem tempo.
+- **A página 4 não tem curva ilustrativa.** O gráfico usa os seis ICs por bloco realmente observados — três do research, três do holdout — com o divisor no congelamento. Nada foi desenhado "à mão".
+- **Nenhum hash aparece no PDF.** O carimbo do freeze é comunicado como "commitado com 13 aprovações antes de qualquer número do holdout existir". Hash é risco desnecessário num critério que elimina.
+- **A limitação de custo foi reconciliada.** A versão antiga dizia que custos não foram modelados, o que contradizia o líquido de −8,50%. Agora diz o que é verdade: custo linear a 10 bps, sem impacto de mercado nem slippage.
 
-### Página 2 — O funil de falsificação
-Cobre Conceito 20% e GenAI 15%. Cerca de 160 palavras.
+### Verificação de eliminação — feita por script
 
-Diagrama dominante, cinco degraus, cada um com o número que o encerrou. Ver [[03 Cadeia de Falsificacao]].
+- 5 páginas · `960 × 540 pt` · razão `1,7778` (16:9 exato)
+- metadados: só `/Producer: pypdf`. Sem autor, título, criador ou datas
+- zero ocorrências de "Delta Vega", nomes, universidade, links, `github`
+- zero placeholders: "substituir pela curva real", "Holdout ?" e "[preencher]" eliminados
 
-**O que muda:** ganha o quinto degrau, o `NO-GO` do próprio OOS.
+### Contagem de palavras
 
-### Página 3 — O modelo
-Cobre Modelagem 20%. Cerca de 140 palavras.
+Referência do edital: cerca de 750. O relatório tem **652 palavras de texto corrido** e cerca de 410 dentro de tabelas, eixos e rótulos — que é a forma que o próprio edital recomenda. Somando tudo dá ~1060, acima do PDF anterior (917), porque a página 4 ganhou duas tabelas de evidência que antes não existiam.
 
-Fluxograma de cinco passos, as duas equações, a tabela de especificação congelada.
+> [!note] Se for preciso cortar mais
+> Os candidatos são a tabela de contraste research↔holdout da página 4 e o quadro de vieses. Os dois são pontuados. Cortar reduz palavra e reduz nota.
 
-**O que muda:** as equações passam a ser as do `RSR_001` point-in-time, e a especificação ganha os hashes `H1` e `H2` como carimbo.
+## Texto-âncora da conclusão
 
-### Página 4 — Backtest e resultados
-Cobre Backtest 15% e Análise 15%. Cerca de 170 palavras.
-
-**O que muda, e é a maior mudança:** o gráfico passa a mostrar o research contra o OOS com o contraste brutal. `IC +0,0611` virando `−0,0476`. `p 0,005` virando `0,898`. A caixa de vieses ganha o congelamento por commit e a quarentena dos 4 meses.
-
-### Página 5 — Conclusão e próximos passos
-Cobre Conclusão 10% e GenAI 15%. Cerca de 150 palavras.
-
-**O que muda:** a conclusão passa a ser a versão `NO-GO`, que já estava escrita no blueprint. Limitações assumidas, e o quadro de GenAI com a linha `ONDE FALHOU` preenchida.
-
-## Texto-âncora para a conclusão NO-GO
-
-> A residualização não sobreviveu ao holdout. Registramos o NO-GO sem reajustar parâmetros. O achado do research sample era, com alta probabilidade, ruído amostral, e essa é exatamente a resposta que o processo foi desenhado para produzir.
-
-## Correções de texto obrigatórias no PDF atual
-
-| atual | corrigido |
-|---|---|
-| "consistente ao longo de dezessete anos" | "vantagem média no research sample, com variação substancial entre subperíodos" |
-| "Holdout aberto uma única vez" | manter, agora é verdade |
-| "SOBREVIVEU" na tabela do funil | "SOBREVIVEU NO RESEARCH SAMPLE" e depois "NO-GO NO HOLDOUT" |
+> ÉPSILON não encontrou alpha robusto — e o processo impediu que um resultado exploratório virasse estratégia recomendada.

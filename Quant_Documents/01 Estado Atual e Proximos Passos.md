@@ -1,6 +1,6 @@
 ---
 tags: [estado, pendencias]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Estado Atual e Próximos Passos
@@ -12,46 +12,37 @@ Volta para [[00 MOC - Desafio Quant AI 2026]].
 - Cadeia de falsificação completa e documentada. Ver [[03 Cadeia de Falsificacao]].
 - `RSR_001` congelado por commit `H1`, com 13 aprovações humanas registradas.
 - OOS aberto **uma única vez**, veredito `NO-GO`. Ver [[04 RSR_001 - Spec e Veredito do OOS]].
-- Harness de pesquisa passando: `verify_research.py` OK, 4 testes verdes.
-- PDF de 5 páginas em 16:9 montado, anônimo, metadados limpos. **Precisa ser reescrito** à luz do `NO-GO`.
-- Blueprint do relatório, script de gráfico, notebook de reconciliação, script de robustez. Ver [[07 Artefatos, Scripts e Runbook]].
+- **Reauditoria estática dos artefatos congelados**, sem reexecução e sem parâmetros novos. 20 identidades aritméticas satisfeitas, conformidade spec↔código conferida linha a linha, veredito reproduzido mecanicamente. Registro em `research/experiments/RSR_001/reauditoria.md`.
+- **Repositório coerente com o fato**: `manifest.toml`, `results.md`, `decision.md` e o registry passaram a declarar `FINAL` / `NO-GO`.
+- **Relatório final pronto**: 5 páginas, 960×540 pt (16:9 exato), anônimo, metadados sem autoria, sem placeholders. Ver [[06 Edital e Plano do Relatorio]].
+- Harness verde: `verify_research.py` OK, 6 testes.
+- Branch `relatorio-final` commitada e pushada.
 
-## Bloqueio aberto — decisão de governança
+## O bloqueio de governança — resolvido
 
-Os CSVs do OOS **não foram gravados**. A execução levantou exceção depois de imprimir o veredito:
+Era: os CSVs do OOS não foram gravados porque a execução levantou `KeyError: "['long'] not found in axis"` em `scripts/rsr_001.py:310`, depois de imprimir o veredito.
 
-```
-KeyError: "['long'] not found in axis"
-scripts/rsr_001.py:310   oos.drop(columns="long").to_csv(...)
-```
+**Decisão tomada: Opção B.** Não reexecutar. Os números foram transcritos para `results.md` com a proveniência escrita de forma explícita.
 
-Causa: a refatoração que trouxe a fórmula de custo `sum|dw|` trocou a coluna `long` por colunas de peso `w_*`, e a linha de persistência ficou com a referência antiga. O `--ensaio` não cobre esse trecho.
+A reauditoria acrescentou um agravante que não se sabia: **`reports/rsr_001_oos_terminal.txt` está vazio**, 1 byte. A devolutiva de 14/08 dizia que a saída de terminal tinha sido preservada nele. Não foi. Portanto **não existe nenhum artefato de máquina do Final OOS** — nem os dois CSVs, nem a transcrição do terminal. A única fonte dos números é prosa.
 
-**Fatos:** o veredito foi observado antes da exceção, o OOS está consumido, e o registro primário é a saída de terminal.
+O que sustenta a transcrição: os números passam em 20 testes de consistência mútua que uma transcrição errada teria altíssima chance de reprovar — custo `= c·turnover·12`, líquido `=` bruto menos custo, Sharpe `=` líquido sobre volatilidade, médias ponderadas por bloco reproduzindo o `mean IC` nos dois lados, taxas caindo em `k/n` inteiro para `n=213` e `n=89` simultaneamente, e os quatro p-valores caindo exatamente na grade `(1+k)/5001`. Isso não prova que a execução ocorreu; sustenta que a transcrição é fiel.
 
-**Duas opções, decisão do parceiro:**
-
-- **A.** Corrigir só a linha de persistência, reexecutar apenas para gravar os artefatos, e declarar por escrito que houve segunda execução, o motivo, e que os números conferem. A execução é determinística (`seed=7`, dados e spec congelados), então não pode produzir resultado diferente.
-- **B.** Não reexecutar. Adotar a saída de terminal como registro primário e transcrever os números manualmente.
-
-Nenhuma foi executada.
+> [!warning] O bug de persistência continua no código, de propósito
+> Corrigir a linha só teria efeito acompanhado de reexecução, e reexecutar está vedado pela regra pré-registrada. Fica registrado como achado F4.
 
 ## O que falta, em ordem
 
-1. **Resolver o bloqueio acima.**
-2. **Reescrever o relatório** à luz do `NO-GO`. Páginas 1, 3 e 4 mudam. Ver [[06 Edital e Plano do Relatorio]].
-3. **Preencher a linha `ONDE FALHOU`** da tabela de IA. Não depende de ninguém. Sugestão pronta em [[08 Governanca, Hashes e Uso de IA]].
-4. **Revisão final de eliminação**: contagem de páginas, anonimato, metadados do PDF, 16:9, nome do arquivo com a chave de envio.
-5. **Enviar até domingo 16/08, de preferência até as 18h.** Não deixar para as 23h.
+1. **Renomear o PDF** para `[chave de envio].pdf`. A chave vem pelo canal oficial.
+2. **Revisão final de eliminação**: contagem de páginas, anonimato, metadados, 16:9, nome do arquivo. Os quatro primeiros já foram verificados por script; o nome depende do item 1.
+3. **Enviar até domingo 16/08**, de preferência até as 18h.
 
 ## Frente paralela
 
-O parceiro estava tentando o **Cross-Market Lead-Lag** (`CM_001`) como segunda frente. Estado em 14/08: `DRAFT`, com cerca de 20 campos `TBD`, nenhum código, nenhum dado. O próprio `spec.md` diz que nenhum notebook ou acesso a dados está autorizado por aquele draft.
-
-Se essa frente não fechar a tempo, o relatório sai com a história do `RSR_001`, que é o combinado.
+`CM_001` Cross-Market Lead-Lag segue em `DRAFT`, com campos `TBD`, sem código e sem dados. Não entra nesta entrega. O relatório sai com a história do `RSR_001`, que é o combinado.
 
 ## Riscos conhecidos
 
-- **Tempo.** A reescrita do relatório é o último bloco grande.
-- **Tentação de resgate.** As regras pós-OOS proíbem usar `S=42`, outra janela, outro custo ou outro critério para salvar o `NO-GO`. Ver [[08 Governanca, Hashes e Uso de IA]].
-- **Dois PDFs.** Houve conversa sobre montar um segundo relatório com material do Codex. **Só um arquivo é enviado.** Fundir dois documentos no domingo é risco de estourar as 5 páginas.
+- **Comparação, não critério.** O edital não aloca nenhum ponto a desempenho, e o `NO-GO` fortalece Backtest, Análise e IA. Mas avaliadores são humanos, e contra uma equipe com rigor **e** resultado positivo, a nossa perde. Contra resultado positivo sem rigor, temos argumento.
+- **Ser lido como "não terminamos".** Mitigado no relatório: veredito na página 1, funil de cinco hipóteses na 2, critério caindo por regra na 4.
+- **Tentação de resgate.** As proibições pós-OOS seguem em vigor. Ver [[08 Governanca, Hashes e Uso de IA]].

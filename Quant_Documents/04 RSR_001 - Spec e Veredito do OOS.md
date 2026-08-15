@@ -1,7 +1,8 @@
 ---
 tags: [rsr001, spec, oos, resultado]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 veredito: NO-GO
+status: FINAL
 ---
 
 # RSR_001 — Especificação e Veredito do OOS
@@ -136,6 +137,31 @@ VERDICT        = NO-GO
 | retorno líquido | +2,23% a.a. | −8,50% a.a. |
 
 Um `p = 0,005` que vira `p = 0,898`. Os três blocos do OOS são monotonicamente piores. Não é um efeito que enfraqueceu com o tempo: é um efeito que nunca existiu, e o research sample estava medindo ruído.
+
+## Reauditoria de 15/08 — o que os números aguentam
+
+Reauditoria estática, sem reexecução. Registro completo em `research/experiments/RSR_001/reauditoria.md`.
+
+> [!warning] Não existe artefato de máquina do Final OOS
+> Os dois CSVs não foram gravados por causa do crash de persistência, e `reports/rsr_001_oos_terminal.txt` — apontado em 14/08 como registro preservado — **está vazio, 1 byte**. A única fonte dos números é prosa.
+
+O que foi possível verificar sem tocar no holdout: **20 identidades aritméticas, todas satisfeitas.**
+
+| identidade | research | OOS |
+|---|:---:|:---:|
+| `custo = c · turnover · 12` | OK | OK |
+| `líquido = bruto − custo` | OK | OK |
+| `Sharpe = líquido / volatilidade` | OK | OK |
+| média ponderada dos blocos reproduz o `mean IC` | OK | OK |
+| `hit rate` cai em `k/n` com `k` inteiro | OK | OK |
+| `meses líquidos positivos` cai em `k/n` inteiro | OK | OK |
+| `p` cai na grade `(1+k)/(N+1)`, `N = 5000` | OK | OK |
+
+Os cortes por bloco batem: `np.array_split` de 89 dá `30/30/29`, e `(30·(−0,0233) + 30·(−0,0422) + 29·(−0,0782))/89 = −0,0476`. Os líquidos por bloco dão `−8,50%`. Os quatro p-valores caem sobre a grade: `26/5001`, `47/5001`, `4491/5001`, `4266/5001`.
+
+Conformidade `spec.md` ↔ `scripts/rsr_001.py` conferida linha a linha: janelas, off-by-one, pesos, fórmula de custo, alinhamento do retorno futuro, cortes de bloco, `N`/`seed`/unilateralidade, quarentena e `A1` fora do gate. **Sem divergência material.**
+
+Isso não prova que a execução ocorreu. Sustenta que a transcrição é fiel: uma transcrição errada ou inventada teria altíssima chance de falhar pelo menos uma das 20.
 
 ## Proibições pós-OOS
 

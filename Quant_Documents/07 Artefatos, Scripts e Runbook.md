@@ -1,6 +1,6 @@
 ---
 tags: [runbook, artefatos, comandos]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Artefatos, Scripts e Runbook
@@ -14,9 +14,10 @@ Volta para [[00 MOC - Desafio Quant AI 2026]].
 ```
 research/experiments/RSR_001/
   spec.md          especificação congelada, zero TBD
-  decision.md      13 aprovações humanas, todas marcadas
-  results.md       research sample completo; OOS a transcrever
-  manifest.toml    status FROZEN, git_commit = H1
+  decision.md      13 aprovações humanas + decisão NO-GO registrada
+  results.md       research sample e OOS, com proveniência da transcrição
+  manifest.toml    status FINAL, oos_opened = true, git_commit = H1
+  reauditoria.md   reauditoria estática de 15/08, 5 achados
 
 scripts/
   rsr_001.py                        implementação canônica do RSR_001
@@ -28,6 +29,11 @@ notebooks/
   01_er_feasibility_v0_1..v0_5_1.ipynb    trabalho original do parceiro
   reconciliacao_residual_momentum.ipynb   reconciliação entre implementações
 
+reports/
+  EPSILON_relatorio_final.pdf    entregável, 5 páginas, 960×540 pt
+  EPSILON_relatorio_fonte.html   fonte do PDF, versionado junto
+  rsr_001_oos_terminal.txt       VAZIO. Commitado assim de propósito, é o achado F1
+
 contexts/research/experiment_registry.md  índice canônico, 8 entradas
 data/raw/us_sector_etfs_plus_spy_adjusted_close.csv   dados, 2000-01 a 2026-08
 ```
@@ -35,10 +41,10 @@ data/raw/us_sector_etfs_plus_spy_adjusted_close.csv   dados, 2000-01 a 2026-08
 ### Na pasta do projeto (fora do repo)
 
 ```
-EPSILON_relatorio_final.pdf         5 páginas, 16:9, a reescrever
-EPSILON_relatorio_fonte.html        fonte do PDF, editável
+EPSILON_relatorio_final.pdf         cópia de trabalho do entregável
+EPSILON_relatorio_fonte.html        cópia de trabalho do fonte
 Blueprint_Relatorio_Final_Quant_AI.pdf   plano página a página
-Retorno_*.md                        os 6 retornos técnicos trocados com o Codex
+Retorno_*.md                        os 6 retornos técnicos da frente de pesquisa
 Diretrizes_Relatorio_Final_*.pdf    edital
 Criterios_Avaliacao_Desafio.pdf     manual de avaliação
 ```
@@ -86,29 +92,43 @@ Saída em `reports/ic_acumulado.svg`, no tamanho exato do espaço da página 4 (
 
 ### Reconstruir o PDF
 
-O fonte é HTML renderizado com WeasyPrint.
+WeasyPrint **não está instalado nesta máquina**. A build atual usa Chrome headless, que respeita o `@page { size: 338.67mm 190.5mm }` e gera 960×540 pt exatos.
 
 ```bash
-python -c "from weasyprint import HTML; HTML('EPSILON_relatorio_fonte.html').write_pdf('EPSILON_relatorio_final.pdf')"
+"C:/Program Files/Google/Chrome/Application/chrome.exe" --headless --disable-gpu \
+  --no-pdf-header-footer --print-to-pdf="bruto.pdf" --virtual-time-budget=6000 \
+  "file:///C:/.../reports/EPSILON_relatorio_fonte.html"
 ```
 
-Também abre no navegador e imprime para PDF, já que o `@page` está configurado para 16:9.
+As fontes DejaVu estão instaladas por usuário em `%LOCALAPPDATA%\Microsoft\Windows\Fonts`, e o Chrome as embute.
 
 ### Limpar metadados antes de enviar
 
+Obrigatório: o Chrome grava `/Producer: Skia/PDF` e `/Creator` com o user-agent.
+
 ```python
 from pypdf import PdfReader, PdfWriter
-r = PdfReader("EPSILON_relatorio_final.pdf"); w = PdfWriter()
+r = PdfReader("bruto.pdf"); w = PdfWriter()
 for p in r.pages: w.add_page(p)
-w.add_metadata({})
-with open("AABC.pdf", "wb") as f: w.write(f)   # use a chave de envio real
-print(PdfReader("AABC.pdf").metadata)
-print("paginas:", len(PdfReader("AABC.pdf").pages))
+w.add_metadata({})                              # zera autor, título e datas
+with open("AABC.pdf", "wb") as f: w.write(f)    # use a chave de envio real
+```
+
+### Conferência de eliminação
+
+```python
+import fitz
+d = fitz.open("AABC.pdf")
+print(d.page_count, d[0].rect)                  # 5, Rect(0,0,960,540) -> 16:9
+print(d.metadata)                               # só /Producer: pypdf
+t = "\n".join(p.get_text() for p in d)
+for termo in ["Delta Vega", "github", "http", "universidade", "substituir", "preencher"]:
+    assert termo.lower() not in t.lower(), termo
 ```
 
 ## Git
 
-Branch de trabalho: `relatorio-epsilon`.
+Branch final: `relatorio-final`, saída de `relatorio-epsilon` e pushada para o origin.
 
 > [!note] Aviso de CRLF é normal
 > `LF will be replaced by CRLF` aparece sempre. É o `core.autocrlf` do Windows e não corrompe nada.
@@ -116,18 +136,21 @@ Branch de trabalho: `relatorio-epsilon`.
 > [!warning] Não rodar git do sandbox de IA
 > Acessar o repo clonado no OneDrive a partir de um ambiente Linux faz o git ver todos os arquivos como modificados (CRLF) e deixa `.git/index.lock` preso. Aconteceu uma vez e travou o commit. Rodar git sempre no Git Bash da máquina.
 
-## Bug conhecido e aberto
+## Bug conhecido, deixado aberto de propósito
 
-`scripts/rsr_001.py`, linha da persistência:
+`scripts/rsr_001.py:310`, linha da persistência:
 
 ```python
 oos.drop(columns="long").to_csv(...)   # KeyError: coluna não existe mais
 ```
 
-A refatoração para pesos removeu a coluna `long`. Correção: trocar por
+A refatoração para pesos removeu a coluna `long`. A correção seria
 
 ```python
 oos[["ic", "spread", "turnover", "custo", "liquido"]].to_csv(...)
 ```
 
-**Não aplicar e reexecutar sem a decisão de governança.** Ver [[01 Estado Atual e Proximos Passos]].
+> [!danger] Não corrigir e não reexecutar
+> A decisão de governança foi a **Opção B**: não reexecutar. Corrigir a linha só teria efeito acompanhado de reexecução, e reexecutar está vedado pela regra pré-registrada. O bug fica no código como registro do achado F4. Ver `research/experiments/RSR_001/reauditoria.md`.
+
+Se algum dia o `RSR_001` for revisitado com **nova specification e novo freeze**, aí sim corrigir — junto de um `--ensaio` que exercite o caminho de gravação.

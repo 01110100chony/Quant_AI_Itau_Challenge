@@ -1,6 +1,6 @@
 ---
 tags: [aprendizado, metodo]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Aprendizados Metodológicos
@@ -101,3 +101,35 @@ Nenhum era erro científico. Todos teriam entrado no commit que servia de carimb
 `seed = 7` fixa, dados versionados, specification congelada por hash. Isso torna a segunda execução idêntica à primeira, e é o que permite discutir com honestidade se vale reexecutar depois de um crash de persistência.
 
 Sem determinismo, qualquer reexecução seria suspeita.
+
+## 12. O caminho irreversível precisa de ensaio no trecho inteiro
+
+O `--ensaio` exercitava métricas e critério, mas terminava antes do bloco de gravação, que só existia sob `--abrir-oos`. A linha `oos.drop(columns="long")` tinha ficado desatualizada numa refatoração e nunca foi executada por ninguém antes da rodada que não podia falhar.
+
+O resultado: o veredito foi observado e os artefatos se perderam. Uma única execução autorizada na vida do experimento, e o trecho de persistência estreou nela.
+
+> Se uma operação é irreversível, todo o caminho de código dela — inclusive escrita de arquivo — precisa ter rodado antes contra dados de mentira.
+
+**Pergunta a fazer antes de qualquer gate:** qual linha do caminho irreversível nenhum ensaio executa?
+
+## 13. Um registro que ninguém abriu não é um registro
+
+Depois do crash, a saída de terminal foi declarada "preservada" em `reports/rsr_001_oos_terminal.txt`. O arquivo estava vazio. Ninguém abriu para conferir, e a afirmação circulou por uma devolutiva técnica e por duas notas antes de ser checada.
+
+Custo: o resultado mais importante do projeto não tem artefato de máquina nenhum.
+
+> Salvar não é verificar. Depois de gravar um registro crítico, ler de volta e conferir o tamanho.
+
+## 14. Consistência interna resgata parte de um registro perdido
+
+Sem os artefatos, o que sobrou foram números em prosa. Mas números reais de um experimento satisfazem identidades que números transcritos errados dificilmente satisfazem: contas de custo e líquido, médias ponderadas pelos tamanhos de bloco corretos, taxas caindo em `k/n` com `k` inteiro para dois `n` diferentes ao mesmo tempo, e p-valores caindo na grade `(1+k)/(N+1)` do estimador declarado.
+
+Vinte verificações desse tipo passaram. Não substituem o artefato, e é importante dizer isso em voz alta — mas transformam "confie em nós" em "confira você mesmo".
+
+## 15. O último estado do ciclo de vida é o menos testado
+
+O `verify_research.py` exigia intervalo de validação para os status `OOS_OPENED` e `FINAL`. O `RSR_001` foi desenhado sem amostra de validação intermediária, o que estava declarado no manifesto desde a criação e aprovado antes do freeze. Consequência: **não havia status válido para o estado real do experimento** — os três caminhos possíveis davam erro.
+
+O defeito só se manifesta no último estado, que é justamente o que nenhum experimento tinha alcançado. Os gates pré-freeze não podiam tê-lo pego: eles rodaram num estado anterior, onde a regra era satisfeita por acaso.
+
+> Uma máquina de estados só está testada quando algum caso chegou ao estado terminal. Antes disso, os estados finais são código não exercitado.

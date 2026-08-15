@@ -1,6 +1,6 @@
 ---
 tags: [onboarding, briefing]
-atualizado: 2026-08-14
+atualizado: 2026-08-15
 ---
 
 # Briefing para Sessão Nova
@@ -21,7 +21,9 @@ O projeto testou cinco hipóteses e **todas foram encerradas**. A última, `Resi
 
 O relatório deixa de ser sobre uma estratégia vencedora e passa a ser sobre a **cadeia de falsificação**. O manual de avaliação diz que a banca prioriza qualidade do processo, não desempenho histórico.
 
-Repositório: `github.com/01110100chony/Quant_AI_Itau_Challenge`, branch `relatorio-epsilon`.
+Em 15/08 os artefatos foram reauditados sem reexecução, o repositório passou a registrar `FINAL` / `NO-GO`, e o relatório de 5 páginas ficou pronto. **Falta renomear com a chave de envio e enviar.**
+
+Repositório: `github.com/01110100chony/Quant_AI_Itau_Challenge`, branch `relatorio-final`.
 Robô: **ε / ÉPSILON**. Equipe **Delta Vega**, que jamais pode aparecer no relatório.
 
 ## Ordem de leitura
@@ -50,12 +52,13 @@ No repositório, leia também, nesta ordem: `PROJECT_STATUS.md`, `Research_Log_D
 
 ## O que falta fazer
 
-1. Decidir sobre o bug de persistência do OOS (opções A e B em [[01 Estado Atual e Proximos Passos]])
-2. Atualizar `manifest.toml` e registry para `OOS_OPENED`
-3. Transcrever os números do OOS para `results.md`
-4. **Reescrever as páginas 1, 3 e 4 do PDF** à luz do `NO-GO`
-5. Preencher a linha `ONDE FALHOU` da tabela de IA (texto pronto em [[08 Governanca, Hashes e Uso de IA]])
-6. Revisão final de eliminação e envio
+1. **Renomear o PDF** para `[chave de envio].pdf`
+2. **Enviar até 16/08**, de preferência até as 18h
+
+Tudo o mais está fechado: bug de persistência decidido (Opção B, não reexecutar), manifesto e registry em `FINAL`, números transcritos com proveniência, relatório refeito sobre o resultado real, linha `ONDE FALHOU` preenchida, verificação de eliminação passada por script.
+
+> [!danger] Não tentar resgatar o NO-GO
+> Se alguém sugerir `S = 42`, outra janela, outro custo, outro universo ou outro critério: está proibido pela specification, aprovado por humano antes da abertura. O `NO-GO` é definitivo.
 
 ## Números que você vai precisar
 
