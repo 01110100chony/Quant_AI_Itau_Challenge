@@ -1,0 +1,24 @@
+{
+  "source": "Yahoo Finance chart API",
+  "endpoint": "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
+  "asset": "0050",
+  "vendor_symbol": "0050.TW",
+  "requested_start": "2007-01-01",
+  "requested_end_exclusive": "2019-01-01",
+  "collected_at_utc": "2026-08-14T21:44:32.5208347+00:00",
+  "interval": "1d",
+  "quote_policy": "Vendor quote OHLC preserved; Adj Close stored separately; no adjustment policy selected",
+  "events_requested": [
+    "dividends",
+    "splits",
+    "capitalGains"
+  ],
+  "exchange_name": "TAI",
+  "instrument_type": "ETF",
+  "currency": "TWD",
+  "exchange_timezone": "Asia/Taipei",
+  "data_granularity": "1d",
+  "row_count": 2469,
+  "action_count": 8,
+  "response_status": 200
+}

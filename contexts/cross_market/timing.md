@@ -1,41 +1,43 @@
-# Cross-Market timing
+# Cross-Market timing — CM_001 v1.0-frozen
 
 ## Quick Summary
 
-- **Purpose:** Isolar o contrato temporal e os riscos de alinhamento entre mercados.
-- **Read when:** Definindo sessões, calendários, timezone, feature availability ou decision timestamp.
-- **Load next:** Depois de decisão humana, sincronize o contrato com [`data_contract.md`](data_contract.md) e testes futuros.
-- **Authority:** Requisitos temporais da candidata; horários concretos ainda não estão aprovados.
+- **Purpose:** frozen mapping and session-time contract.
+- **Read when:** mapping US information to Taiwan target sessions.
+- **Load next:** [`data_contract.md`](data_contract.md) and [`validation_plan.md`](validation_plan.md).
+- **Authority:** scientific content frozen pending H1 provenance registration.
 
 ## Contents
 
-- [Known timing requirement](#known-timing-requirement)
-- [Unresolved timing fields](#unresolved-timing-fields)
-- [Future mechanical invariants](#future-mechanical-invariants)
+- [Frozen calendars](#frozen-calendars)
+- [Required invariants](#required-invariants)
 
-## Known timing requirement
+For each official TWSE target session `j`, use the open interval:
 
-O teste deve explorar uma barreira temporal natural entre mercados e alinhar rigorosamente timezone, sessão e feriados. A informação de `A` usada na feature precisa estar publicamente disponível antes da decisão ou abertura-alvo em `B`.
+```text
+(previous_twse_close_j, current_twse_open_j)
+```
 
-## Unresolved timing fields
+A US session enters `S(j)` only when its actual regular open and close are both strictly inside that interval and raw Open/Close exist for `XSD`, `QQQ` and `SPY`. `SemiSpecific` and `BroadTech` use the identical `S(j)`. Multiple sessions are summed session by session; they are never normalized or converted to `Close_last/Open_first`.
 
-- Mercado líder e timezone: **TBD — requires human decision**.
-- Mercado seguidor e timezone: **TBD — requires human decision**.
-- Janela exata de informação de `A`: **TBD — requires human decision**.
-- Timestamp exato da decisão em `B`: **TBD — requires human decision**.
-- Preço de execução candidato: **TBD — requires human decision**.
-- Calendários e tratamento de DST: **TBD — requires human decision**.
+Empty windows remain in the 2,223-session ledger with `n_us_sessions=0` but are absent from inferential samples. Missing data are never represented by a zero feature, forward-fill or backfill. The aggregated feature timestamp is the close of the last included US session and must precede Taiwan open.
 
-## Future mechanical invariants
+## Frozen calendars
 
-Quando dados e timing forem aprovados, testes reais deverão verificar:
+- US: `exchange-calendars==4.13.2`, calendar `XNYS`, timezone `America/New_York`, actual session opens/closes, DST-aware and actual early-close aware.
+- Taiwan: official TWSE dates; regular session `09:00`–`13:30 Asia/Taipei`.
+- Stage A found no Research-session difference among ARCX/XNAS/XNYS that changes mapping for `XSD/QQQ/SPY`.
+- Retain 15 official TWSE sessions missing from `XTAI`; exclude `2018-02-20`, the single `XTAI` extra date not official in the TWSE ledger.
+- Stage A found no relevant Taiwan early close or extraordinary Research session incompatible with `09:00`–`13:30`; no calendar-policy exception is required.
 
-- `feature_timestamp < decision_timestamp`;
-- fim da janela de informação de `A` anterior à decisão/abertura em `B`;
-- nenhum target session duplicado;
-- nenhuma sessão futura de `A` mapeada para target passado em `B`;
-- nenhuma observação duplicada por feriados distintos;
-- timestamps timezone-aware e DST tratado explicitamente;
-- boundaries de research, validation e OOS respeitados.
+## Required invariants
 
-Esses itens são especificação futura, não testes implementados que passam sem dados.
+- timezone-aware instants and strict `tw_close < us_open < us_close < tw_open`;
+- unique, ordered official Taiwan sessions and no future US session mapping;
+- actual US early closes and DST transitions;
+- no extended-hours or incomplete US input;
+- past-feature invariance when later dates are appended;
+- Research target dates at most `2018-12-31`; Validation/OOS paths not loaded;
+- pre-association primary counts H1 `1938`, H2 `2034`, H3 `1850`, otherwise stop.
+
+The study is observational and defines no order, execution price, portfolio or strategy return.

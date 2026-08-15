@@ -1,0 +1,480 @@
+{
+  "P1": {
+    "H2": {
+      "B": 5000,
+      "count_beta_perm_ge_observed": 1637,
+      "offset_max": 2013,
+      "offset_min": 21,
+      "p_perm": 0.3275344931013797,
+      "seed": 7
+    },
+    "H3": {
+      "B": 5000,
+      "count_beta_perm_ge_observed": 1034,
+      "offset_max": 1829,
+      "offset_min": 21,
+      "p_perm": 0.20695860827834434,
+      "seed": 7
+    }
+  },
+  "P2": {
+    "correct": {
+      "adjusted_r_squared": -0.0003761763171903354,
+      "ci95_lower": [
+        -0.0002579261020650396,
+        -0.06541633451098808
+      ],
+      "ci95_upper": [
+        0.0007065965487889002,
+        0.09469049664294912
+      ],
+      "coefficients": [
+        0.00022433522336193028,
+        0.01463708106598053
+      ],
+      "df_resid": 2031,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.0002459095834623034,
+        0.0408199891663262
+      ],
+      "model": "P2_H2_correct_common",
+      "n": 2033,
+      "one_sided_p_values": [
+        0.18086819832486986,
+        0.35997466992260496
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": 1.2863444083813296,
+      "small_sample_correction": true,
+      "t_statistics": [
+        0.9122671032311339,
+        0.3585763094237947
+      ],
+      "use_t": true
+    },
+    "correct_standardized_beta": 0.01077658541478616,
+    "future": {
+      "adjusted_r_squared": -0.0001784999889500316,
+      "ci95_lower": [
+        -0.00027318524794414976,
+        -0.08294615813055484
+      ],
+      "ci95_upper": [
+        0.000689214695449107,
+        0.034036880855698316
+      ],
+      "coefficients": [
+        0.00020801472375247865,
+        -0.024454638637428264
+      ],
+      "df_resid": 2031,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.00024536838921766156,
+        0.029825375654780988
+      ],
+      "model": "P2_H2_future",
+      "n": 2033,
+      "one_sided_p_values": [
+        0.19833438575842896,
+        0.7938231076774289
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": -2.1141847057431598,
+      "small_sample_correction": true,
+      "t_statistics": [
+        0.8477649644101173,
+        -0.8199272632969571
+      ],
+      "use_t": true
+    },
+    "future_standardized_beta": -0.017711968828585764,
+    "n_common": 2033,
+    "passed": true
+  },
+  "diagnostics": {
+    "n": 2034,
+    "p_two_sided_unadjusted": 0.5325772789849239,
+    "spearman_rank_ic": -0.013845500664317617
+  },
+  "gates": {
+    "CorePass": false,
+    "RobustnessPass": false,
+    "SpecificityPass": false,
+    "TimingPass": true,
+    "verdict": "NO_GO"
+  },
+  "main": {
+    "H1": {
+      "adjusted_r_squared": -0.00015592323059521185,
+      "ci95_lower": [
+        -0.0004759657067400166,
+        -0.038256263656419334
+      ],
+      "ci95_upper": [
+        0.0003940048362497965,
+        0.08288114413463085
+      ],
+      "coefficients": [
+        -4.0980435245110065e-05,
+        0.022312440239105762
+      ],
+      "df_resid": 1936,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.0002217965891727091,
+        0.030883647826674857
+      ],
+      "model": "H1",
+      "n": 1938,
+      "one_sided_p_values": [
+        0.5732839765015318,
+        0.23504709587088207
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": 1.9379300490330966,
+      "small_sample_correction": true,
+      "t_statistics": [
+        -0.18476584963711648,
+        0.7224677720820931
+      ],
+      "use_t": true
+    },
+    "H2": {
+      "adjusted_r_squared": -0.0003784241387574383,
+      "ci95_lower": [
+        -0.00026120879595220624,
+        -0.06556790641738643
+      ],
+      "ci95_upper": [
+        0.0007028134367504467,
+        0.09452796533747494
+      ],
+      "coefficients": [
+        0.00022080232039912022,
+        0.014480029460044262
+      ],
+      "df_resid": 2032,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.0002457820716269531,
+        0.0408172069937828
+      ],
+      "model": "H2",
+      "n": 2034,
+      "one_sided_p_values": [
+        0.1845483763102077,
+        0.36140570155718515
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": 1.2722793987331258,
+      "small_sample_correction": true,
+      "t_statistics": [
+        0.8983662597418942,
+        0.3547530692692871
+      ],
+      "use_t": true
+    },
+    "H3": {
+      "adjusted_r_squared": 0.005126297297105009,
+      "ci95_lower": [
+        -0.00025524707512957536,
+        -0.05972652918190843,
+        -0.08676006050247922,
+        -0.20034466589842398
+      ],
+      "ci95_upper": [
+        0.0007738269618744868,
+        0.1109784855407728,
+        0.18769878416107136,
+        0.03973448982421984
+      ],
+      "coefficients": [
+        0.00025928994337245573,
+        0.025625978179432185,
+        0.050469361829296074,
+        -0.08030508803710207
+      ],
+      "df_resid": 1846,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.0002623515842406095,
+        0.04351944509327389,
+        0.06997039097007712,
+        0.06120565147125072
+      ],
+      "model": "H3",
+      "n": 1850,
+      "one_sided_p_values": [
+        0.16156028805824152,
+        0.27802041833276164,
+        0.23540938450872495,
+        0.9051673907200205
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific",
+        "broad_tech",
+        "prev_tw_rel"
+      ],
+      "semi_specific_effect_1sd_bps": 2.2327029685187987,
+      "small_sample_correction": true,
+      "t_statistics": [
+        0.9883300080805084,
+        0.5888397272646472,
+        0.721295981479928,
+        -1.3120534804669575
+      ],
+      "use_t": true
+    }
+  },
+  "mechanical_counts": {
+    "H1": 1938,
+    "H2": 2034,
+    "H3": 1850
+  },
+  "positive_stability_blocks": 2,
+  "secondary": {
+    "H1_0050": {
+      "adjusted_r_squared": 3.112206102717785e-06,
+      "ci95_lower": [
+        0.00017723687580139857,
+        -0.032206093699251384
+      ],
+      "ci95_upper": [
+        0.001009212101373068,
+        0.08548747756197307
+      ],
+      "coefficients": [
+        0.0005932244885872332,
+        0.026640691931360847
+      ],
+      "df_resid": 1927,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.00021210916812973551,
+        0.0300055635398071
+      ],
+      "model": "H1_0050",
+      "n": 1929,
+      "one_sided_p_values": [
+        0.002606291732230722,
+        0.18736386120405968
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": 2.3125368385135934,
+      "small_sample_correction": true,
+      "t_statistics": [
+        2.796788530255281,
+        0.8878584098584843
+      ],
+      "use_t": true
+    },
+    "H2_0050": {
+      "adjusted_r_squared": -0.0003587523047130503,
+      "ci95_lower": [
+        -0.0010219807237860474,
+        -0.06383490021324861
+      ],
+      "ci95_upper": [
+        -9.107804433799776e-05,
+        0.09501896011481589
+      ],
+      "coefficients": [
+        -0.0005565293840620226,
+        0.015592029950783641
+      ],
+      "df_resid": 2032,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.00023733808337218597,
+        0.0405005502496674
+      ],
+      "model": "H2_0050",
+      "n": 2034,
+      "one_sided_p_values": [
+        0.9904355155610874,
+        0.35014509026477736
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": 1.3699846775554325,
+      "small_sample_correction": true,
+      "t_statistics": [
+        -2.3448802491140497,
+        0.3849831633068167
+      ],
+      "use_t": true
+    },
+    "H2_n_us_1": {
+      "adjusted_r_squared": -0.0004929462367275761,
+      "ci95_lower": [
+        -0.00031492677593844163,
+        -0.08585043761833135
+      ],
+      "ci95_upper": [
+        0.0006445512619660839,
+        0.07512266032447458
+      ],
+      "coefficients": [
+        0.0001648122430138211,
+        -0.00536388864692838
+      ],
+      "df_resid": 1971,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.0002446189953122851,
+        0.04104010298878101
+      ],
+      "model": "H2_n_us_1",
+      "n": 1973,
+      "one_sided_p_values": [
+        0.25027438054542916,
+        0.551986505912614
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific"
+      ],
+      "semi_specific_effect_1sd_bps": -0.452697256035469,
+      "small_sample_correction": true,
+      "t_statistics": [
+        0.6737507968398724,
+        -0.130698713119572
+      ],
+      "use_t": true
+    },
+    "H3_0050": {
+      "adjusted_r_squared": 0.0054545528688010325,
+      "ci95_lower": [
+        -0.001023375925169968,
+        -0.06396904609080209,
+        -0.02135244951155353,
+        -0.20394365861437755
+      ],
+      "ci95_upper": [
+        -3.2497448754354786e-05,
+        0.10675956945287399,
+        0.24507312931200415,
+        0.05057827130762235
+      ],
+      "coefficients": [
+        -0.0005279366869621613,
+        0.021395261681035952,
+        0.1118603399002253,
+        -0.0766826936533776
+      ],
+      "df_resid": 1838,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.00025261330709048537,
+        0.04352533758072909,
+        0.06792220051400767,
+        0.06488749929984458
+      ],
+      "model": "H3_0050",
+      "n": 1842,
+      "one_sided_p_values": [
+        0.9816180593020274,
+        0.3115449930561312,
+        0.04987588160338589,
+        0.8812768909538815
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific",
+        "broad_tech",
+        "prev_tw_rel_0050"
+      ],
+      "semi_specific_effect_1sd_bps": 1.8616006913675491,
+      "small_sample_correction": true,
+      "t_statistics": [
+        -2.089900540247691,
+        0.49155877634154727,
+        1.646889221104611,
+        -1.1817791482305016
+      ],
+      "use_t": true
+    },
+    "H3_n_us_1": {
+      "adjusted_r_squared": 0.004740108704218149,
+      "ci95_lower": [
+        -0.00028857442332229995,
+        -0.09031052540693593,
+        -0.06509763100495113,
+        -0.20197118288620863
+      ],
+      "ci95_upper": [
+        0.0007373256047164514,
+        0.0780150134522587,
+        0.2279155131697161,
+        0.045576671995799456
+      ],
+      "coefficients": [
+        0.00022437559069707577,
+        -0.006147755977338611,
+        0.08140894108238249,
+        -0.07819725544520459
+      ],
+      "df_resid": 1793,
+      "hac_kernel": "Bartlett",
+      "hac_maxlags": 5,
+      "hac_standard_errors": [
+        0.00026153733188481,
+        0.04291199056253829,
+        0.07469916545486918,
+        0.06310849372274605
+      ],
+      "model": "H3_n_us_1",
+      "n": 1797,
+      "one_sided_p_values": [
+        0.1955283079174019,
+        0.5569512233868834,
+        0.13796856884685027,
+        0.8922632741867331
+      ],
+      "parameter_names": [
+        "intercept",
+        "semi_specific",
+        "broad_tech",
+        "prev_tw_rel"
+      ],
+      "semi_specific_effect_1sd_bps": -0.5192684539850654,
+      "small_sample_correction": true,
+      "t_statistics": [
+        0.8579103758537174,
+        -0.14326429272441013,
+        1.0898239704105817,
+        -1.2390924078896235
+      ],
+      "use_t": true
+    }
+  }
+}

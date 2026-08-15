@@ -1,0 +1,15 @@
+{
+  "filtered_artifact_bytes": 10083,
+  "requested_start": "2010-01-01",
+  "instruments": [
+    "0050"
+  ],
+  "endpoint": "https://www.twse.com.tw/rwd/zh/ETF/etfDiv",
+  "dataset": "ETF/etfDiv",
+  "retrieved_at_utc": "2026-08-14T23:09:06.0759347+00:00",
+  "requested_end": "2018-12-31",
+  "request_url": "https://www.twse.com.tw/rwd/zh/ETF/etfDiv?startDate=20100101&endDate=20181231&stkNo=0050&response=json",
+  "http_status": 200,
+  "filtered_artifact": "twse_etf_div_0050_2010_2018.json",
+  "provider": "Taiwan Stock Exchange"
+}

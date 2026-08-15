@@ -1,0 +1,10 @@
+source,instrument,raw_Open_available,raw_Close_available,Adj_Close_available,historical_adjustment_mechanism_known,dividends_included_in_Adj_Close,splits_included,Open_adjusted_consistently,provider_documentation_found,scale_discontinuities,policy_note
+Yahoo Chart API,XSD,True,True,True,True,True,True,False,True,none identified in structural session audit,Adj Close is separate; never pair it with raw Open
+Yahoo Chart API,QQQ,True,True,True,True,True,True,False,True,none identified in structural session audit,Adj Close is separate; never pair it with raw Open
+Yahoo Chart API,SPY,True,True,True,True,True,True,False,True,none identified in structural session audit,Adj Close is separate; never pair it with raw Open
+Yahoo Chart API,0052,True,True,True,True,True,True,False,True,0052 raw Open has nonpositive/missing records,Adj Close is separate; never pair it with raw Open
+Yahoo Chart API,TAIEX,True,True,True,True,True,True,False,True,none identified in structural session audit,Adj Close is separate; never pair it with raw Open
+Yahoo Chart API,0050,True,True,True,True,True,True,False,True,2014-01-02 boundary in Yahoo 0050 raw history vs official TWSE (4x scale),Adj Close is separate; never pair it with raw Open
+TWSE official,0052,PARTIAL (2115/2223; 108 official no-regular-OHLC rows),PARTIAL (2115/2223; 108 official no-regular-OHLC rows),False,False,False,False,True,True,"108 official no-regular-OHLC rows, explicitly classified",official raw OHLC; actions maintained separately
+TWSE official,0050,YES (2223/2223),YES (2223/2223),False,False,False,False,True,True,none in official Research raw scale,official raw OHLC; actions maintained separately
+TWSE official,TAIEX,YES (2223/2223),YES (2223/2223),False,False,False,False,True,True,none in official Research raw scale,official raw OHLC; actions maintained separately

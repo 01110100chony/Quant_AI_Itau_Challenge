@@ -1,0 +1,7 @@
+Instrument,HTTP,Provider symbol,Interval,Timezone,Timestamps,All arrays aligned,Open nulls,Close nulls,Adj Close nulls,Raw schema gate
+XSD,200,XSD,1d,America/New_York,3020,True,0,0,0,VALID
+QQQ,200,QQQ,1d,America/New_York,3020,True,0,0,0,VALID
+SPY,200,SPY,1d,America/New_York,3020,True,0,0,0,VALID
+0052,200,0052.TW,1d,Asia/Taipei,2720,True,9,9,9,VALID
+TAIEX,200,^TWII,1d,Asia/Taipei,2964,True,16,16,16,VALID
+0050,200,0050.TW,1d,Asia/Taipei,2469,True,5,5,5,VALID

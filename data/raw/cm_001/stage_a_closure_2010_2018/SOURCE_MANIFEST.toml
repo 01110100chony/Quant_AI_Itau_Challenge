@@ -1,0 +1,8 @@
+provider = "Taiwan Stock Exchange"
+scope = "CM_001 Stage A closure structural audit"
+research_start = "2010-01-01"
+research_end = "2018-12-31"
+retrieved_at_utc = "2026-08-14T23:09:06.0759347+00:00"
+instruments = ["0052", "0050"]
+contains_validation_or_oos_prices = false
+acquisition_filtering = "All broad official responses were filtered in memory to Research dates and named instruments before persistence. Current filing metadata returned by TWT49U was discarded."

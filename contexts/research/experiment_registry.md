@@ -28,7 +28,7 @@ O status descreve estágio, não qualidade econômica. `VALIDATED` não signific
 | ER_003 | ER residualizado | v0.3 | NO_GO | Research sample legado | CLOSED | Residualização muda estrutura, mas ER segue redundante | [`notebook`](../../notebooks/01_er_feasibility_v0_3.ipynb) |
 | OS_001 | Opportunity Set → Residual Momentum | v0.4 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook`](../../notebooks/01_er_feasibility_v0_4.ipynb) |
 | AFN_001 | Adaptive Factor Neutralization | v0.5.1 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook corrigido`](../../notebooks/01_er_feasibility_v0_5_1.ipynb) |
-| CM_001 | Cross-Market Information Transmission | v0.1-draft | DRAFT | NONE | CLOSED | Specification incompleta; nenhuma execução autorizada | [`artifact`](../../research/experiments/CM_001/spec.md) |
+| CM_001 | Cross-Market Information Transmission | v1.0.1-frozen | NO_GO | 2010–2018 Research Stage B once | CLOSED | CorePass false; frozen verdict NO_GO; holdouts not opened | [`results`](../../research/experiments/CM_001/results.md) |
 
 ## Legacy artifact policy
 

@@ -42,6 +42,8 @@ Qualquer modificação material depois de observar o holdout invalida seu status
 
 `scripts/verify_research.py` garante coerência do metadado: splits ordenados e não sobrepostos, estados válidos, freeze com versão/commit e abertura OOS acompanhada de timestamp e referência de aprovação. Isso não prova que um notebook nunca leu determinada linha de dados.
 
+Documentos narrativos/canônicos podem registrar uma fronteira planejada parcialmente definida, desde que marcada como `TBD`, `CLOSED` e não congelada. `manifest.toml` só registra um split quando start e end estiverem ambos explicitamente aprovados. Para `CM_001`, o Planned Final OOS tem start `2023-01-01`, end `TBD — requires human approval` e status `CLOSED`; enquanto o endpoint estiver pendente, `oos_start` e `oos_end` permanecem vazios no manifest. Isso não constitui abertura nem freeze operacional.
+
 Uma barreira de acesso real só deverá ser implementada quando existirem snapshots e paths concretos para Cross-Market. A solução preferida é separar fisicamente os arquivos por sample e fornecer aos notebooks de research somente o path autorizado. Hooks ou detectores de strings não são proteção confiável e não serão usados como substitutos.
 
 ## Legacy holdout

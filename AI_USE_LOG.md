@@ -12,3 +12,63 @@ Registre somente contribuições materiais de GenAI que sejam relevantes para au
 - **Verification:** Revisão das quatro fontes canônicas; `verify_research.py`; testes automatizados; revisão de Git diff.
 - **Impact on project:** Organização e proteção do processo de research; nenhuma hipótese, parâmetro, amostra ou resultado financeiro foi alterado.
 - **External reference:** LLMQuant/quant-mind commit `638d16a4491581f7d8e9a8b9cff7db3962c87a24`; padrões foram adaptados, sem dependência ou cópia literal não trivial.
+
+## 2026-08-14 — CM_001 pre-Stage A specification synchronization
+
+- **Date:** 2026-08-14
+- **Tool/model:** OpenAI Codex
+- **Task:** Documentation/specification synchronization before data feasibility.
+- **AI contribution:** Applied human-approved definitions for targets, empty-window handling and Stage A/Stage B governance across the research harness.
+- **Human decision:** Definitions were supplied explicitly by the researchers; no model selected the universe, targets, controls, samples or gates.
+- **Verification:** Canonical-document review; `verify_research.py`; existing automated tests; `git diff --check`; Git diff review.
+- **Impact on project:** Removed ambiguities before any market data/result inspection. No data, research sample, validation, final OOS, notebook or empirical result was opened.
+
+## 2026-08-14 — CM_001 Stage A acquisition recovery and provider audit
+
+- **Date:** 2026-08-14
+- **Tool/model:** OpenAI Codex
+- **Task:** Recover and audit the CM_001 acquisition/provider layer and complete Data & Timing Feasibility only.
+- **AI contribution:** Diagnosed the locale-induced CSV parsing failure; separated immutable HTTP raw responses, schema gates, parsing, OHLC validation and canonical Stage A artifacts; audited Yahoo/TWSE sources, calendars, mappings and corporate-action provenance; added synthetic and real invariants.
+- **Human decision:** Researchers explicitly revised Research start from `2007-01-01` to `2010-01-01` based only on pre-result data availability/integrity. Assets, hypotheses, targets, Validation/OOS and Stage B restrictions were unchanged.
+- **Verification:** Raw-array audits before DataFrame construction; official-source cross-checks; project unit tests; `verify_research.py`; `git diff --check`; Git diff review.
+- **Impact on project:** Removed false empty-window diagnostics caused by parsing, produced a structural `DECISION_REQUIRED` Stage A verdict and preserved Validation/OOS closure. No feature–target or economic result was calculated.
+
+## 2026-08-14 — CM_001 Stage A closure audit
+
+- **Date:** 2026-08-14
+- **Tool/model:** OpenAI Codex
+- **Task:** Resolve the remaining `0052` no-OHLC, corporate-action, attrition, raw/adjusted and calendar-policy evidence for Stage A closure.
+- **AI contribution:** Acquired bounded official TWSE evidence; classified all 108 no-OHLC sessions from same-day trading fields; cross-checked a pre-specified date sample and the corporate-action master; mapped mechanically affected legs; quantified input attrition; audited raw/adjusted separation and US/Taiwan calendars; generated reproducible reports and tests.
+- **Human decision:** The user fixed the universe, hypotheses, targets, sample and prohibited any feature–target analysis; the resulting policy recommendations remain non-binding pending an explicit human freeze decision.
+- **Verification:** Official-source endpoint cross-checks; structural invariants and manual cases; full unit-test runner; `verify_research.py`; `git diff --check`; Git diff review.
+- **Impact on project:** Produced `PASS_READY_FOR_SPEC_FREEZE` as a data/timing closure verdict while preserving `CM_001 = DRAFT`, Stage B unauthorized and Validation/Final OOS closed. No return, target, feature value or feature–target relationship was calculated.
+
+## 2026-08-14 — CM_001 scientific freeze implementation
+
+- **Date:** 2026-08-14
+- **Tool/model:** OpenAI Codex
+- **Task:** Materialize the human-approved `v1.0-frozen` specification and deterministic Stage B implementation before any association execution.
+- **AI contribution:** Synchronized the literal data/timing/model/falsification/gate decisions; implemented Research-boundary guards, OLS/HAC(5), fixed placebos, diagnostics, one-time execution receipt and synthetic tests.
+- **Human decision:** Researchers explicitly selected every material scientific field, final sample boundary and decision threshold, and authorized the H0/H1/H2/result commit sequence.
+- **Verification:** Synthetic-only Stage B unit tests; mechanical-count preflight without prices; full unit suite; `verify_research.py`; `git diff --check`; explicit staged-path review.
+- **Impact on project:** Prepared a reproducible scientific freeze at H1 `cc686c7a0c25b70de0bc31558d4d1bf6b64b3818` without inspecting any feature–target association before H1/H2. Validation and Final OOS remained closed.
+
+## 2026-08-14 — CM_001 P2 corrective freeze
+
+- **Date:** 2026-08-14
+- **Tool/model:** OpenAI Codex
+- **Task:** Align the frozen P2 executable with the already-approved next-eligible-window semantics.
+- **AI contribution:** Detected that the original executable shifted after H2 target filtering; stopped before execution; implemented pre-target eligible-window mapping, mechanical common-N audit and six synthetic edge-case tests.
+- **Human decision:** Researchers rejected “next H2-complete session,” preserved P2 semantics unchanged and explicitly authorized `v1.0.1-frozen` H1c/H2c.
+- **Verification:** Synthetic fixtures, full unit suite, mechanical preflight, harness verifier, boundary checks and scoped Git diff.
+- **Impact on project:** Corrected a pre-empirical implementation mismatch at H1c `417ffa85f954bd3ee87d11b35dbbef3b4da941e6` without inspecting any feature–target relationship. H0/H1/H2 lineage, all scientific choices and closed holdouts were preserved.
+
+## 2026-08-14 — CM_001 frozen Stage B execution
+
+- **Date:** 2026-08-14
+- **Tool/model:** OpenAI Codex
+- **Task:** Execute the corrected frozen CM_001 Research tests exactly once and apply literal gates.
+- **AI contribution:** Ran the registered OLS/HAC models, P1/P2, fixed blocks and secondary diagnostics; persisted machine-readable results, provenance, receipt, tables and figures; applied gates without discretionary override.
+- **Human decision:** Researchers pre-specified all models, samples, diagnostics and gates and explicitly authorized the one-time Research execution after H1c/H2c.
+- **Verification:** Receipt and hashes; strict-future P2 mapping audit; counts; full unit suite; harness verifier; boundary assertions; Git diff review.
+- **Impact on project:** `CorePass=false` produced the frozen verdict `NO_GO`. No optimization, Validation, Final OOS, strategy or backtest followed.

@@ -1,0 +1,7 @@
+target_session,event_date,event_type,affected_leg,automatic_exclusion,reason
+2010-05-03,2010-05-03,CASH_DISTRIBUTION,H2 interpretation only,False,event reference-price reset precedes the regular open; raw same-session Open-Close does not cross the event
+2012-05-07,2012-05-07,CASH_DISTRIBUTION,H2 interpretation only,False,event reference-price reset precedes the regular open; raw same-session Open-Close does not cross the event
+2014-05-06,2014-05-06,CASH_DISTRIBUTION,H2 interpretation only,False,event reference-price reset precedes the regular open; raw same-session Open-Close does not cross the event
+2016-05-04,2016-05-04,CASH_DISTRIBUTION,H2 interpretation only,False,event reference-price reset precedes the regular open; raw same-session Open-Close does not cross the event
+2017-05-03,2017-05-03,CASH_DISTRIBUTION,H2 interpretation only,False,event reference-price reset precedes the regular open; raw same-session Open-Close does not cross the event
+2018-05-03,2018-05-03,CASH_DISTRIBUTION,H2 interpretation only,False,event reference-price reset precedes the regular open; raw same-session Open-Close does not cross the event

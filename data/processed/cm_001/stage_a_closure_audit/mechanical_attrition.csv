@@ -1,0 +1,9 @@
+Stage,count,excluded,reason
+session ledger,2223,0,none
+after empty-US-window rule,2138,85,no eligible US session
+eligible US window,2137,1,first-session boundary has no previous Taiwan close
+H1 raw-input availability,1944,193,required Open/previous Close presence only
+H1 under candidate action policy,1938,6,confirmed corporate-action crossing; policy not approved
+H2 raw-input availability,2034,103,required same-session Open/Close presence only
+H3 raw-input availability,1856,178,BroadTech and PrevTWRel input presence only
+H3 under candidate action policy,1850,6,confirmed corporate-action crossing; policy not approved

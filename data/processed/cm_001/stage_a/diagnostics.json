@@ -1,0 +1,38 @@
+{
+  "experiment_id": "CM_001",
+  "stage": "A - Data & Timing Feasibility",
+  "research_start": "2007-01-01",
+  "research_end": "2018-12-31",
+  "data_source_candidate": "Yahoo Finance chart API",
+  "calendar_candidate": "exchange_calendars 4.13.2: XNYS/XTAI",
+  "taiwan_target_sessions": 2949,
+  "us_sessions_per_taiwan_window": {
+    "0": 2949,
+    "1": 0,
+    "2": 0,
+    "3+": 0
+  },
+  "integrity": {
+    "duplicated_taiwan_targets": 0,
+    "timestamp_violations": 0,
+    "ambiguous_mappings": 19,
+    "missing_target_components": 2949,
+    "out_of_research_rows": 0
+  },
+  "classification": "FAIL",
+  "fail_reasons": [
+    "XSD first valid date 2007-03-14 is after candidate-calendar first session 2007-01-03",
+    "XSD last valid date 2007-03-14 is before candidate-calendar last session 2018-12-31",
+    "QQQ first valid date 2014-10-17 is after candidate-calendar first session 2007-01-03",
+    "QQQ last valid date 2014-10-17 is before candidate-calendar last session 2018-12-31",
+    "SPY first valid date 2016-04-13 is after candidate-calendar first session 2007-01-03",
+    "SPY last valid date 2016-04-13 is before candidate-calendar last session 2018-12-31",
+    "0052 first valid date 2008-03-03 is after candidate-calendar first session 2007-01-02",
+    "0052 last valid date 2018-02-09 is before candidate-calendar last session 2018-12-28",
+    "TAIEX first valid date 2015-07-20 is after candidate-calendar first session 2007-01-02",
+    "TAIEX last valid date 2015-07-20 is before candidate-calendar last session 2018-12-28",
+    "19 ambiguous mappings/calendar disagreements",
+    "2949 Taiwan sessions with missing target components"
+  ],
+  "stage_b_authorized": false
+}

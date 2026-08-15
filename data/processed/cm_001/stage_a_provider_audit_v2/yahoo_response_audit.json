@@ -1,0 +1,679 @@
+{
+  "XSD": {
+    "asset": "XSD",
+    "provider": "Yahoo Finance chart API",
+    "provider_symbol": "XSD",
+    "http_status": 200,
+    "requested_interval": "1d",
+    "requested_start": "2007-01-01",
+    "requested_end_exclusive": "2019-01-01",
+    "top_level_keys": [
+      "chart"
+    ],
+    "chart_keys": [
+      "error",
+      "result"
+    ],
+    "result_count": 1,
+    "error_key_present": true,
+    "error_value_is_null": true,
+    "meta_keys": [
+      "chartPreviousClose",
+      "currency",
+      "currentTradingPeriod",
+      "dataGranularity",
+      "exchangeName",
+      "exchangeTimezoneName",
+      "fiftyTwoWeekHigh",
+      "fiftyTwoWeekLow",
+      "firstTradeDate",
+      "fullExchangeName",
+      "gmtoffset",
+      "hasPrePostMarketData",
+      "instrumentType",
+      "longName",
+      "priceHint",
+      "range",
+      "regularMarketDayHigh",
+      "regularMarketDayLow",
+      "regularMarketPrice",
+      "regularMarketTime",
+      "regularMarketVolume",
+      "shortName",
+      "symbol",
+      "timezone",
+      "validRanges"
+    ],
+    "timezone_reported": "America/New_York",
+    "data_granularity": "1d",
+    "timestamp_count": 3020,
+    "timestamp_unit": "seconds",
+    "quote_is_list": true,
+    "quote_count": 1,
+    "quote_keys": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "adjclose_key_present": true,
+    "adjclose_is_list": true,
+    "adjclose_count": 1,
+    "events_key_present": true,
+    "event_types": [
+      "dividends",
+      "splits"
+    ],
+    "fields": {
+      "open": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "high": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "low": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "close": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "volume": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "adjclose": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      }
+    },
+    "schema_status": "VALID",
+    "snapshot_status": "VALID",
+    "issues": []
+  },
+  "QQQ": {
+    "asset": "QQQ",
+    "provider": "Yahoo Finance chart API",
+    "provider_symbol": "QQQ",
+    "http_status": 200,
+    "requested_interval": "1d",
+    "requested_start": "2007-01-01",
+    "requested_end_exclusive": "2019-01-01",
+    "top_level_keys": [
+      "chart"
+    ],
+    "chart_keys": [
+      "error",
+      "result"
+    ],
+    "result_count": 1,
+    "error_key_present": true,
+    "error_value_is_null": true,
+    "meta_keys": [
+      "chartPreviousClose",
+      "currency",
+      "currentTradingPeriod",
+      "dataGranularity",
+      "exchangeName",
+      "exchangeTimezoneName",
+      "fiftyTwoWeekHigh",
+      "fiftyTwoWeekLow",
+      "firstTradeDate",
+      "fullExchangeName",
+      "gmtoffset",
+      "hasPrePostMarketData",
+      "instrumentType",
+      "longName",
+      "priceHint",
+      "range",
+      "regularMarketDayHigh",
+      "regularMarketDayLow",
+      "regularMarketPrice",
+      "regularMarketTime",
+      "regularMarketVolume",
+      "shortName",
+      "symbol",
+      "timezone",
+      "validRanges"
+    ],
+    "timezone_reported": "America/New_York",
+    "data_granularity": "1d",
+    "timestamp_count": 3020,
+    "timestamp_unit": "seconds",
+    "quote_is_list": true,
+    "quote_count": 1,
+    "quote_keys": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "adjclose_key_present": true,
+    "adjclose_is_list": true,
+    "adjclose_count": 1,
+    "events_key_present": true,
+    "event_types": [
+      "dividends"
+    ],
+    "fields": {
+      "open": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "high": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "low": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "close": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "volume": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "adjclose": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      }
+    },
+    "schema_status": "VALID",
+    "snapshot_status": "VALID",
+    "issues": []
+  },
+  "SPY": {
+    "asset": "SPY",
+    "provider": "Yahoo Finance chart API",
+    "provider_symbol": "SPY",
+    "http_status": 200,
+    "requested_interval": "1d",
+    "requested_start": "2007-01-01",
+    "requested_end_exclusive": "2019-01-01",
+    "top_level_keys": [
+      "chart"
+    ],
+    "chart_keys": [
+      "error",
+      "result"
+    ],
+    "result_count": 1,
+    "error_key_present": true,
+    "error_value_is_null": true,
+    "meta_keys": [
+      "chartPreviousClose",
+      "currency",
+      "currentTradingPeriod",
+      "dataGranularity",
+      "exchangeName",
+      "exchangeTimezoneName",
+      "fiftyTwoWeekHigh",
+      "fiftyTwoWeekLow",
+      "firstTradeDate",
+      "fullExchangeName",
+      "gmtoffset",
+      "hasPrePostMarketData",
+      "instrumentType",
+      "longName",
+      "priceHint",
+      "range",
+      "regularMarketDayHigh",
+      "regularMarketDayLow",
+      "regularMarketPrice",
+      "regularMarketTime",
+      "regularMarketVolume",
+      "shortName",
+      "symbol",
+      "timezone",
+      "validRanges"
+    ],
+    "timezone_reported": "America/New_York",
+    "data_granularity": "1d",
+    "timestamp_count": 3020,
+    "timestamp_unit": "seconds",
+    "quote_is_list": true,
+    "quote_count": 1,
+    "quote_keys": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "adjclose_key_present": true,
+    "adjclose_is_list": true,
+    "adjclose_count": 1,
+    "events_key_present": true,
+    "event_types": [
+      "dividends"
+    ],
+    "fields": {
+      "open": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "high": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "low": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "close": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "volume": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      },
+      "adjclose": {
+        "key_present": true,
+        "array_length": 3020,
+        "null_count": 0,
+        "non_null_count": 3020,
+        "null_fraction": 0.0
+      }
+    },
+    "schema_status": "VALID",
+    "snapshot_status": "VALID",
+    "issues": []
+  },
+  "0052": {
+    "asset": "0052",
+    "provider": "Yahoo Finance chart API",
+    "provider_symbol": "0052.TW",
+    "http_status": 200,
+    "requested_interval": "1d",
+    "requested_start": "2007-01-01",
+    "requested_end_exclusive": "2019-01-01",
+    "top_level_keys": [
+      "chart"
+    ],
+    "chart_keys": [
+      "error",
+      "result"
+    ],
+    "result_count": 1,
+    "error_key_present": true,
+    "error_value_is_null": true,
+    "meta_keys": [
+      "chartPreviousClose",
+      "currency",
+      "currentTradingPeriod",
+      "dataGranularity",
+      "exchangeName",
+      "exchangeTimezoneName",
+      "fiftyTwoWeekHigh",
+      "fiftyTwoWeekLow",
+      "firstTradeDate",
+      "fullExchangeName",
+      "gmtoffset",
+      "hasPrePostMarketData",
+      "instrumentType",
+      "longName",
+      "priceHint",
+      "range",
+      "regularMarketDayHigh",
+      "regularMarketDayLow",
+      "regularMarketPrice",
+      "regularMarketTime",
+      "regularMarketVolume",
+      "shortName",
+      "symbol",
+      "timezone",
+      "validRanges"
+    ],
+    "timezone_reported": "Asia/Taipei",
+    "data_granularity": "1d",
+    "timestamp_count": 2720,
+    "timestamp_unit": "seconds",
+    "quote_is_list": true,
+    "quote_count": 1,
+    "quote_keys": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "adjclose_key_present": true,
+    "adjclose_is_list": true,
+    "adjclose_count": 1,
+    "events_key_present": true,
+    "event_types": [
+      "dividends"
+    ],
+    "fields": {
+      "open": {
+        "key_present": true,
+        "array_length": 2720,
+        "null_count": 9,
+        "non_null_count": 2711,
+        "null_fraction": 0.0033088235294117647
+      },
+      "high": {
+        "key_present": true,
+        "array_length": 2720,
+        "null_count": 9,
+        "non_null_count": 2711,
+        "null_fraction": 0.0033088235294117647
+      },
+      "low": {
+        "key_present": true,
+        "array_length": 2720,
+        "null_count": 9,
+        "non_null_count": 2711,
+        "null_fraction": 0.0033088235294117647
+      },
+      "close": {
+        "key_present": true,
+        "array_length": 2720,
+        "null_count": 9,
+        "non_null_count": 2711,
+        "null_fraction": 0.0033088235294117647
+      },
+      "volume": {
+        "key_present": true,
+        "array_length": 2720,
+        "null_count": 9,
+        "non_null_count": 2711,
+        "null_fraction": 0.0033088235294117647
+      },
+      "adjclose": {
+        "key_present": true,
+        "array_length": 2720,
+        "null_count": 9,
+        "non_null_count": 2711,
+        "null_fraction": 0.0033088235294117647
+      }
+    },
+    "schema_status": "VALID",
+    "snapshot_status": "VALID",
+    "issues": []
+  },
+  "TAIEX": {
+    "asset": "TAIEX",
+    "provider": "Yahoo Finance chart API",
+    "provider_symbol": "^TWII",
+    "http_status": 200,
+    "requested_interval": "1d",
+    "requested_start": "2007-01-01",
+    "requested_end_exclusive": "2019-01-01",
+    "top_level_keys": [
+      "chart"
+    ],
+    "chart_keys": [
+      "error",
+      "result"
+    ],
+    "result_count": 1,
+    "error_key_present": true,
+    "error_value_is_null": true,
+    "meta_keys": [
+      "chartPreviousClose",
+      "currency",
+      "currentTradingPeriod",
+      "dataGranularity",
+      "exchangeName",
+      "exchangeTimezoneName",
+      "fiftyTwoWeekHigh",
+      "fiftyTwoWeekLow",
+      "firstTradeDate",
+      "fullExchangeName",
+      "gmtoffset",
+      "hasPrePostMarketData",
+      "instrumentType",
+      "longName",
+      "priceHint",
+      "range",
+      "regularMarketDayHigh",
+      "regularMarketDayLow",
+      "regularMarketPrice",
+      "regularMarketTime",
+      "regularMarketVolume",
+      "shortName",
+      "symbol",
+      "timezone",
+      "validRanges"
+    ],
+    "timezone_reported": "Asia/Taipei",
+    "data_granularity": "1d",
+    "timestamp_count": 2964,
+    "timestamp_unit": "seconds",
+    "quote_is_list": true,
+    "quote_count": 1,
+    "quote_keys": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "adjclose_key_present": true,
+    "adjclose_is_list": true,
+    "adjclose_count": 1,
+    "events_key_present": false,
+    "event_types": [],
+    "fields": {
+      "open": {
+        "key_present": true,
+        "array_length": 2964,
+        "null_count": 16,
+        "non_null_count": 2948,
+        "null_fraction": 0.005398110661268556
+      },
+      "high": {
+        "key_present": true,
+        "array_length": 2964,
+        "null_count": 16,
+        "non_null_count": 2948,
+        "null_fraction": 0.005398110661268556
+      },
+      "low": {
+        "key_present": true,
+        "array_length": 2964,
+        "null_count": 16,
+        "non_null_count": 2948,
+        "null_fraction": 0.005398110661268556
+      },
+      "close": {
+        "key_present": true,
+        "array_length": 2964,
+        "null_count": 16,
+        "non_null_count": 2948,
+        "null_fraction": 0.005398110661268556
+      },
+      "volume": {
+        "key_present": true,
+        "array_length": 2964,
+        "null_count": 16,
+        "non_null_count": 2948,
+        "null_fraction": 0.005398110661268556
+      },
+      "adjclose": {
+        "key_present": true,
+        "array_length": 2964,
+        "null_count": 16,
+        "non_null_count": 2948,
+        "null_fraction": 0.005398110661268556
+      }
+    },
+    "schema_status": "VALID",
+    "snapshot_status": "VALID",
+    "issues": []
+  },
+  "0050": {
+    "asset": "0050",
+    "provider": "Yahoo Finance chart API",
+    "provider_symbol": "0050.TW",
+    "http_status": 200,
+    "requested_interval": "1d",
+    "requested_start": "2007-01-01",
+    "requested_end_exclusive": "2019-01-01",
+    "top_level_keys": [
+      "chart"
+    ],
+    "chart_keys": [
+      "error",
+      "result"
+    ],
+    "result_count": 1,
+    "error_key_present": true,
+    "error_value_is_null": true,
+    "meta_keys": [
+      "chartPreviousClose",
+      "currency",
+      "currentTradingPeriod",
+      "dataGranularity",
+      "exchangeName",
+      "exchangeTimezoneName",
+      "fiftyTwoWeekHigh",
+      "fiftyTwoWeekLow",
+      "firstTradeDate",
+      "fullExchangeName",
+      "gmtoffset",
+      "hasPrePostMarketData",
+      "instrumentType",
+      "longName",
+      "priceHint",
+      "range",
+      "regularMarketDayHigh",
+      "regularMarketDayLow",
+      "regularMarketPrice",
+      "regularMarketTime",
+      "regularMarketVolume",
+      "shortName",
+      "symbol",
+      "timezone",
+      "validRanges"
+    ],
+    "timezone_reported": "Asia/Taipei",
+    "data_granularity": "1d",
+    "timestamp_count": 2469,
+    "timestamp_unit": "seconds",
+    "quote_is_list": true,
+    "quote_count": 1,
+    "quote_keys": [
+      "close",
+      "high",
+      "low",
+      "open",
+      "volume"
+    ],
+    "adjclose_key_present": true,
+    "adjclose_is_list": true,
+    "adjclose_count": 1,
+    "events_key_present": true,
+    "event_types": [
+      "dividends"
+    ],
+    "fields": {
+      "open": {
+        "key_present": true,
+        "array_length": 2469,
+        "null_count": 5,
+        "non_null_count": 2464,
+        "null_fraction": 0.002025111381125962
+      },
+      "high": {
+        "key_present": true,
+        "array_length": 2469,
+        "null_count": 5,
+        "non_null_count": 2464,
+        "null_fraction": 0.002025111381125962
+      },
+      "low": {
+        "key_present": true,
+        "array_length": 2469,
+        "null_count": 5,
+        "non_null_count": 2464,
+        "null_fraction": 0.002025111381125962
+      },
+      "close": {
+        "key_present": true,
+        "array_length": 2469,
+        "null_count": 5,
+        "non_null_count": 2464,
+        "null_fraction": 0.002025111381125962
+      },
+      "volume": {
+        "key_present": true,
+        "array_length": 2469,
+        "null_count": 5,
+        "non_null_count": 2464,
+        "null_fraction": 0.002025111381125962
+      },
+      "adjclose": {
+        "key_present": true,
+        "array_length": 2469,
+        "null_count": 5,
+        "non_null_count": 2464,
+        "null_fraction": 0.002025111381125962
+      }
+    },
+    "schema_status": "VALID",
+    "snapshot_status": "VALID",
+    "issues": []
+  }
+}

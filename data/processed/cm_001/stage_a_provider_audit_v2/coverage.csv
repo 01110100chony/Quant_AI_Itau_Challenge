@@ -1,0 +1,7 @@
+Instrument,Provider,Requested start,First valid session,Last valid Research session,Raw rows,Valid Open rows,Valid Close rows,Missing Open,Missing Close,Duplicate sessions,Corporate-action coverage,Timezone status,Acquisition status
+XSD,Yahoo Chart API,2010-01-01,2010-01-04,2018-12-31,2264,2264,2264,0,0,0,Yahoo events queried; completeness unverified,provider metadata matched,VALID
+QQQ,Yahoo Chart API,2010-01-01,2010-01-04,2018-12-31,2264,2264,2264,0,0,0,Yahoo events queried; completeness unverified,provider metadata matched,VALID
+SPY,Yahoo Chart API,2010-01-01,2010-01-04,2018-12-31,2264,2264,2264,0,0,0,Yahoo events queried; completeness unverified,provider metadata matched,VALID
+0052,TWSE STOCK_DAY,2010-01-01,2010-01-04,2018-12-28,2223,2115,2115,108,108,0,Yahoo events queried; completeness unverified,calendar-defined; provider date only,PARTIAL
+TAIEX,TWSE MI_5MINS_HIST,2010-01-01,2010-01-04,2018-12-28,2223,2223,2223,0,0,0,N/A for index,calendar-defined; provider date only,VALID
+0050,TWSE STOCK_DAY,2010-01-01,2010-01-04,2018-12-28,2223,2223,2223,0,0,0,Yahoo events queried; completeness unverified,calendar-defined; provider date only,VALID

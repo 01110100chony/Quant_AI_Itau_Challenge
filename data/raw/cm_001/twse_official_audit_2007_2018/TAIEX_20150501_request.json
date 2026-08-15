@@ -1,0 +1,12 @@
+{
+  "provider": "Taiwan Stock Exchange",
+  "dataset": "MI_5MINS_HIST",
+  "instrument": "TAIEX",
+  "requested_month": "20150501",
+  "acquired_at_utc": "2026-08-14T22:05:31.8556554+00:00",
+  "http_status": 200,
+  "content_type": "application/json; charset=UTF-8",
+  "raw_response_file": "TAIEX_20150501.json",
+  "raw_response_bytes": 1364,
+  "endpoint": "https://www.twse.com.tw/rwd/en/TAIEX/MI_5MINS_HIST"
+}

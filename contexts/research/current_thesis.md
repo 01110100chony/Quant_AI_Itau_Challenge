@@ -2,25 +2,26 @@
 
 ## Quick Summary
 
-- **Purpose:** Declarar qual specification está promovida no momento e impedir que uma candidata seja tratada como tese aprovada.
-- **Read when:** Antes de implementar qualquer experimento ou descrever a tese atual.
-- **Load next:** Para a candidata atual, [`../cross_market/specification.md`](../cross_market/specification.md).
-- **Authority:** Specification promovida, quando houver; `PROJECT_STATUS.md` prevalece para o estado científico atual.
+- **Purpose:** identify the active candidate without claiming validation.
+- **Read when:** implementing or describing the active research candidate.
+- **Load next:** [`../cross_market/specification.md`](../cross_market/specification.md) and [`oos_policy.md`](oos_policy.md).
+- **Authority:** `PROJECT_STATUS.md` controls current execution state.
 
 ## Contents
 
 - [Promoted specification](#promoted-specification)
-- [Current candidate](#current-candidate)
-- [Promotion rule](#promotion-rule)
+- [Active candidate](#active-candidate)
 
 ## Promoted specification
 
-**Nenhuma tese está oficialmente promovida.**
+No thesis is officially promoted or validated.
 
-## Current candidate
+## Active candidate
 
-Cross-Market Information Transmission / Lead-Lag é `CANDIDATE #1` e o próximo feasibility sugerido. Seu artefato [`CM_001`](../../research/experiments/CM_001/spec.md) permanece `DRAFT`. A escolha de mercados/ativos, shock, target, benchmark, períodos, controles e critérios de decisão ainda requer aprovação humana.
+`CM_001 — Cross-Market Information Transmission` completed its one authorized Research Stage B execution at corrective version `v1.0.1-frozen` with status `NO_GO`. `CorePass=false`; H1 and secondary diagnostics were not used to rescue H2. Original H1/H2 remain immutable, and H2c records corrective H1c `417ffa85f954bd3ee87d11b35dbbef3b4da941e6`.
 
-## Promotion rule
+The immutable thesis uses `XSD` leader, `QQQ/SPY` controls, `0052` follower, `TAIEX` primary benchmark and `0050` robustness benchmark. H2 `SemiSpecific → IntradayRel` is primary; H1 `GapRel` and H3 controlled by `BroadTech` and `PrevTWRel` are secondary/non-rescuing. The full models, providers, raw-price policy, corporate-action exclusions, timing, HAC inference, P1/P2, blocks and gates are in the [`canonical specification`](../cross_market/specification.md).
 
-Uma candidata só pode substituir esta declaração depois que a specification responder ao contrato do protocolo, tiver aprovação humana registrada e estiver sincronizada com `PROJECT_STATUS.md`. Criar um notebook ou obter um resultado exploratório não promove uma tese.
+Research 2010–2018 was inspected once. Validation 2019–2022 and Final OOS 2023–2025 remain CLOSED and were not loaded; 2026 is excluded. CM_001 stops at `NO_GO`, so no holdout opening is requested.
+
+Specification freeze and any later Research verdict are not validation or promotion.

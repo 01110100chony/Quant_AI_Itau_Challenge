@@ -1,0 +1,7 @@
+provider = "Yahoo Finance chart API"
+instrument = "MULTI_ASSET"
+provider_symbol = "XSD,QQQ,SPY,0052.TW,^TWII,0050.TW"
+requested_start = "2007-01-01"
+requested_end = "2019-01-01"
+snapshot_status = "INVALID"
+notes = "PowerShell Export-Csv used locale decimal commas; the Python parser created nulls. Preserved for debug only; never canonical."

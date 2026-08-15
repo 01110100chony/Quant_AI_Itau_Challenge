@@ -1,0 +1,4 @@
+instrument,provider_exchange,provider_timezone,valid_raw_sessions,raw_not_in_XNYS,XNYS_not_in_raw
+XSD,NYSEArca,America/New_York,2264,0,0
+QQQ,NasdaqGM,America/New_York,2264,0,0
+SPY,NYSEArca,America/New_York,2264,0,0

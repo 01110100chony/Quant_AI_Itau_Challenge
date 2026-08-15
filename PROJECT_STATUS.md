@@ -2,58 +2,33 @@
 
 ## Desafio Quant AI 2026 — Estado Atual
 
-**Fase:** seleção/falsificação da tese principal  
-**Última atualização:** 11/08/2026
+**Fase:** `CM_001 v1.0.1-frozen` — Research Stage B complete
+**Status:** `NO_GO`
+**Última atualização:** 14/08/2026
 
-## Tese principal
-Nenhuma tese está oficialmente promovida neste momento.
+Nenhuma tese está oficialmente promovida ou validada.
 
-## Linha encerrada
-- Effective Rank como protagonista
-- Market Dimensionality / Opportunity Set
-- Adaptive Factor Neutralization
+`CM_001 — Cross-Market Information Transmission` completed its first and only authorized Research Stage B execution. The primary H2 gate failed: beta `0.014480`, one-sided HAC p `0.361406`; therefore `CorePass=false` and the frozen verdict is `NO_GO`.
 
-Essas linhas foram falsificadas ou perderam justificativa incremental no research sample.
+Gates: `CorePass=false`, `RobustnessPass=false`, `SpecificityPass=false`, `TimingPass=true`. H1 and all secondary diagnostics remained non-rescuing. No post-result variant, optimization, strategy or backtest was run.
 
-## Baseline preservado
-**Residual Momentum 12–1**
-- mostrou evidência exploratória melhor que Raw Momentum no universo de 9 ETFs setoriais dos EUA;
-- NÃO foi validado no OOS;
-- NÃO é automaticamente a tese principal.
+## Provenance
 
-## Holdout preservado
-O holdout 2018–2026 da linha anterior continua fechado.
-Não abrir sem decisão humana explícita.
+- H0 Stage A: `78d9f6edca157cfcbd8643f52a9667d3a85c5fd0`.
+- Original H1: `cc686c7a0c25b70de0bc31558d4d1bf6b64b3818`.
+- Original H2: `3cebbb0c54bea8b6023eb7e716de53d98402eeb9`.
+- Corrective H1c: `417ffa85f954bd3ee87d11b35dbbef3b4da941e6`.
+- Corrective H2c / execution commit: `694edf0d745c044cbfa9c257c44719bc0cd9f4ea`.
 
-## Ranking atual de novas teses
+Original H1/H2 were preserved and superseded only for the P2 executable before any association. The corrected P2 common sample contained 2,033 strict-future pairs.
 
-### 1. Cross-Market Information Transmission / Lead-Lag
-Pergunta-base:
-> Quanto tempo uma informação leva para atravessar mercados economicamente relacionados?
+## Samples
 
-Status: **CANDIDATE #1 — próximo feasibility sugerido**
+- Research `2010-01-01`–`2018-12-31`: executed once.
+- Validation `2019-01-01`–`2022-12-31`: CLOSED, not loaded.
+- Final OOS `2023-01-01`–`2025-12-31`: CLOSED, not loaded.
+- 2026: excluded.
 
-### 2. Overnight Information Transmission
-Pergunta-base:
-> Choques incorporados fora do pregão possuem dinâmica diferente dos choques produzidos durante a sessão?
+Mechanical counts remained H1 `1938`, H2 `2034`, H3 `1850`. Full results and artifacts are in [`research/experiments/CM_001/results.md`](research/experiments/CM_001/results.md).
 
-Status: **FALLBACK #1**
-
-### 3. Model Reliability / Distribution Shift
-Pergunta-base:
-> Um modelo consegue reconhecer quando está fora do ambiente estatístico em que foi construído?
-
-Status: **CANDIDATE #3**
-
-## Próxima tarefa recomendada
-Criar specification e feasibility mínimo para Cross-Market Lead-Lag.
-
-Antes de código, congelar:
-- par/cluster de mercados ou ativos;
-- horário de informação disponível;
-- definição de shock;
-- target futuro;
-- benchmark para abnormal return;
-- período;
-- controles;
-- GO/NO-GO.
+Effective Rank, Opportunity Set and Adaptive Factor Neutralization remain closed. Residual Momentum 12–1 remains only an unvalidated fallback baseline. No new research line is authorized by this result.

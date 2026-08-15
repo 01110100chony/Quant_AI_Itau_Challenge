@@ -1,0 +1,13 @@
+{
+  "execution_commit": "694edf0d745c044cbfa9c257c44719bc0cd9f4ea",
+  "experiment_id": "CM_001",
+  "final_oos_loaded": false,
+  "finished_at_utc": "2026-08-15T00:25:40.176098+00:00",
+  "frozen_scientific_commit": "417ffa85f954bd3ee87d11b35dbbef3b4da941e6",
+  "research_end": "2018-12-31",
+  "research_start": "2010-01-01",
+  "started_at_utc": "2026-08-15T00:25:35.506967+00:00",
+  "status": "COMPLETED",
+  "validation_loaded": false,
+  "verdict": "NO_GO"
+}

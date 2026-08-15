@@ -1,0 +1,70 @@
+{
+  "estimator": {
+    "covariance": "Newey-West HAC",
+    "kernel": "Bartlett",
+    "maxlags": 5,
+    "method": "OLS with intercept",
+    "small_sample_correction": true,
+    "use_t": true
+  },
+  "execution_commit": "694edf0d745c044cbfa9c257c44719bc0cd9f4ea",
+  "experiment_id": "CM_001",
+  "final_oos_loaded": false,
+  "frozen_scientific_commit": "417ffa85f954bd3ee87d11b35dbbef3b4da941e6",
+  "inputs": [
+    {
+      "path": "data/processed/cm_001/stage_a_closure_audit/mechanical_availability_flags.csv",
+      "sha256": "9936b6e83d77bd1b41dcee2f6d1f0f4c8fef328fc257b5ef4aacf1517cdb9ba1"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/session_mapping.csv",
+      "sha256": "950a92294cdea825482771a28282ef1026cf36f3a8a89647751bfff1506c5c93"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_closure_audit/corporate_action_master.csv",
+      "sha256": "2136efcf391edad41b5f017da7c7b7d7203a7020242f2e05cabb1c5afa077544"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/canonical/XSD_ohlc.csv",
+      "sha256": "2c8af4e4396b8435740107429b329c11be697e64989a11430762ae74bcdfd1aa"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/canonical/QQQ_ohlc.csv",
+      "sha256": "155de16fdd7d63ad3900d2268b0681f2b4b8f77514ae622c6d81a43f0e39d614"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/canonical/SPY_ohlc.csv",
+      "sha256": "b86f0d4210661a48a81ed25f78e0ae2361b9754bd0500e2edb11ffb9db101428"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/canonical/0050_ohlc.csv",
+      "sha256": "db2b947d4c0eb76492088a10532b0f3c752478a4a579622b0b560ac4b79284b9"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/canonical/TAIEX_ohlc.csv",
+      "sha256": "4ce255c0ef8f528438f921ba61cf2f3ea5c6cf437798d0d5f03cd6d4c0be1bbb"
+    },
+    {
+      "path": "data/processed/cm_001/stage_a_provider_audit_v2/canonical/0052_ohlc_valid_rows.csv",
+      "sha256": "3b746dbcaf03971b72f19293aed3472ccd1a2a721367e911cba3ebefe867ce56"
+    }
+  ],
+  "parser": "src/cross_market_stage_b.py@frozen_scientific_commit",
+  "placebo": {
+    "B": 5000,
+    "seed": 7
+  },
+  "research_period": [
+    "2010-01-01",
+    "2018-12-31"
+  ],
+  "retrieval_or_execution_date": "2026-08-14",
+  "spec_version": "v1.0.1-frozen",
+  "validation_loaded": false,
+  "versions": {
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.0"
+  }
+}

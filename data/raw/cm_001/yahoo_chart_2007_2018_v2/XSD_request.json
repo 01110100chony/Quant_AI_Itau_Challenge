@@ -1,0 +1,20 @@
+{
+  "provider": "Yahoo Finance chart API",
+  "endpoint": "https://query1.finance.yahoo.com/v8/finance/chart/{symbol}",
+  "asset": "XSD",
+  "provider_symbol": "XSD",
+  "requested_start": "2007-01-01",
+  "requested_end_exclusive": "2019-01-01",
+  "interval": "1d",
+  "events": [
+    "dividends",
+    "splits",
+    "capitalGains"
+  ],
+  "include_adjusted_close": true,
+  "expected_timezone": "America/New_York",
+  "acquired_at_utc": "2026-08-14T21:58:35.9602328+00:00",
+  "http_status": 200,
+  "raw_response_file": "XSD_response.json",
+  "raw_response_bytes": 326624
+}

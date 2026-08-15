@@ -1040,3 +1040,21 @@ Um ponto forte para o relatório final pode ser:
 > **Não estamos procurando um backtest que pareça vencedor; estamos procurando uma hipótese que sobreviva ao processo de tentar destruí-la.**
 
 Esse é o critério que deve orientar as próximas decisões.
+
+---
+
+# 30. CM_001 — Stage A closure and v1.0 scientific freeze decision
+
+Em 14/08/2026, antes de qualquer relação feature–target, o grupo aprovou a evidência estrutural de Stage A e congelou `CM_001 v1.0-frozen`: ativos e benchmarks originais, Research 2010–2018, Validation 2019–2022 fechada, Final OOS 2023–2025 fechado, fontes Yahoo/TWSE, raw OHLC, exclusões mecânicas de missing e corporate actions, calendários XNYS/TWSE, OLS/HAC(5), P1/P2, blocos, diagnósticos e gates literais.
+
+O baseline Stage A revisado foi registrado em H0 `78d9f6edca157cfcbd8643f52a9667d3a85c5fd0`. H1 `cc686c7a0c25b70de0bc31558d4d1bf6b64b3818` congelou conteúdo/código sem resultados; H2 registrou o hash H1 e autorizou a execução única de Stage B. As contagens mecânicas pré-associação são H1 1938, H2 2034, H3 1850. Validation e Final OOS permanecem fechados.
+
+Antes da execução, foi detectado que o P2 deslocava a feature após o filtro de target H2 e poderia pular uma janela elegível com target ausente. Nenhuma associação ou receipt existia. A decisão humana preservou a semântica original — próxima janela informacional elegível antes do target — e autorizou o freeze corretivo `v1.0.1-frozen`, mantendo H0/H1/H2 imutáveis. H1c `417ffa85f954bd3ee87d11b35dbbef3b4da941e6` foi registrado por H2c; o common-complete mecânico corrigido tem N `2033`.
+
+Stage B foi então executado uma única vez em Research. H2 apresentou beta `0.014480` e p HAC unilateral `0.361406`, logo `CorePass=false`. Os gates foram `CorePass=false`, `RobustnessPass=false`, `SpecificityPass=false`, `TimingPass=true`, produzindo o veredito congelado `NO_GO`. Validation e Final OOS não foram carregados; não houve otimização ou variante pós-resultado.
+
+---
+
+# 31. CM_001 — encerramento definitivo
+
+O CM_001 testou se retornos intraday específicos de semicondutores nos EUA antecipavam o desempenho relativo da tecnologia taiwanesa. O alinhamento temporal e os placebos foram auditados antes da execução, mas H2 não passou HAC nem permutação, H3 não confirmou especificidade e as robustezes não mostraram monotonicidade. O experimento foi encerrado como `NO_GO` ainda em Research; Validation e Final OOS permaneceram intocados.

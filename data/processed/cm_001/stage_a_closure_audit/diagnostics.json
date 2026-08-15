@@ -1,0 +1,83 @@
+{
+  "research_start": "2010-01-01",
+  "research_end": "2018-12-31",
+  "max_research_date": "2018-12-28",
+  "validation_loaded": false,
+  "final_oos_loaded": false,
+  "feature_target_relationship_calculated": false,
+  "classification_counts": {
+    "NO_0052_TRADE": 102,
+    "NO_REGULAR_0052_TRADE_ODD_LOT_ONLY": 6
+  },
+  "official_missing_crosscheck": {
+    "official source agrees": 15
+  },
+  "corporate_action_counts": {
+    "0050": 11,
+    "0052": 6
+  },
+  "corporate_action_crosscheck": {
+    "official source agrees": 17
+  },
+  "attrition": {
+    "total_sessions": 2223,
+    "eligible_us": 2137,
+    "h1_inputs": 1944,
+    "h1_candidate_policy": 1938,
+    "h2_inputs": 2034,
+    "h3_inputs": 1856,
+    "h3_candidate_policy": 1850
+  },
+  "calendar": {
+    "exchange_calendars_version": "4.13.2",
+    "official_twse_sessions": 2223,
+    "xnys_sessions": 2264,
+    "xnys_early_closes": 19,
+    "official_not_xtai": [
+      "2010-02-06",
+      "2012-02-04",
+      "2012-03-03",
+      "2012-12-22",
+      "2013-02-23",
+      "2013-09-14",
+      "2014-12-27",
+      "2016-01-30",
+      "2016-06-04",
+      "2016-09-10",
+      "2017-02-18",
+      "2017-06-03",
+      "2017-09-30",
+      "2018-03-31",
+      "2018-12-22"
+    ],
+    "xtai_not_official": [
+      "2011-05-02"
+    ],
+    "official_not_xtai_all_retained_by_mapper": true,
+    "xtai_extra_excluded_from_mapper": true,
+    "taiwan_regular_open": "09:00 Asia/Taipei",
+    "taiwan_regular_close": "13:30 Asia/Taipei",
+    "taiwan_early_close_found": false,
+    "taiwan_extraordinary_session_hours_found": false,
+    "calendar_policy_exception_required": false,
+    "security_level_close_auction_note": "TWSE documents a possible security-level closing-auction postponement to 13:33 from 2012-02-20; it is not a session-calendar early close and cannot alter the eligible US-session set because the next US open is hours later."
+  },
+  "0050_provider_scale": {
+    "comparable_sessions": 2208,
+    "approximately_1x_sessions": 988,
+    "approximately_4x_sessions": 1220,
+    "other_scale_sessions": 0,
+    "last_1x_session": "2013-12-31",
+    "first_4x_session": "2014-01-02"
+  },
+  "raw_adjusted_mix_audit": {
+    "source_path": "src/cross_market_stage_a.py",
+    "functions_audited": [
+      "build_tw_components",
+      "build_us_components"
+    ],
+    "raw_open_plus_adjusted_close_mix": false,
+    "method": "AST-scoped source inspection; builders reference raw open/raw close only"
+  },
+  "stage_a_closure_verdict": "PASS_READY_FOR_SPEC_FREEZE"
+}

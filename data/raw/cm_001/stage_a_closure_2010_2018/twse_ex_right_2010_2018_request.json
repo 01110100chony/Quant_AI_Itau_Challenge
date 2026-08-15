@@ -1,0 +1,17 @@
+{
+  "dataset": "TWT49U",
+  "filtered_artifact_bytes": 2633,
+  "endpoint": "https://www.twse.com.tw/rwd/zh/exRight/TWT49U",
+  "upstream_post_research_fields_discarded": true,
+  "requested_end": "2018-12-31",
+  "retrieved_at_utc": "2026-08-14T23:09:06.0759347+00:00",
+  "http_status": 200,
+  "request_url": "https://www.twse.com.tw/rwd/zh/exRight/TWT49U?startDate=20100101&endDate=20181231&response=json",
+  "provider": "Taiwan Stock Exchange",
+  "requested_start": "2010-01-01",
+  "instruments": [
+    "0052",
+    "0050"
+  ],
+  "filtered_artifact": "twse_ex_right_2010_2018.json"
+}

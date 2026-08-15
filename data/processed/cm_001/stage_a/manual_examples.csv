@@ -1,0 +1,11 @@
+category,target_session,previous_tw_close_utc,us_open_timestamps_utc,us_close_timestamps_utc,current_tw_open_utc,n_us_sessions
+US holiday / empty window,2007-01-03,2007-01-02T05:30:00+00:00,,,2007-01-03T01:00:00+00:00,0
+Additional audit case,2007-01-04,2007-01-03T05:30:00+00:00,,,2007-01-04T01:00:00+00:00,0
+Additional audit case,2007-01-05,2007-01-04T05:30:00+00:00,,,2007-01-05T01:00:00+00:00,0
+Additional audit case,2007-01-08,2007-01-05T05:30:00+00:00,,,2007-01-08T01:00:00+00:00,0
+Additional audit case,2007-01-09,2007-01-08T05:30:00+00:00,,,2007-01-09T01:00:00+00:00,0
+Additional audit case,2007-01-10,2007-01-09T05:30:00+00:00,,,2007-01-10T01:00:00+00:00,0
+Additional audit case,2007-01-11,2007-01-10T05:30:00+00:00,,,2007-01-11T01:00:00+00:00,0
+Additional audit case,2007-01-12,2007-01-11T05:30:00+00:00,,,2007-01-12T01:00:00+00:00,0
+Additional audit case,2007-01-15,2007-01-12T05:30:00+00:00,,,2007-01-15T01:00:00+00:00,0
+Additional audit case,2007-01-16,2007-01-15T05:30:00+00:00,,,2007-01-16T01:00:00+00:00,0

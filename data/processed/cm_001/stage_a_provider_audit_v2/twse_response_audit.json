@@ -1,0 +1,67 @@
+{
+  "TAIEX": {
+    "provider": "Taiwan Stock Exchange",
+    "dataset": "MI_5MINS_HIST",
+    "top_level_keys": [
+      "data",
+      "date",
+      "fields",
+      "stat",
+      "title",
+      "total"
+    ],
+    "fields": [
+      "Date",
+      "Opening Index",
+      "Highest Index",
+      "Lowest Index",
+      "Closing Index"
+    ],
+    "research_rows": 2223,
+    "status": "VALID"
+  },
+  "0052": {
+    "provider": "Taiwan Stock Exchange",
+    "dataset": "STOCK_DAY",
+    "fields": [
+      "Date",
+      "Trade Volume",
+      "Trade Value",
+      "Opening Price",
+      "Highest Price",
+      "Lowest Price",
+      "Closing Price",
+      "Change",
+      "Transaction",
+      "Mark"
+    ],
+    "research_rows": 2223,
+    "ohlc_missing_sentinel_rows": 108,
+    "pre_2010_statuses": [
+      "Search date less than 2010/01/04, please retry!"
+    ],
+    "status": "PARTIAL"
+  },
+  "0050": {
+    "provider": "Taiwan Stock Exchange",
+    "dataset": "STOCK_DAY",
+    "fields": [
+      "Date",
+      "Trade Volume",
+      "Trade Value",
+      "Opening Price",
+      "Highest Price",
+      "Lowest Price",
+      "Closing Price",
+      "Change",
+      "Transaction",
+      "Mark"
+    ],
+    "research_rows": 2223,
+    "ohlc_missing_sentinel_rows": 0,
+    "pre_2010_statuses": [
+      "Search date less than 2010/01/04, please retry!"
+    ],
+    "status": "VALID"
+  }
+}

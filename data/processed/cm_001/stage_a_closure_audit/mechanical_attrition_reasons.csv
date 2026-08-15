@@ -1,0 +1,19 @@
+hypothesis,reason,excluded
+H1,first-session boundary,1
+H1,no eligible US session,85
+H1,missing 0052 Open after prior gates,103
+H1,missing 0052 previous Close after prior gates,90
+H1,missing TAIEX leg,0
+H1,corporate-action exclusion candidate,6
+H1,other mechanical reason,0
+H2,other: first-session boundary,1
+H2,no eligible US session,85
+H2,missing 0052 Open (and Close) after prior gates,103
+H2,missing 0052 Close only after prior gates,0
+H2,missing TAIEX Open/Close,0
+H2,other mechanical reason,0
+H3,all H2 requirements,189
+H3,missing BroadTech,0
+H3,missing PrevTWRel leg after H2 gates,178
+H3,corporate-action exclusion candidate,6
+H3,other mechanical reason,0

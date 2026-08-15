@@ -1,5 +1,5 @@
-# Direct dependencies used by the existing research notebooks.
-# Versions reproduce the environment audited on 2026-08-11.
+# Direct dependencies used by the research notebooks and CM_001 Stage A.
+# Versions reproduce the environment audited through 2026-08-14.
 ipykernel==7.3.0
 jupyterlab==4.6.3
 matplotlib==3.11.1
@@ -8,4 +8,4 @@ numpy==2.5.2
 pandas==3.0.5
 scipy==1.18.0
 yfinance==1.5.2
-
+exchange-calendars==4.13.2

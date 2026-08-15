@@ -1,0 +1,15 @@
+{
+  "filtered_artifact_bytes": 572,
+  "requested_start": "2018-01-12",
+  "instruments": [
+    "0052"
+  ],
+  "endpoint": "https://www.twse.com.tw/rwd/en/afterTrading/MI_INDEX",
+  "dataset": "MI_INDEX Daily Quotes (ALL)",
+  "retrieved_at_utc": "2026-08-14T23:09:06.0759347+00:00",
+  "requested_end": "2018-01-12",
+  "request_url": "https://www.twse.com.tw/rwd/en/afterTrading/MI_INDEX?date=20180112&type=ALL&response=json",
+  "http_status": 200,
+  "filtered_artifact": "twse_mi_index_0052_20180112.json",
+  "provider": "Taiwan Stock Exchange"
+}

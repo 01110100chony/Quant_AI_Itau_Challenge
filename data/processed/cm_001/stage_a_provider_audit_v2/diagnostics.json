@@ -1,0 +1,43 @@
+{
+  "experiment_id": "CM_001",
+  "stage": "A - Data & Timing Feasibility",
+  "research_start": "2010-01-01",
+  "research_end": "2018-12-31",
+  "taiwan_target_sessions": 2223,
+  "us_sessions_per_taiwan_window": {
+    "0": 86,
+    "1": 2072,
+    "2": 43,
+    "3+": 22
+  },
+  "mapping_status_counts": {
+    "VALID": 2137,
+    "EMPTY_US_WINDOW": 85,
+    "NO_PREVIOUS_TW_SESSION": 1
+  },
+  "integrity": {
+    "duplicated_taiwan_targets": 0,
+    "timestamp_violations": 0,
+    "ambiguous_mappings": 0,
+    "future_data_violations": 0,
+    "missing_feature_source_sessions": 0,
+    "missing_target_component_sessions": 209
+  },
+  "calendar": {
+    "package": "exchange-calendars",
+    "version": "4.13.2",
+    "us_calendar": "XNYS (XNAS/ARCX aliases resolve to the same calendar)",
+    "us_timezone": "America/New_York",
+    "us_sessions": 2264,
+    "us_early_closes": 19,
+    "taiwan_candidate": "official TWSE TAIEX session dates + official 09:00-13:30 Asia/Taipei regular hours",
+    "taiwan_sessions": 2223,
+    "xtai_missing_official_sessions": 15,
+    "xtai_extra_sessions": 1
+  },
+  "data_source_status": "DATA SOURCE DECISION REQUIRED",
+  "stage_a_verdict": "DECISION_REQUIRED",
+  "stage_b_authorized": false,
+  "validation_opened": false,
+  "oos_opened": false
+}
