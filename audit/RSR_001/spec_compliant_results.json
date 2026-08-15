@@ -1,0 +1,120 @@
+{
+  "classification": "VERDICT_UNCHANGED_AFTER_TIMING_ERRATUM",
+  "oos_was_already_consumed": true,
+  "config": {
+    "W": 252,
+    "S": 21,
+    "proxy": "SPY",
+    "top_bottom": 3,
+    "cost_bps": 10,
+    "require_complete_target": true
+  },
+  "metrics": {
+    "n": 88,
+    "start": "2019-03-29",
+    "end": "2026-06-30",
+    "target_end": "2026-07-31",
+    "mean_ic": -0.05303030303030303,
+    "median_ic": -0.016666666666666666,
+    "hit_rate_ic": 0.48863636363636365,
+    "spread_bruto_aa_log": -0.05728936418838769,
+    "custo_aa": 0.02981818181818182,
+    "liquido_aa_log": -0.08710754600656952,
+    "liquido_aa_composto": -0.0834214840267774,
+    "liquido_simples_cagr": -0.08966457362843128,
+    "volatilidade_log": 0.13031622782684024,
+    "sharpe_log": -0.6684320706575013,
+    "turnover": 2.4848484848484844,
+    "drawdown_congelado_log": -0.7552228955322358,
+    "drawdown_convencional": -0.5300941368608243
+  },
+  "placebos": {
+    "observed": -0.05303030303030303,
+    "p1": 0.9220155968806238,
+    "p2": 0.877624475104979
+  },
+  "gate": {
+    "scientific_pass": false,
+    "economic_pass": false,
+    "ic_blocks": [
+      -0.02333333333333333,
+      -0.042222222222222223,
+      -0.0964285714285714
+    ],
+    "net_blocks_aa": [
+      -0.0768478536537689,
+      0.012681827608321442,
+      -0.20501725954338196
+    ],
+    "verdict": "NO_GO"
+  },
+  "common_month_comparison": {
+    "n": 88,
+    "absolute_tolerance": 1e-12,
+    "maximum_absolute_difference": 0.0,
+    "passed": true
+  },
+  "excluded_partial_row": {
+    "metrics": {
+      "n": 1,
+      "start": "2026-07-31",
+      "end": "2026-07-31",
+      "target_end": "2026-08-10",
+      "mean_ic": 0.43333333333333335,
+      "median_ic": 0.43333333333333335,
+      "hit_rate_ic": 1.0,
+      "spread_bruto_aa_log": 0.13760254194184604,
+      "custo_aa": 0.04,
+      "liquido_aa_log": 0.09760254194184603,
+      "liquido_aa_composto": 0.10252449076930079,
+      "liquido_simples_cagr": 0.11279222576923442,
+      "volatilidade_log": null,
+      "sharpe_log": null,
+      "turnover": 3.3333333333333335,
+      "drawdown_congelado_log": 0.0,
+      "drawdown_convencional": 0.0
+    },
+    "row": {
+      "target_end": "2026-08-10T00:00:00",
+      "target_complete": false,
+      "ic": 0.43333333333333335,
+      "spread": 0.011466878495153836,
+      "simple_spread": 0.012279141310921738,
+      "turnover": 3.3333333333333335,
+      "custo": 0.0033333333333333335,
+      "liquido": 0.008133545161820502,
+      "simple_liquido": 0.008945807977588404,
+      "w_XLB": 0.0,
+      "w_XLE": -0.3333333333333333,
+      "w_XLF": -0.3333333333333333,
+      "w_XLI": 0.3333333333333333,
+      "w_XLK": 0.3333333333333333,
+      "w_XLP": -0.3333333333333333,
+      "w_XLU": 0.3333333333333333,
+      "w_XLV": 0.0,
+      "w_XLY": 0.0,
+      "x_XLB": 0.01225187726606989,
+      "x_XLE": -0.09306186665934535,
+      "x_XLF": -0.04084173269439951,
+      "x_XLI": 0.022537234931027838,
+      "x_XLK": 0.061553535475986174,
+      "x_XLP": -0.014305112956593598,
+      "x_XLU": 0.01747672010029757,
+      "x_XLV": -0.006633702830690575,
+      "x_XLY": 0.004483227318551351,
+      "y_XLB": 0.05309614941331099,
+      "y_XLE": 0.010523793283385666,
+      "y_XLF": 0.015163737117956134,
+      "y_XLI": 0.026123808790042533,
+      "y_XLK": 0.0606816534921716,
+      "y_XLP": -0.001176542530020511,
+      "y_XLU": -0.027893838925431326,
+      "y_XLV": 0.0355939522637603,
+      "y_XLY": 0.030372218480048084
+    },
+    "effect_on_annualized_metrics": {
+      "mean_ic_literal_minus_corrected": 0.005464759959141981,
+      "net_log_aa_literal_minus_corrected": 0.00207539424661142
+    }
+  }
+}

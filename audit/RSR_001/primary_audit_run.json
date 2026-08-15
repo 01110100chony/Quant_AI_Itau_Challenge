@@ -1,0 +1,18 @@
+{
+  "classification": "VERDICT_UNCHANGED_AFTER_TIMING_ERRATUM",
+  "started_at": "2026-08-15T00:14:16.882241-03:00",
+  "finished_at": "2026-08-15T00:14:22.594024-03:00",
+  "command": [
+    "C:\\projetos2026\\Delta-Vega\\Quant_AI_Itau_Challenge-relatorio-epsilon\\audit\\run_primary_audit.py",
+    "--data",
+    "data\\raw\\us_sector_etfs_plus_spy_adjusted_close.csv",
+    "--output",
+    "audit\\RSR_001"
+  ],
+  "outputs": {
+    "frozen_literal_results.json": "2083c5c34119f7df8c6c7397e057d4fab0b0a173061bb88dfed1e9b824f5c051",
+    "spec_compliant_results.json": "0d5bb1fea6b515b5c54d7646a839f04fb11ca68b18b80976570441a2c2f63247",
+    "frozen_literal_monthly.csv": "9a3728689a57a39c294d259d21783292ec45aeed10ce4fed2a342b09b51de007",
+    "monthly_comparison.csv": "a6336f50f635d401dbbc7e9ed51ed8259545840b78318a77a81903bb8c43b24f"
+  }
+}

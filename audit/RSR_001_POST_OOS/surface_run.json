@@ -1,0 +1,24 @@
+{
+  "diagnostic_id": "RSR_001_POST_OOS_DIAGNOSTIC",
+  "classification": "POST_OOS_EXPLORATORY",
+  "label": "POST_OOS_EXPLORATORY — NOT VALIDATION — CANNOT RESCUE RSR_001",
+  "started_at": "2026-08-15T00:22:20.798010-03:00",
+  "finished_at": "2026-08-15T00:25:12.705975-03:00",
+  "diagnostic_spec_sha256": "c5904eb5c719d105d47e4f1d71c698dcad9376ceb6358fd1aceffc7abc62bf53",
+  "data_sha256": "30bf7c3e6834e4eae29731be64d186d500826f9751c26fbf54c83b2856e8b177",
+  "command": [
+    "C:\\projetos2026\\Delta-Vega\\Quant_AI_Itau_Challenge-relatorio-epsilon\\audit\\run_parameter_surface.py",
+    "--data",
+    "C:\\Users\\garot\\AppData\\Local\\Temp\\rsr001_h2_a45b3a4\\data\\raw\\us_sector_etfs_plus_spy_adjusted_close.csv",
+    "--spec",
+    "audit\\RSR_001_POST_OOS\\diagnostic_spec.md",
+    "--output",
+    "audit\\RSR_001_POST_OOS"
+  ],
+  "signal_specifications": 18,
+  "economic_combinations": 54,
+  "outputs": {
+    "parameter_surface.csv": "dbda426bc7093d7afae75919cfc1eb492d469567459fd0bd7c3e72dc98d41a55",
+    "results.md": "6c3db40f31ed58d9a0fe14181de0502b9e5d52dc15ef97c582dbed2f6d9b674a"
+  }
+}

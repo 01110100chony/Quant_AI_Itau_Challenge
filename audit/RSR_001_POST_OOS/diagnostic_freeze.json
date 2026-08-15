@@ -1,0 +1,21 @@
+{
+  "diagnostic_id": "RSR_001_POST_OOS_DIAGNOSTIC",
+  "classification": "POST_OOS_EXPLORATORY",
+  "recorded_at": "2026-08-15T00:15:27.0648378-03:00",
+  "diagnostic_spec_sha256": "c5904eb5c719d105d47e4f1d71c698dcad9376ceb6358fd1aceffc7abc62bf53",
+  "grid": {
+    "W": [126, 252, 504],
+    "S": [10, 21, 42],
+    "proxy": ["SPY", "EQUAL_WEIGHT_9"],
+    "cost_bps": [5, 10, 20],
+    "top_bottom": 3,
+    "signal_specifications": 18,
+    "economic_combinations": 54
+  },
+  "sample": {
+    "research_n": 213,
+    "oos_seen_n": 88,
+    "oos_blocks": ["1..30", "31..60", "61..88"]
+  },
+  "label": "POST_OOS_EXPLORATORY — NOT VALIDATION — CANNOT RESCUE RSR_001"
+}

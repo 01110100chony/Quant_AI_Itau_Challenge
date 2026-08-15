@@ -1,0 +1,85 @@
+started_at=2026-08-15T00:10:29.572037-03:00
+finished_at=2026-08-15T00:10:33.823530-03:00
+cwd=C:\Users\garot\AppData\Local\Temp\rsr001_h2_a45b3a4
+commit=a45b3a4b272c65a80170ad3e5db0dd8bb75e3f5b
+command=C:\Users\garot\AppData\Local\Python\pythoncore-3.14-64\python.exe -B scripts/rsr_001.py --abrir-oos
+exit_code=1
+
+===== STDOUT =====
+RSR_001 — Residual Short-Term Reversal
+research     2001-02-28 a 2018-10-31  n=213
+quarentena   2018-11-30 a 2019-02-28  n=4  (excluida)
+OOS limpo    2019-03-29 a 2026-07-31  n=89  ABRINDO
+
+--- RESEARCH SAMPLE  (213 meses, 2001-02-28 a 2018-10-31) ---
+  mean IC                  +0.0611
+  hit rate IC > 0            54.5%
+  spread bruto              +5.53% a.a.
+  turnover soma|dw|         2.751 por mes
+  custo                      3.30% a.a.
+  retorno LIQUIDO           +2.23% a.a.
+  volatilidade (liquido)    10.81%
+  Sharpe liquido             0.21
+  meses liquidos positivos   52.6%
+  max drawdown (liquido)    -31.8%
+
+==============================================================
+ABERTURA DO FINAL OOS. OPERACAO IRREVERSIVEL.
+Confirme que spec.md esta aprovado e commitado.
+==============================================================
+Digite ABRIR OOS para continuar: 
+--- FINAL OOS  (89 meses, 2019-03-29 a 2026-07-31) ---
+  mean IC                  -0.0476
+  hit rate IC > 0            49.4%
+  spread bruto              -5.51% a.a.
+  turnover soma|dw|         2.494 por mes
+  custo                      2.99% a.a.
+  retorno LIQUIDO           -8.50% a.a.
+  volatilidade (liquido)    12.97%
+  Sharpe liquido            -0.66
+  meses liquidos positivos   46.1%
+  max drawdown (liquido)    -75.5%
+
+--- CRITERIO PRE-REGISTRADO ---
+  mean IC no OOS             -0.0476   FALHA
+  P1 permutacao cross-sec.  p=0.8980   FALHA
+  P2 embaralhamento tempo.  p=0.8530   FALHA
+  IC>0 nos blocos           0 de 3      FALHA
+    B1 -0.0233   B2 -0.0422   B3 -0.0782
+  ScientificPass            NAO
+
+  retorno liquido no OOS      -8.50% a.a.   FALHA
+  liquido>0 nos blocos      1 de 3      FALHA
+    B1 -7.68%   B2 +1.27%   B3 -19.46%
+  EconomicPass              NAO
+
+==============================================================
+VEREDITO  ->  NO-GO
+==============================================================
+Nenhum parametro pode ser reajustado a partir daqui.
+
+===== STDERR =====
+Traceback (most recent call last):
+  File "C:\Users\garot\AppData\Local\Temp\rsr001_h2_a45b3a4\scripts\rsr_001.py", line 323, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\garot\AppData\Local\Temp\rsr001_h2_a45b3a4\scripts\rsr_001.py", line 310, in main
+    oos.drop(columns="long").to_csv(SAIDA / "rsr_001_oos_bruto.csv")
+    ~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\garot\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\frame.py", line 5603, in drop
+    return super().drop(
+           ~~~~~~~~~~~~^
+        labels=labels,
+        ^^^^^^^^^^^^^^
+    ...<5 lines>...
+        errors=errors,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\garot\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\generic.py", line 4810, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+  File "C:\Users\garot\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\generic.py", line 4852, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+  File "C:\Users\garot\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\pandas\core\indexes\base.py", line 7136, in drop
+    raise KeyError(f"{labels[mask].tolist()} not found in axis")
+KeyError: "['long'] not found in axis"

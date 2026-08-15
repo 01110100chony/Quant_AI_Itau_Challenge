@@ -1,0 +1,57 @@
+{
+  "classification": "POST_OOS_FORENSIC_LITERAL_REPRODUCTION",
+  "implementation": "independent reconstruction checked against frozen transcript",
+  "config": {
+    "W": 252,
+    "S": 21,
+    "proxy": "SPY",
+    "top_bottom": 3,
+    "cost_bps": 10,
+    "require_complete_target": false
+  },
+  "metrics": {
+    "n": 89,
+    "start": "2019-03-29",
+    "end": "2026-07-31",
+    "target_end": "2026-08-10",
+    "mean_ic": -0.04756554307116105,
+    "median_ic": 0.0,
+    "hit_rate_ic": 0.4943820224719101,
+    "spread_bruto_aa_log": -0.05509956749029518,
+    "custo_aa": 0.029932584269662922,
+    "liquido_aa_log": -0.0850321517599581,
+    "liquido_aa_composto": -0.08151724691028492,
+    "liquido_simples_cagr": -0.08760822566791449,
+    "volatilidade_log": 0.12969689223636247,
+    "sharpe_log": -0.655622122425213,
+    "turnover": 2.49438202247191,
+    "drawdown_congelado_log": -0.7552228955322358,
+    "drawdown_convencional": -0.5300941368608243
+  },
+  "placebos": {
+    "observed": -0.04756554307116105,
+    "p1": 0.8980203959208158,
+    "p2": 0.8530293941211757
+  },
+  "gate": {
+    "scientific_pass": false,
+    "economic_pass": false,
+    "ic_blocks": [
+      -0.02333333333333333,
+      -0.042222222222222223,
+      -0.07816091954022986
+    ],
+    "net_blocks_aa": [
+      -0.0768478536537689,
+      0.012681827608321442,
+      -0.1945820939749258
+    ],
+    "verdict": "NO_GO"
+  },
+  "reported_rounded_values_match": true,
+  "known_timing_bug": {
+    "feature_date": "2026-07-31",
+    "observed_target_end": "2026-08-10",
+    "required_target_end": "last trading day of 2026-08"
+  }
+}

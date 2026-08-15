@@ -1,0 +1,122 @@
+{
+  "classification": "POST_OOS_FORENSIC_LITERAL_REPRODUCTION",
+  "oos_was_already_consumed": true,
+  "started_at": "2026-08-15T00:10:29.572037-03:00",
+  "finished_at": "2026-08-15T00:10:33.823530-03:00",
+  "command": [
+    "C:\\Users\\garot\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+    "-B",
+    "scripts/rsr_001.py",
+    "--abrir-oos"
+  ],
+  "cwd": "C:\\Users\\garot\\AppData\\Local\\Temp\\rsr001_h2_a45b3a4",
+  "git_commit": "a45b3a4b272c65a80170ad3e5db0dd8bb75e3f5b",
+  "input_sha256": {
+    "data/raw/us_sector_etfs_plus_spy_adjusted_close.csv": "30bf7c3e6834e4eae29731be64d186d500826f9751c26fbf54c83b2856e8b177",
+    "scripts/rsr_001.py": "9d9595660df5bc154354bc8cb4ddc9c37129331495bff8deaa80ea7c1098bfb3",
+    "research/experiments/RSR_001/spec.md": "d0796279e743e8fe1030d33fbc17c07d5f1d9ae18e98f3ee0be8292ccfd05467",
+    "requirements.txt": "d5303276ad646333897abf6e8ce84c8cbb6fa60a7b92c6547162c2cc84e1473b"
+  },
+  "python": "3.14.3 (tags/v3.14.3:323c59a, Feb  3 2026, 16:04:56) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "ipykernel": "NOT_INSTALLED",
+    "jupyterlab": "NOT_INSTALLED",
+    "matplotlib": "3.10.8",
+    "nbformat": "NOT_INSTALLED",
+    "numpy": "2.4.4",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1",
+    "yfinance": "NOT_INSTALLED"
+  },
+  "exit_code": 1,
+  "expected_persistence_keyerror": true,
+  "transcript": "C:\\projetos2026\\Delta-Vega\\Quant_AI_Itau_Challenge-relatorio-epsilon\\audit\\RSR_001\\transcript.txt",
+  "transcript_sha256": "e7b743031ec2aecc15b303d859e63d8ee1275e2c59a6c91e10727e82d7da712b",
+  "frozen_output_files_present_after_run": {
+    "reports/rsr_001_oos_bruto.csv": false,
+    "reports/rsr_001_veredito.csv": false
+  },
+  "finalized_at": "2026-08-15T00:28:19.547935-03:00",
+  "audit_runs": {
+    "literal_frozen": {
+      "started_at": "2026-08-15T00:10:29.572037-03:00",
+      "finished_at": "2026-08-15T00:10:33.823530-03:00",
+      "command": [
+        "C:\\Users\\garot\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+        "-B",
+        "scripts/rsr_001.py",
+        "--abrir-oos"
+      ],
+      "exit_code": 1,
+      "result": "REPORTED_VALUES_MATCH; NO_GO; EXPECTED_PERSISTENCE_KEYERROR"
+    },
+    "primary_independent": {
+      "classification": "VERDICT_UNCHANGED_AFTER_TIMING_ERRATUM",
+      "started_at": "2026-08-15T00:14:16.882241-03:00",
+      "finished_at": "2026-08-15T00:14:22.594024-03:00",
+      "command": [
+        "C:\\projetos2026\\Delta-Vega\\Quant_AI_Itau_Challenge-relatorio-epsilon\\audit\\run_primary_audit.py",
+        "--data",
+        "data\\raw\\us_sector_etfs_plus_spy_adjusted_close.csv",
+        "--output",
+        "audit\\RSR_001"
+      ],
+      "outputs": {
+        "frozen_literal_results.json": "2083c5c34119f7df8c6c7397e057d4fab0b0a173061bb88dfed1e9b824f5c051",
+        "spec_compliant_results.json": "0d5bb1fea6b515b5c54d7646a839f04fb11ca68b18b80976570441a2c2f63247",
+        "frozen_literal_monthly.csv": "9a3728689a57a39c294d259d21783292ec45aeed10ce4fed2a342b09b51de007",
+        "monthly_comparison.csv": "a6336f50f635d401dbbc7e9ed51ed8259545840b78318a77a81903bb8c43b24f"
+      }
+    },
+    "post_oos_surface": {
+      "diagnostic_id": "RSR_001_POST_OOS_DIAGNOSTIC",
+      "classification": "POST_OOS_EXPLORATORY",
+      "label": "POST_OOS_EXPLORATORY — NOT VALIDATION — CANNOT RESCUE RSR_001",
+      "started_at": "2026-08-15T00:22:20.798010-03:00",
+      "finished_at": "2026-08-15T00:25:12.705975-03:00",
+      "diagnostic_spec_sha256": "c5904eb5c719d105d47e4f1d71c698dcad9376ceb6358fd1aceffc7abc62bf53",
+      "data_sha256": "30bf7c3e6834e4eae29731be64d186d500826f9751c26fbf54c83b2856e8b177",
+      "command": [
+        "C:\\projetos2026\\Delta-Vega\\Quant_AI_Itau_Challenge-relatorio-epsilon\\audit\\run_parameter_surface.py",
+        "--data",
+        "C:\\Users\\garot\\AppData\\Local\\Temp\\rsr001_h2_a45b3a4\\data\\raw\\us_sector_etfs_plus_spy_adjusted_close.csv",
+        "--spec",
+        "audit\\RSR_001_POST_OOS\\diagnostic_spec.md",
+        "--output",
+        "audit\\RSR_001_POST_OOS"
+      ],
+      "signal_specifications": 18,
+      "economic_combinations": 54,
+      "outputs": {
+        "parameter_surface.csv": "dbda426bc7093d7afae75919cfc1eb492d469567459fd0bd7c3e72dc98d41a55",
+        "results.md": "6c3db40f31ed58d9a0fe14181de0502b9e5d52dc15ef97c582dbed2f6d9b674a"
+      }
+    }
+  },
+  "aborted_diagnostic_attempt": {
+    "persisted_results": false,
+    "numerical_results_printed": false,
+    "reason": "incorrect assertion that all W/S variants retain research n=213",
+    "resolution": "mechanical warm-up counts recorded in diagnostic_execution_erratum.md"
+  },
+  "final_classification": "VERDICT_UNCHANGED_AFTER_TIMING_ERRATUM",
+  "required_artifact_sha256": {
+    "audit/RSR_001/preflight.md": "fff4602b0f072065c3f3365a8a0db8722a383872d7a241b0abae1a22ccf585ad",
+    "audit/RSR_001/frozen_literal_results.json": "2083c5c34119f7df8c6c7397e057d4fab0b0a173061bb88dfed1e9b824f5c051",
+    "audit/RSR_001/spec_compliant_results.json": "0d5bb1fea6b515b5c54d7646a839f04fb11ca68b18b80976570441a2c2f63247",
+    "audit/RSR_001/monthly_comparison.csv": "a6336f50f635d401dbbc7e9ed51ed8259545840b78318a77a81903bb8c43b24f",
+    "audit/RSR_001/transcript.txt": "e7b743031ec2aecc15b303d859e63d8ee1275e2c59a6c91e10727e82d7da712b",
+    "audit/RSR_001_POST_OOS/diagnostic_spec.md": "c5904eb5c719d105d47e4f1d71c698dcad9376ceb6358fd1aceffc7abc62bf53",
+    "audit/RSR_001_POST_OOS/parameter_surface.csv": "dbda426bc7093d7afae75919cfc1eb492d469567459fd0bd7c3e72dc98d41a55",
+    "audit/RSR_001_POST_OOS/results.md": "6c3db40f31ed58d9a0fe14181de0502b9e5d52dc15ef97c582dbed2f6d9b674a",
+    "research/experiments/RSR_001/timing_erratum.md": "2d2d04ef156c76097562d2315a7c00c18e8cb94f91ba03bdf4c5384908ba0796",
+    "tests/research/test_rsr_001_audit.py": "1f2fbe83b4d23fca43b217f9bf3e67485c4dca73d2298fd6f6f0b0eca98784f6"
+  },
+  "canonical_files_intentionally_unchanged": [
+    "research/experiments/RSR_001/manifest.toml",
+    "contexts/research/experiment_registry.md",
+    "research/experiments/RSR_001/decision.md",
+    "research/experiments/RSR_001/results.md",
+    "AI_USE_LOG.md"
+  ]
+}
