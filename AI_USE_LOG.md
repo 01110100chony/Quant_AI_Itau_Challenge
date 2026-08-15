@@ -82,3 +82,13 @@ Registre somente contribuições materiais de GenAI que sejam relevantes para au
 - **Human decision:** Researchers explicitly authorized LAF_001 documentary preparation and fixed the candidate universe, target asset, warm-up, Research boundary, closed period, candidate source, field separation, calendar and decision/execution timing. They explicitly prohibited market-data acquisition, calculations, feature–target association, holdout definition/opening, strategy and backtest.
 - **Verification:** Virtualenv harness verifier; full unit suite; `git diff --check`; scoped diff and path audits for data, CM results and AGENTS.md.
 - **Impact on project:** LAF_001 is registered as `v0.1-draft` with sample inspected `NONE`. No market data or empirical result was created, and no thesis was promoted or frozen.
+
+## 2026-08-15 — LAF_001 Stage A1 structural data feasibility
+
+- **Date:** 2026-08-15
+- **Tool/model:** OpenAI Codex
+- **Task:** Implement and execute the explicitly bounded LAF_001 Stage A1 structural acquisition and data/timing audit.
+- **AI contribution:** Implemented the direct Yahoo Chart API collector, immutable raw receipts/hashes, strict boundary/parser gates, XNYS coverage, OHLCV/schema/timestamp/corporate-action audits and synthetic tests; detected and corrected a deterministic `exchange-calendars` default-window defect before accepting coverage results.
+- **Human decision:** Researchers fixed the symbols, period, endpoint contract, candidate calendar, allowed outputs and hard stops, and prohibited returns/features/targets, associations, holdouts, strategy and backtest. Source/policy/Stage A2 choices remain human decisions.
+- **Verification:** Five independent raw SHA-256 checks; synthetic boundary and integrity cases; full unit suite; research harness verifier; calendar regression; artifact and Git diff review.
+- **Impact on project:** Stage A1 recorded `PASS_READY_FOR_STAGE_A2_DECISIONS` from structural evidence only. No raw request was repeated, no provider value was repaired, no date from 2017 onward was observed, and no return, LAF, target or predictive result was calculated.

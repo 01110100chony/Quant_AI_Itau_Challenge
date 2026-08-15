@@ -444,7 +444,7 @@ def timestamp_audit_row(parsed: ParsedSymbol) -> dict[str, Any]:
 
 def expected_xnys_dates() -> list[date]:
     """Return the candidate XNYS sessions inside the authorized boundary."""
-    calendar = xcals.get_calendar("XNYS")
+    calendar = xcals.get_calendar("XNYS", start=START_DATE, end=END_DATE)
     schedule = calendar.schedule.loc[str(START_DATE) : str(END_DATE)]
     return list(schedule.index.date)
 

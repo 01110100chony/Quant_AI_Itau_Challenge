@@ -1,0 +1,6 @@
+symbol,observed_rows,duplicate_timestamps,strictly_increasing,provider_timezone,provider_gmtoffset,session_date_conversion,first_timestamp,first_timestamp_utc,first_session_date,last_timestamp,last_timestamp_utc,last_session_date,timestamps_before_2003,timestamps_2017_or_later
+SPY,3525,0,True,America/New_York,-14400,provider_exchange_timezone,1041517800,2003-01-02T14:30:00+00:00,2003-01-02,1483108200,2016-12-30T14:30:00+00:00,2016-12-30,0,0
+QQQ,3525,0,True,America/New_York,-14400,provider_exchange_timezone,1041517800,2003-01-02T14:30:00+00:00,2003-01-02,1483108200,2016-12-30T14:30:00+00:00,2016-12-30,0,0
+IWM,3525,0,True,America/New_York,-14400,provider_exchange_timezone,1041517800,2003-01-02T14:30:00+00:00,2003-01-02,1483108200,2016-12-30T14:30:00+00:00,2016-12-30,0,0
+DIA,3525,0,True,America/New_York,-14400,provider_exchange_timezone,1041517800,2003-01-02T14:30:00+00:00,2003-01-02,1483108200,2016-12-30T14:30:00+00:00,2016-12-30,0,0
+MDY,3525,0,True,America/New_York,-14400,provider_exchange_timezone,1041517800,2003-01-02T14:30:00+00:00,2003-01-02,1483108200,2016-12-30T14:30:00+00:00,2016-12-30,0,0

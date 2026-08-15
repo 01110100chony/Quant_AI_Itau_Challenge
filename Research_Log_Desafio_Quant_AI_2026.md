@@ -1058,3 +1058,34 @@ Stage B foi então executado uma única vez em Research. H2 apresentou beta `0.0
 # 31. CM_001 — encerramento definitivo
 
 O CM_001 testou se retornos intraday específicos de semicondutores nos EUA antecipavam o desempenho relativo da tecnologia taiwanesa. O alinhamento temporal e os placebos foram auditados antes da execução, mas H2 não passou HAC nem permutação, H3 não confirmou especificidade e as robustezes não mostraram monotonicidade. O experimento foi encerrado como `NO_GO` ainda em Research; Validation e Final OOS permaneceram intocados.
+
+---
+
+# 32. LAF_001 — Stage A1 de viabilidade estrutural
+
+Em 15/08/2026, após o commit pré-dados H0-A1
+`01cc8408a83024663cc7cb7d434f82292072a945`, foi realizada uma única coleta
+direta da Yahoo Finance Chart API para `SPY`, `QQQ`, `IWM`, `DIA` e `MDY`, com
+`period1=1041379200` e `period2=1483228800` exclusivo. Os cinco payloads raw,
+requests, receipts e SHA-256 foram preservados sob o retrieval
+`20260815T055848814Z`.
+
+A auditoria encontrou 3.525 sessões XNYS por símbolo entre `2003-01-02` e
+`2016-12-30`, sem sessões ausentes/extras, duplicatas, timestamps não
+monotônicos, nulls/zeros/negativos em OHLCV/Adj Close ou violações OHLC. Foram
+enumeradas 389 distribuições e um split de IWM; o check mecânico do evento
+classificou o raw como já contínuo em escala, sem escolher política de retorno
+ajustado.
+
+Uma primeira comparação derivada de calendário foi rejeitada porque a janela
+padrão móvel do `exchange-calendars` começava em 2006. A correção apenas
+explicitou o intervalo XNYS 2003–2016 já autorizado, adicionou regressão e
+reproduziu os derivados a partir dos mesmos raw hashes, sem nova requisição.
+
+O veredito literal da Stage A1 é
+`PASS_READY_FOR_STAGE_A2_DECISIONS`. Ele prova somente disponibilidade,
+cobertura e reprodutibilidade estrutural. Yahoo como fonte final, provider
+secundário, políticas de missing/volume/ajustes/corporate actions, completude
+da cesta, calendário, retorno zero, MAD zero e autorização de feature-side
+continuam decisões humanas. Stage A2, Stage B, Validation, Final OOS, target,
+associação, estratégia e backtest permanecem proibidos.

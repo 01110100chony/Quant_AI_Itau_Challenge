@@ -1,0 +1,17 @@
+{
+  "provider": "Yahoo Finance Chart API",
+  "symbol": "SPY",
+  "endpoint": "https://query1.finance.yahoo.com/v8/finance/chart",
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?interval=1d&period1=1041379200&period2=1483228800&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true&includePrePost=false",
+  "parameters": {
+    "interval": "1d",
+    "period1": 1041379200,
+    "period2": 1483228800,
+    "events": "div,splits,capitalGains",
+    "includeAdjustedClose": "true",
+    "includePrePost": "false"
+  },
+  "retrieval_id": "20260815T055848814Z",
+  "h0_a1_commit": "01cc8408a83024663cc7cb7d434f82292072a945",
+  "parser_version": "laf-stage-a1-v1"
+}

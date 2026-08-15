@@ -21,6 +21,7 @@ from laf_stage_a1 import (  # noqa: E402
     calendar_coverage,
     classify_boundary,
     field_integrity_row,
+    expected_xnys_dates,
     parse_chart_payload,
     request_url,
     schema_audit_rows,
@@ -193,6 +194,12 @@ class CorporateActionAndSeparationTests(unittest.TestCase):
 
 
 class CalendarAndRawTests(unittest.TestCase):
+    def test_xnys_calendar_spans_full_authorized_window(self) -> None:
+        sessions = expected_xnys_dates()
+        self.assertEqual(sessions[0], date(2003, 1, 2))
+        self.assertEqual(sessions[-1], date(2016, 12, 30))
+        self.assertEqual(len(sessions), 3_525)
+
     def test_enumerates_missing_and_extra_sessions(self) -> None:
         expected = [date(2003, 1, 2), date(2003, 1, 3), date(2003, 1, 6)]
         observed = [date(2003, 1, 2), date(2003, 1, 6), date(2003, 1, 7)]

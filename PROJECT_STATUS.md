@@ -2,19 +2,31 @@
 
 ## Desafio Quant AI 2026 — Estado Atual
 
-**Fase:** `LAF_001 v0.1-draft` — preparação documental de Stage A1
+**Fase:** `LAF_001 v0.1-draft` — Stage A1 estrutural concluída; decisões de Stage A2 pendentes
 **Status:** `DRAFT`
 **Última atualização:** 15/08/2026
 
 Nenhuma tese está oficialmente promovida ou validada.
 
-`LAF_001 — Liquidity Absorption Fragility` é a candidata DRAFT atual. A
-autorização humana vigente cobre exclusivamente a preparação documental da
-Stage A1 de data/timing feasibility. Nenhum dado de mercado foi adquirido,
-carregado, processado ou exibido para LAF_001; a Stage A1 empírica ainda não
-está autorizada.
+`LAF_001 — Liquidity Absorption Fragility` é a candidata DRAFT atual. A Stage
+A1 estrutural autorizada foi executada sobre `SPY`, `QQQ`, `IWM`, `DIA` e
+`MDY`, exclusivamente entre 2003 e 2016. O veredito literal foi
+`PASS_READY_FOR_STAGE_A2_DECISIONS`: os campos e a cobertura são
+estruturalmente utilizáveis, mas nenhuma associação, evidência preditiva ou
+promoção foi produzida. Stage A2 ainda não está autorizada.
 
-## LAF_001 — escopo documental autorizado
+## LAF_001 — Stage A1 concluída
+
+- Retrieval imutável: `20260815T055848814Z`.
+- H0-A1 pré-dados: `01cc8408a83024663cc7cb7d434f82292072a945`.
+- Cobertura por símbolo: 3.525/3.525 sessões XNYS, `2003-01-02`–`2016-12-30`.
+- Exceções de calendário, nulls, zeros, negativos e violações OHLC: zero.
+- Corporate actions: 389 dividendos e um split IWM, todos enumerados.
+- Nenhuma data observada de 2017 em diante foi carregada.
+- Nenhum retorno geral, `PI`, `LAF`, `RV`, Corwin-Schultz, `TailLoss`, feature
+  ou target foi calculado.
+
+## LAF_001 — escopo e fronteiras vigentes
 
 - Universo fixo candidato: `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`.
 - Ativo-alvo candidato: `SPY`.
@@ -22,8 +34,8 @@ está autorizada.
 - Research permitido: `2004-01-01`–`2016-12-31`.
 - `2017-01-01` em diante: CLOSED; não adquirir, carregar, processar ou exibir.
 - 2026: integralmente excluído.
-- Fonte primária candidata para futura auditoria estrutural: Yahoo Finance
-  Chart API.
+- Fonte primária candidata auditada estruturalmente: Yahoo Finance Chart API;
+  aprovação como fonte final ainda requer decisão humana.
 - Raw OHLCV, Adj Close e corporate actions devem permanecer separados.
 - Calendário candidato: XNYS via `exchange-calendars`.
 - A decisão ocorre após o close da última sessão do mês; eventual execução

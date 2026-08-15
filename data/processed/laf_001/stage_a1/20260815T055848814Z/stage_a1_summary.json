@@ -1,0 +1,16 @@
+{
+  "experiment_id": "LAF_001",
+  "retrieval_id": "20260815T055848814Z",
+  "h0_a1_commit": "01cc8408a83024663cc7cb7d434f82292072a945",
+  "verdict": "PASS_READY_FOR_STAGE_A2_DECISIONS",
+  "symbols_required": 5,
+  "symbols_parsed": 5,
+  "expected_xnys_sessions": 3525,
+  "observed_rows_total": 17625,
+  "calendar_exception_count": 0,
+  "corporate_action_count": 390,
+  "hard_stop_reasons": [],
+  "decision_reasons": [],
+  "analytical_calculations_performed": false,
+  "boundary_2017_or_later_loaded": false
+}

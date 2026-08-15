@@ -1,0 +1,6 @@
+symbol,observed_rows,open_null,open_zero,open_negative,high_null,high_zero,high_negative,low_null,low_zero,low_negative,close_null,close_zero,close_negative,adj_close_null,adj_close_zero,adj_close_negative,volume_null,volume_zero,volume_negative,high_below_open_or_close,low_above_open_or_close,high_below_low
+SPY,3525,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+QQQ,3525,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+IWM,3525,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+DIA,3525,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+MDY,3525,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

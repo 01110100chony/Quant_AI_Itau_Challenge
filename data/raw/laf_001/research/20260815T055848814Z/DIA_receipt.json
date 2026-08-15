@@ -1,0 +1,28 @@
+{
+  "provider": "Yahoo Finance Chart API",
+  "symbol": "DIA",
+  "url": "https://query1.finance.yahoo.com/v8/finance/chart/DIA?interval=1d&period1=1041379200&period2=1483228800&events=div%2Csplits%2CcapitalGains&includeAdjustedClose=true&includePrePost=false",
+  "parameters": {
+    "interval": "1d",
+    "period1": 1041379200,
+    "period2": 1483228800,
+    "events": "div,splits,capitalGains",
+    "includeAdjustedClose": "true",
+    "includePrePost": "false"
+  },
+  "attempt": 1,
+  "acquired_at_utc": "2026-08-15T05:58:58.6074230+00:00",
+  "attempt_started_at_utc": "2026-08-15T05:58:58.2440209+00:00",
+  "http_status": 200,
+  "content_type": "application/json; charset=utf-8",
+  "payload_size_bytes": 394576,
+  "payload_sha256": "30f7b0370a61be244cd0425602c7c4821dbc4ddef9d3598e267f6aaf8e6fbe53",
+  "raw_payload_file": "DIA_response.json",
+  "parser_version": "laf-stage-a1-v1",
+  "provider_timezone": "America/New_York",
+  "provider_exchange": "PCX",
+  "first_timestamp": 1041517800,
+  "last_timestamp": 1483108200,
+  "chart_error": null,
+  "transport_error": null
+}
