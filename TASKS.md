@@ -1,5 +1,23 @@
 # TASKS.md
 
+## NOW — LAF_001 v0.1-draft documentation for Stage A1
+
+- [x] Register `LAF_001` as a DRAFT candidate with no promoted specification.
+- [x] Record only the human-approved candidate universe, Research boundary,
+  source, field-separation, calendar and decision-timing scope.
+- [x] Create the minimum self-contained documentary artifacts for future Stage A1.
+- [x] Keep Validation, Final OOS and every date from `2017-01-01` onward CLOSED.
+- [ ] Await a new explicit human order before any empirical Stage A1 execution.
+
+## Invariantes vigentes — LAF_001
+
+- Nenhum dado de mercado pode ser adquirido, carregado, processado ou exibido
+  durante a preparação documental.
+- Nenhum retorno, `PI`, `LAF`, `RV`, Corwin-Schultz ou `TailLoss` pode ser calculado.
+- Nenhuma feature pode ser cruzada com target.
+- Stage B, Validation, Final OOS, estratégia, carteira e backtest permanecem proibidos.
+- Políticas ainda marcadas como `TBD — requires human decision` não podem ser inferidas.
+
 ## Archived — CM_001 v1.0.1-frozen provenance and Stage B
 
 - [x] Close Stage A structurally with `PASS_READY_FOR_SPEC_FREEZE`.

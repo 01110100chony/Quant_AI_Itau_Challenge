@@ -72,3 +72,13 @@ Registre somente contribuições materiais de GenAI que sejam relevantes para au
 - **Human decision:** Researchers pre-specified all models, samples, diagnostics and gates and explicitly authorized the one-time Research execution after H1c/H2c.
 - **Verification:** Receipt and hashes; strict-future P2 mapping audit; counts; full unit suite; harness verifier; boundary assertions; Git diff review.
 - **Impact on project:** `CorePass=false` produced the frozen verdict `NO_GO`. No optimization, Validation, Final OOS, strategy or backtest followed.
+
+## 2026-08-15 — CM closure synchronization and LAF_001 Stage A1 draft
+
+- **Date:** 2026-08-15
+- **Tool/model:** OpenAI Codex
+- **Task:** Synchronize the definitive CM_001 closure and register the minimum documentary DRAFT for LAF_001 Stage A1 preparation.
+- **AI contribution:** Reconciled stale CM labels; created the self-contained LAF_001 DRAFT specification, manifest, empty result/decision records and future Stage A1 audit plan; preserved unresolved material choices as explicit `TBD` fields.
+- **Human decision:** Researchers explicitly authorized LAF_001 documentary preparation and fixed the candidate universe, target asset, warm-up, Research boundary, closed period, candidate source, field separation, calendar and decision/execution timing. They explicitly prohibited market-data acquisition, calculations, feature–target association, holdout definition/opening, strategy and backtest.
+- **Verification:** Virtualenv harness verifier; full unit suite; `git diff --check`; scoped diff and path audits for data, CM results and AGENTS.md.
+- **Impact on project:** LAF_001 is registered as `v0.1-draft` with sample inspected `NONE`. No market data or empirical result was created, and no thesis was promoted or frozen.

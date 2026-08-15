@@ -5,8 +5,8 @@
 - **Purpose:** identify any active candidate without claiming validation and preserve
   the most recently closed experiment.
 - **Read when:** implementing or describing the active research candidate.
-- **Load next:** [`experiment_registry.md`](experiment_registry.md) and
-  [`oos_policy.md`](oos_policy.md).
+- **Load next:** [`../../research/experiments/LAF_001/spec.md`](../../research/experiments/LAF_001/spec.md)
+  and [`oos_policy.md`](oos_policy.md).
 - **Authority:** `PROJECT_STATUS.md` controls current execution state.
 
 ## Contents
@@ -21,7 +21,22 @@ No thesis is officially promoted or validated.
 
 ## Active candidate
 
-No active candidate is currently authorized.
+`LAF_001 — Liquidity Absorption Fragility` is the active DRAFT candidate. It is
+not promoted, frozen, empirically tested or validated. Human authorization is
+limited to documentary preparation for a future Stage A1 data/timing
+feasibility audit.
+
+The fixed candidate universe is `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, with `SPY`
+as candidate target asset. Warm-up is limited to 2003 and Research to
+2004–2016. Every date from `2017-01-01` onward remains CLOSED and 2026 is
+excluded. Yahoo Finance Chart API and XNYS are only candidate inputs for a
+future structural audit. No LAF_001 market data or empirical result exists.
+
+The decision timestamp is after the close of the last monthly session. Any
+eventual economic execution could occur only at the next session open. Feature,
+target, normalization, missingness, statistical gates and portfolio choices
+remain unresolved unless the DRAFT specification records otherwise as `TBD —
+requires human decision`.
 
 ## Most recently closed experiment
 
