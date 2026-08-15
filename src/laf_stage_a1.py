@@ -1,9 +1,10 @@
-"""Structural data and timing audit for LAF_001 Stage A1.
+"""Corrective structural data and timing audit for LAF_001 Stage A1c.
 
 This module deliberately contains no return, feature, target, predictive or
 portfolio calculation. It parses immutable Yahoo Chart API payloads and emits
-only provenance, schema, field, timestamp, calendar and corporate-action
-audits inside the human-approved 2003-2016 boundary.
+only provenance, schema, field, timestamp, calendar, corporate-action and the
+explicitly authorized 41-session split-unit audits inside the human-approved
+2003-2016 boundary.
 """
 
 from __future__ import annotations
@@ -24,8 +25,17 @@ import pandas as pd
 
 EXPERIMENT_ID = "LAF_001"
 PROVIDER = "Yahoo Finance Chart API"
-PARSER_VERSION = "laf-stage-a1-v1"
+PARSER_VERSION = "laf-stage-a1-v1.0.1"
+RAW_ACQUISITION_H0_COMMIT = "01cc8408a83024663cc7cb7d434f82292072a945"
+ORIGINAL_RESULTS_COMMIT = "f549a1a8d8e4b06028100b22a450fa0e5c46473b"
 SYMBOLS = ("SPY", "QQQ", "IWM", "DIA", "MDY")
+RAW_RESPONSE_SHA256 = {
+    "SPY": "306c43087e3a33048d29b47746250cfeaca6a0ec69532084d3e12e7cb2393153",
+    "QQQ": "1d747eb4f1fc4b7f22e1cfdae40ad4932a9301324c666e101e3bebcd41a9e479",
+    "IWM": "ee972d8c9d5ad737370df7f30d4954e8065316218ae08d64430f28b9f3feb0b3",
+    "DIA": "30f7b0370a61be244cd0425602c7c4821dbc4ddef9d3598e267f6aaf8e6fbe53",
+    "MDY": "5dba651a9fa9100ef740eaa27f4a8221b63371a8a44b22b1bf29113a46a41fc5",
+}
 PERIOD1 = 1_041_379_200
 PERIOD2 = 1_483_228_800
 START_UTC = datetime(2003, 1, 1, tzinfo=timezone.utc)
@@ -44,6 +54,8 @@ REQUEST_PARAMETERS: tuple[tuple[str, str], ...] = (
 PRICE_FIELDS = ("open", "high", "low", "close", "adj_close")
 QUOTE_FIELDS = ("open", "high", "low", "close", "volume")
 FORBIDDEN_ANALYTICAL_TOKENS = {
+    "association",
+    "feature",
     "return",
     "returns",
     "pi",
@@ -53,6 +65,24 @@ FORBIDDEN_ANALYTICAL_TOKENS = {
     "target",
     "futureloss",
 }
+AUTHORIZED_PROVIDER_METADATA_FIELDS = (
+    "symbol",
+    "currency",
+    "exchangeName",
+    "fullExchangeName",
+    "instrumentType",
+    "exchangeTimezoneName",
+    "timezone",
+    "gmtoffset",
+    "dataGranularity",
+    "firstTradeDate",
+    "priceHint",
+    "hasPrePostMarketData",
+    "validRanges",
+)
+SPLIT_SYMBOL = "IWM"
+SPLIT_EVENT_DATE = date(2005, 6, 9)
+SPLIT_WINDOW_SESSIONS_EACH_SIDE = 20
 
 
 class StructuralDataError(ValueError):
@@ -509,21 +539,56 @@ def monthly_completeness(
 
 
 def provider_metadata_row(parsed: ParsedSymbol) -> dict[str, Any]:
-    """Preserve requested and remaining provider metadata for one symbol."""
+    """Return only the explicitly authorized provider metadata whitelist."""
     meta = parsed.metadata
-    return {
+    row = {
         "symbol": parsed.symbol,
         "currency": meta.get("currency"),
-        "exchange_name": meta.get("exchangeName"),
-        "full_exchange_name": meta.get("fullExchangeName"),
-        "instrument_type": meta.get("instrumentType"),
-        "timezone": meta.get("exchangeTimezoneName"),
+        "exchangeName": meta.get("exchangeName"),
+        "fullExchangeName": meta.get("fullExchangeName"),
+        "instrumentType": meta.get("instrumentType"),
+        "exchangeTimezoneName": meta.get("exchangeTimezoneName"),
+        "timezone": meta.get("timezone"),
         "gmtoffset": meta.get("gmtoffset"),
-        "data_granularity": meta.get("dataGranularity"),
-        "first_trade_date": meta.get("firstTradeDate"),
-        "regular_market_time": (meta.get("regularMarketTime")),
-        "metadata_json": json.dumps(meta, ensure_ascii=False, separators=(",", ":")),
+        "dataGranularity": meta.get("dataGranularity"),
+        "firstTradeDate": meta.get("firstTradeDate"),
+        "priceHint": meta.get("priceHint"),
+        "hasPrePostMarketData": meta.get("hasPrePostMarketData"),
+        "validRanges": (
+            json.dumps(meta.get("validRanges"), ensure_ascii=False, separators=(",", ":"))
+            if isinstance(meta.get("validRanges"), (list, dict))
+            else meta.get("validRanges")
+        ),
     }
+    if tuple(row) != AUTHORIZED_PROVIDER_METADATA_FIELDS:
+        raise StructuralDataError("canonical provider metadata schema drifted")
+    return row
+
+
+def metadata_boundary_audit_rows(parsed: ParsedSymbol) -> list[dict[str, Any]]:
+    """Inventory metadata field names and suppress every non-whitelisted value."""
+    rows: list[dict[str, Any]] = []
+    authorized = set(AUTHORIZED_PROVIDER_METADATA_FIELDS)
+    raw_fields = set(parsed.metadata)
+    raw_fields.add("symbol")
+    for field_name in sorted(raw_fields):
+        emitted = field_name in authorized
+        rows.append(
+            {
+                "symbol": parsed.symbol,
+                "field_name": field_name,
+                "classification": (
+                    "AUTHORIZED_STATIC" if emitted else "OUT_OF_SCOPE_DYNAMIC"
+                ),
+                "emitted": emitted,
+                "remediation_action": (
+                    "EMITTED_CANONICAL"
+                    if emitted
+                    else "EXCLUDED_FROM_CANONICAL_ARTIFACTS"
+                ),
+            }
+        )
+    return rows
 
 
 def _safe_ratio(numerator: Any, denominator: Any) -> float | None:
@@ -534,63 +599,106 @@ def _safe_ratio(numerator: Any, denominator: Any) -> float | None:
     return float(numerator) / float(denominator)
 
 
-def corporate_action_neighborhood(parsed: ParsedSymbol) -> list[dict[str, Any]]:
-    """Emit event-only raw-price neighborhoods and mechanical scale ratios."""
-    if parsed.actions.empty:
-        return []
-    frame = parsed.rows.sort_values("session_date").reset_index(drop=True)
-    output: list[dict[str, Any]] = []
-    for action in parsed.actions.itertuples(index=False):
-        event_date = action.session_date
-        previous = frame.loc[frame["session_date"] < event_date].tail(1)
-        current = frame.loc[frame["session_date"] == event_date].head(1)
-        following = frame.loc[frame["session_date"] > event_date].head(1)
+def split_unit_audit(
+    parsed: ParsedSymbol,
+    expected_dates: Sequence[date],
+    *,
+    event_date: date = SPLIT_EVENT_DATE,
+) -> pd.DataFrame:
+    """Calculate the authorized mechanical unit checks on exactly 41 sessions."""
+    if parsed.symbol != SPLIT_SYMBOL:
+        raise StructuralDataError("split unit audit is authorized only for IWM")
+    expected = list(expected_dates)
+    try:
+        event_position = expected.index(event_date)
+    except ValueError as exc:
+        raise StructuralDataError("IWM split event is not an expected XNYS session") from exc
+    side = SPLIT_WINDOW_SESSIONS_EACH_SIDE
+    expected_window = expected[event_position - side : event_position + side + 1]
+    if len(expected_window) != 2 * side + 1:
+        raise StructuralDataError("insufficient XNYS sessions around the IWM split")
 
-        def value(group: pd.DataFrame, column: str) -> Any:
-            return None if group.empty else group.iloc[0][column]
+    split_actions = parsed.actions.loc[
+        (parsed.actions["action_type"] == "STOCK_SPLIT")
+        & (parsed.actions["session_date"] == event_date)
+    ]
+    if len(split_actions) != 1:
+        raise StructuralDataError("expected exactly one IWM split on 2005-06-09")
+    action = split_actions.iloc[0]
+    split_factor = _safe_ratio(action["numerator"], action["denominator"])
+    if split_factor is None:
+        raise StructuralDataError("IWM split factor is unavailable")
 
-        previous_close = value(previous, "close")
-        event_open = value(current, "open")
-        event_close = value(current, "close")
-        following_close = value(following, "close")
-        previous_adj = value(previous, "adj_close")
-        event_adj = value(current, "adj_close")
-        split_factor = _safe_ratio(action.numerator, action.denominator)
-        observed_scale = _safe_ratio(previous_close, event_open)
-        split_scale_status = "NOT_APPLICABLE"
-        if action.action_type == "STOCK_SPLIT":
-            if split_factor is None or observed_scale is None:
-                split_scale_status = "UNCLASSIFIED"
-            elif abs(observed_scale - split_factor) <= max(0.05, 0.1 * split_factor):
-                split_scale_status = "RAW_SCALE_MATCHES_EVENT"
-            elif abs(observed_scale - 1.0) <= 0.1:
-                split_scale_status = "RAW_SERIES_ALREADY_SCALE_CONTINUOUS"
-            else:
-                split_scale_status = "UNEXPLAINED"
-        output.append(
-            {
-                "symbol": parsed.symbol,
-                "action_date": event_date,
-                "action_type": action.action_type,
-                "previous_session_date": value(previous, "session_date"),
-                "event_session_present": not current.empty,
-                "following_session_date": value(following, "session_date"),
-                "raw_close_previous": previous_close,
-                "raw_open_event": event_open,
-                "raw_close_event": event_close,
-                "raw_close_following": following_close,
-                "adj_close_previous": previous_adj,
-                "adj_close_event": event_adj,
-                "event_split_factor": split_factor,
-                "raw_scale_previous_to_event_open": observed_scale,
-                "raw_scale_event_to_following_close": _safe_ratio(
-                    event_close, following_close
-                ),
-                "adj_scale_previous_to_event": _safe_ratio(previous_adj, event_adj),
-                "split_scale_status": split_scale_status,
-            }
+    indexed = parsed.rows.set_index("session_date")
+    if not indexed.index.is_unique:
+        raise StructuralDataError("IWM split unit audit has duplicate session dates")
+    missing = [session for session in expected_window if session not in indexed.index]
+    if missing:
+        raise StructuralDataError(
+            f"IWM split unit audit is missing {len(missing)} required XNYS sessions"
         )
+    window = indexed.loc[expected_window].reset_index()
+    positions = list(range(-side, side + 1))
+    output = pd.DataFrame(
+        {
+            "session_date": window["session_date"],
+            "position_relative_to_event": positions,
+            "provider_close": window["close"],
+            "adj_close": window["adj_close"],
+            "reported_volume": window["volume"],
+            "provider_close_x_reported_volume": window["close"] * window["volume"],
+            "adj_close_div_provider_close": window["adj_close"] / window["close"],
+            "split_factor": split_factor,
+        }
+    )
+    if len(output) != 41 or output["session_date"].tolist() != expected_window:
+        raise StructuralDataError("split unit audit escaped its 41-session boundary")
     return output
+
+
+def classify_post_pre_ratio(value: float | None) -> str:
+    """Apply the pre-specified mechanical continuity classification."""
+    if value is None or pd.isna(value):
+        return "INCONCLUSIVE"
+    if 0.75 <= value <= 1.33:
+        return "CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF"
+    if 1.60 <= value <= 2.40:
+        return "CONSISTENT_WITH_FACTOR_TWO_DISCONTINUITY_NOT_PROOF"
+    return "INCONCLUSIVE"
+
+
+def split_unit_summary(audit: pd.DataFrame) -> dict[str, Any]:
+    """Summarize pre/post medians without asserting provider unit semantics."""
+    if len(audit) != 41 or set(audit["position_relative_to_event"]) != set(range(-20, 21)):
+        raise StructuralDataError("split unit summary requires exactly positions -20 through 20")
+    metrics: dict[str, dict[str, Any]] = {}
+    for field in (
+        "reported_volume",
+        "provider_close_x_reported_volume",
+        "adj_close_div_provider_close",
+    ):
+        pre_median = float(
+            audit.loc[audit["position_relative_to_event"] < 0, field].median()
+        )
+        post_median = float(
+            audit.loc[audit["position_relative_to_event"] > 0, field].median()
+        )
+        ratio = _safe_ratio(post_median, pre_median)
+        metrics[field] = {
+            "pre_median": pre_median,
+            "post_median": post_median,
+            "post_pre_ratio": ratio,
+            "classification": classify_post_pre_ratio(ratio),
+        }
+    return {
+        "symbol": SPLIT_SYMBOL,
+        "event_date": SPLIT_EVENT_DATE.isoformat(),
+        "pre_sessions": 20,
+        "event_sessions": 1,
+        "post_sessions": 20,
+        "metrics": metrics,
+        "VOLUME_UNIT_SEMANTICS": "UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION",
+    }
 
 
 def assert_no_analytical_columns(columns: Iterable[str]) -> None:
@@ -608,19 +716,35 @@ def assert_no_analytical_columns(columns: Iterable[str]) -> None:
         )
 
 
+def assert_no_analytical_mapping_keys(value: Any) -> None:
+    """Recursively reject prohibited analytical vocabulary from JSON keys."""
+    if isinstance(value, Mapping):
+        assert_no_analytical_columns(value.keys())
+        for child in value.values():
+            assert_no_analytical_mapping_keys(child)
+    elif isinstance(value, list):
+        for child in value:
+            assert_no_analytical_mapping_keys(child)
+
+
 def _write_csv(frame: pd.DataFrame, path: Path) -> None:
     assert_no_analytical_columns(frame.columns)
     frame.to_csv(path, index=False, lineterminator="\n", encoding="utf-8")
 
 
 def _write_json(value: Any, path: Path) -> None:
+    assert_no_analytical_mapping_keys(value)
     path.write_text(
         json.dumps(value, indent=2, ensure_ascii=False, default=str) + "\n",
         encoding="utf-8",
     )
 
 
-def _load_receipt_and_payload(raw_dir: Path, symbol: str) -> tuple[dict[str, Any], bytes]:
+def _load_receipt_and_payload(
+    raw_dir: Path,
+    symbol: str,
+    expected_sha256: str,
+) -> tuple[dict[str, Any], bytes]:
     receipt_path = raw_dir / f"{symbol}_receipt.json"
     if not receipt_path.is_file():
         raise StructuralDataError(f"missing receipt: {receipt_path}")
@@ -629,7 +753,11 @@ def _load_receipt_and_payload(raw_dir: Path, symbol: str) -> tuple[dict[str, Any
     expected_sha = receipt.get("payload_sha256")
     if not isinstance(payload_name, str) or not isinstance(expected_sha, str):
         raise StructuralDataError(f"{symbol} receipt has no canonical raw payload/hash")
-    payload = verify_raw_payload(raw_dir / payload_name, expected_sha)
+    if expected_sha != expected_sha256:
+        raise StructuralDataError(
+            f"{symbol} receipt hash differs from the independently registered hash"
+        )
+    payload = verify_raw_payload(raw_dir / payload_name, expected_sha256)
     receipt["payload_sha256_verified"] = True
     return receipt, payload
 
@@ -638,13 +766,68 @@ def _empty_frame(columns: Sequence[str]) -> pd.DataFrame:
     return pd.DataFrame(columns=list(columns))
 
 
-def run_structural_audit(
+def boundary_incident_disclosed(path: Path) -> bool:
+    """Calculate disclosure status from the corrective erratum contract marker."""
+    if not path.is_file():
+        return False
+    text = path.read_text(encoding="utf-8")
+    required_markers = (
+        "boundary_incident_disclosed: true",
+        "zero linhas OHLCV de 2017+",
+        "zero corporate actions de 2017+",
+        "metadados dinâmicos de 2026",
+        "nenhuma feature, target ou associação",
+    )
+    return all(marker in text for marker in required_markers)
+
+
+def calculated_boundary_flags(
+    parsed_by_symbol: Mapping[str, ParsedSymbol],
+    metadata_audit: pd.DataFrame,
+    *,
+    disclosure_path: Path,
+    raw_hashes_unchanged: bool,
+) -> dict[str, Any]:
+    """Calculate every corrective boundary flag from parsed/audited evidence."""
+    historical_rows_2017_or_later = sum(
+        int((parsed.rows["source_timestamp"] >= PERIOD2).sum())
+        for parsed in parsed_by_symbol.values()
+    )
+    corporate_actions_2017_or_later = sum(
+        int((parsed.actions["source_timestamp"] >= PERIOD2).sum())
+        for parsed in parsed_by_symbol.values()
+        if not parsed.actions.empty
+    )
+    if metadata_audit.empty:
+        dynamic_detected = False
+        dynamic_emitted = False
+    else:
+        dynamic = metadata_audit["classification"] == "OUT_OF_SCOPE_DYNAMIC"
+        dynamic_detected = bool(dynamic.any())
+        dynamic_emitted = bool((dynamic & metadata_audit["emitted"].astype(bool)).any())
+    return {
+        "historical_rows_2017_or_later": int(historical_rows_2017_or_later),
+        "corporate_actions_2017_or_later": int(corporate_actions_2017_or_later),
+        "out_of_scope_dynamic_metadata_detected_in_raw": dynamic_detected,
+        "out_of_scope_dynamic_metadata_emitted": dynamic_emitted,
+        "boundary_incident_disclosed": boundary_incident_disclosed(disclosure_path),
+        "raw_hashes_unchanged": bool(raw_hashes_unchanged),
+    }
+
+
+def run_corrective_audit(
     raw_dir: Path,
     processed_dir: Path,
     *,
-    h0_a1_commit: str,
+    corrective_audit_code_commit: str,
+    disclosure_path: Path,
+    expected_raw_hashes: Mapping[str, str] = RAW_RESPONSE_SHA256,
 ) -> dict[str, Any]:
-    """Run the bounded Stage A1 structural audit and write one immutable output set."""
+    """Run the bounded Stage A1c audit and write one immutable corrective set."""
+    if not re.fullmatch(r"[0-9a-f]{40}", corrective_audit_code_commit):
+        raise StructuralDataError("corrective audit code commit must be a full Git hash")
+    if set(expected_raw_hashes) != set(SYMBOLS):
+        raise StructuralDataError("registered raw hash map must cover exactly five symbols")
     if processed_dir.exists():
         raise StructuralDataError(f"processed snapshot already exists: {processed_dir}")
     temp_dir = processed_dir.parent / f".{processed_dir.name}.tmp"
@@ -653,29 +836,30 @@ def run_structural_audit(
     temp_dir.mkdir(parents=True)
 
     schema_rows: list[dict[str, Any]] = []
-    acquisition_records: list[dict[str, Any]] = []
+    raw_records: list[dict[str, Any]] = []
     parsed_by_symbol: dict[str, ParsedSymbol] = {}
     structural_errors: list[dict[str, str]] = []
     try:
         for symbol in SYMBOLS:
-            receipt: dict[str, Any] = {"symbol": symbol}
             try:
-                receipt, payload = _load_receipt_and_payload(raw_dir, symbol)
+                receipt, payload = _load_receipt_and_payload(
+                    raw_dir, symbol, expected_raw_hashes[symbol]
+                )
+                raw_records.append(
+                    {
+                        "symbol": symbol,
+                        "raw_payload_file": receipt["raw_payload_file"],
+                        "payload_sha256": expected_raw_hashes[symbol],
+                        "payload_size_bytes": len(payload),
+                        "payload_sha256_verified": True,
+                    }
+                )
                 root = decode_payload(payload)
                 schema_rows.extend(schema_audit_rows(root, symbol))
                 parsed = parse_chart_payload(payload, symbol)
                 parsed_by_symbol[symbol] = parsed
-                receipt["schema_status"] = "VALID"
-                receipt["provider_timezone"] = parsed.metadata.get(
-                    "exchangeTimezoneName"
-                )
-                receipt["provider_exchange"] = parsed.metadata.get("exchangeName")
             except (OSError, KeyError, json.JSONDecodeError, StructuralDataError) as exc:
-                receipt = dict(receipt)
-                receipt["schema_status"] = "INVALID"
-                receipt["structural_error"] = str(exc)
                 structural_errors.append({"symbol": symbol, "error": str(exc)})
-            acquisition_records.append(receipt)
 
         expected_dates = expected_xnys_dates()
         integrity_rows: list[dict[str, Any]] = []
@@ -684,8 +868,8 @@ def run_structural_audit(
         exception_rows: list[dict[str, Any]] = []
         monthly_rows: list[dict[str, Any]] = []
         action_frames: list[pd.DataFrame] = []
-        neighborhood_rows: list[dict[str, Any]] = []
         metadata_rows: list[dict[str, Any]] = []
+        metadata_boundary_rows: list[dict[str, Any]] = []
 
         for symbol in SYMBOLS:
             parsed = parsed_by_symbol.get(symbol)
@@ -700,8 +884,8 @@ def run_structural_audit(
             exception_rows.extend(exceptions)
             monthly_rows.extend(monthly_completeness(parsed, expected_dates))
             action_frames.append(parsed.actions)
-            neighborhood_rows.extend(corporate_action_neighborhood(parsed))
             metadata_rows.append(provider_metadata_row(parsed))
+            metadata_boundary_rows.extend(metadata_boundary_audit_rows(parsed))
 
         schema_frame = pd.DataFrame(schema_rows)
         integrity_frame = pd.DataFrame(integrity_rows)
@@ -730,8 +914,41 @@ def run_structural_audit(
                 ]
             )
         )
-        neighborhood_frame = pd.DataFrame(neighborhood_rows)
-        metadata_frame = pd.DataFrame(metadata_rows)
+        metadata_frame = pd.DataFrame(
+            metadata_rows, columns=AUTHORIZED_PROVIDER_METADATA_FIELDS
+        )
+        metadata_boundary_frame = pd.DataFrame(
+            metadata_boundary_rows,
+            columns=(
+                "symbol",
+                "field_name",
+                "classification",
+                "emitted",
+                "remediation_action",
+            ),
+        )
+
+        split_frame = _empty_frame(
+            (
+                "session_date",
+                "position_relative_to_event",
+                "provider_close",
+                "adj_close",
+                "reported_volume",
+                "provider_close_x_reported_volume",
+                "adj_close_div_provider_close",
+                "split_factor",
+            )
+        )
+        split_summary_payload: dict[str, Any] = {
+            "symbol": SPLIT_SYMBOL,
+            "event_date": SPLIT_EVENT_DATE.isoformat(),
+            "pre_sessions": 0,
+            "event_sessions": 0,
+            "post_sessions": 0,
+            "metrics": {},
+            "VOLUME_UNIT_SEMANTICS": "UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION",
+        }
 
         hard_stop_reasons = [entry["error"] for entry in structural_errors]
         decision_reasons: list[str] = []
@@ -764,27 +981,55 @@ def run_structural_audit(
                 decision_reasons.append(
                     f"{row['symbol']} has enumerated XNYS calendar exceptions"
                 )
-        if not neighborhood_frame.empty and "split_scale_status" in neighborhood_frame:
-            unexplained = neighborhood_frame["split_scale_status"].isin(
-                ["UNCLASSIFIED", "UNEXPLAINED"]
-            )
-            if unexplained.any():
-                hard_stop_reasons.append("one or more split neighborhoods have unexplained scale")
+        parsed_iwm = parsed_by_symbol.get(SPLIT_SYMBOL)
+        if parsed_iwm is None:
+            hard_stop_reasons.append("IWM unavailable for the authorized split unit audit")
+        else:
+            try:
+                split_frame = split_unit_audit(parsed_iwm, expected_dates)
+                split_summary_payload = split_unit_summary(split_frame)
+            except StructuralDataError as exc:
+                hard_stop_reasons.append(str(exc))
+
+        raw_hashes_unchanged = (
+            len(raw_records) == len(SYMBOLS)
+            and all(record["payload_sha256_verified"] for record in raw_records)
+            and {record["symbol"]: record["payload_sha256"] for record in raw_records}
+            == dict(expected_raw_hashes)
+        )
+        boundary_flags = calculated_boundary_flags(
+            parsed_by_symbol,
+            metadata_boundary_frame,
+            disclosure_path=disclosure_path,
+            raw_hashes_unchanged=raw_hashes_unchanged,
+        )
+        if boundary_flags["historical_rows_2017_or_later"]:
+            hard_stop_reasons.append("historical rows from 2017 or later were materialized")
+        if boundary_flags["corporate_actions_2017_or_later"]:
+            hard_stop_reasons.append("corporate actions from 2017 or later were materialized")
+        if boundary_flags["out_of_scope_dynamic_metadata_emitted"]:
+            hard_stop_reasons.append("out-of-scope dynamic metadata was emitted")
+        if not boundary_flags["boundary_incident_disclosed"]:
+            hard_stop_reasons.append("boundary incident erratum is incomplete")
+        if not boundary_flags["raw_hashes_unchanged"]:
+            hard_stop_reasons.append("one or more registered raw hashes changed")
 
         if hard_stop_reasons:
             verdict = "STOP_DATA_INFEASIBLE"
         elif decision_reasons:
             verdict = "DECISION_REQUIRED"
         else:
-            verdict = "PASS_READY_FOR_STAGE_A2_DECISIONS"
+            verdict = "PASS_CORRECTIVE_AUDIT_READY_FOR_HUMAN_REVIEW"
 
         retrieval_id = raw_dir.name
-        acquisition_manifest = {
+        corrective_manifest = {
             "experiment_id": EXPERIMENT_ID,
             "retrieval_id": retrieval_id,
             "provider": PROVIDER,
             "parser_version": PARSER_VERSION,
-            "h0_a1_commit": h0_a1_commit,
+            "raw_acquisition_h0_commit": RAW_ACQUISITION_H0_COMMIT,
+            "original_results_commit": ORIGINAL_RESULTS_COMMIT,
+            "corrective_audit_code_commit": corrective_audit_code_commit,
             "request_contract": {
                 "symbols": list(SYMBOLS),
                 "endpoint": ENDPOINT,
@@ -792,13 +1037,14 @@ def run_structural_audit(
                 "period1_utc": START_UTC.isoformat(),
                 "period2_utc_exclusive": END_UTC_EXCLUSIVE.isoformat(),
             },
-            "requests": acquisition_records,
+            "raw_payloads": raw_records,
             "structural_errors": structural_errors,
         }
         summary = {
             "experiment_id": EXPERIMENT_ID,
             "retrieval_id": retrieval_id,
-            "h0_a1_commit": h0_a1_commit,
+            "parser_version": PARSER_VERSION,
+            "corrective_audit_code_commit": corrective_audit_code_commit,
             "verdict": verdict,
             "symbols_required": len(SYMBOLS),
             "symbols_parsed": len(parsed_by_symbol),
@@ -810,11 +1056,12 @@ def run_structural_audit(
             "corporate_action_count": int(len(action_frame)),
             "hard_stop_reasons": sorted(set(hard_stop_reasons)),
             "decision_reasons": sorted(set(decision_reasons)),
-            "analytical_calculations_performed": False,
-            "boundary_2017_or_later_loaded": False,
+            "prohibited_calculations_performed": False,
+            "safe_to_run_stage_a2": False,
+            **boundary_flags,
         }
 
-        _write_json(acquisition_manifest, temp_dir / "acquisition_manifest.json")
+        _write_json(corrective_manifest, temp_dir / "corrective_audit_manifest.json")
         _write_csv(schema_frame, temp_dir / "provider_schema_audit.csv")
         _write_csv(integrity_frame, temp_dir / "field_integrity_audit.csv")
         _write_csv(timestamp_frame, temp_dir / "timestamp_audit.csv")
@@ -822,12 +1069,14 @@ def run_structural_audit(
         _write_csv(exception_frame, temp_dir / "calendar_exceptions.csv")
         _write_csv(monthly_frame, temp_dir / "monthly_completeness.csv")
         _write_csv(action_frame, temp_dir / "corporate_actions.csv")
-        _write_csv(
-            neighborhood_frame,
-            temp_dir / "corporate_action_neighborhood_audit.csv",
-        )
         _write_csv(metadata_frame, temp_dir / "provider_metadata.csv")
-        _write_json(summary, temp_dir / "stage_a1_summary.json")
+        _write_csv(
+            metadata_boundary_frame,
+            temp_dir / "metadata_boundary_audit.csv",
+        )
+        _write_csv(split_frame, temp_dir / "split_unit_audit.csv")
+        _write_json(split_summary_payload, temp_dir / "split_unit_summary.json")
+        _write_json(summary, temp_dir / "stage_a1c_summary.json")
         processed_dir.parent.mkdir(parents=True, exist_ok=True)
         temp_dir.rename(processed_dir)
         return summary

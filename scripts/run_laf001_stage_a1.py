@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run LAF_001 Stage A1 structural audits from one immutable raw retrieval."""
+"""Run the LAF_001 Stage A1c audit from one immutable raw retrieval."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from laf_stage_a1 import StructuralDataError, run_structural_audit  # noqa: E402
+from laf_stage_a1 import StructuralDataError, run_corrective_audit  # noqa: E402
 
 
 def _head_commit() -> str:
@@ -44,22 +44,30 @@ def main() -> int:
         / "data"
         / "processed"
         / "laf_001"
-        / "stage_a1"
+        / "stage_a1c"
         / args.retrieval_id
+    )
+    disclosure_path = (
+        REPO_ROOT
+        / "research"
+        / "experiments"
+        / "LAF_001"
+        / "stage_a1_corrective_erratum.md"
     )
     if not raw_dir.is_dir():
         parser.error(f"raw retrieval does not exist: {raw_dir}")
     try:
-        summary = run_structural_audit(
+        summary = run_corrective_audit(
             raw_dir,
             processed_dir,
-            h0_a1_commit=_head_commit(),
+            corrective_audit_code_commit=_head_commit(),
+            disclosure_path=disclosure_path,
         )
     except StructuralDataError as exc:
         print(f"STOP_DATA_INFEASIBLE: {exc}", file=sys.stderr)
         return 2
     print(json.dumps(summary, indent=2, ensure_ascii=False))
-    return 2 if summary["verdict"] == "STOP_DATA_INFEASIBLE" else 0
+    return 2 if summary["verdict"] != "PASS_CORRECTIVE_AUDIT_READY_FOR_HUMAN_REVIEW" else 0
 
 
 if __name__ == "__main__":
