@@ -302,7 +302,12 @@ def _validate_manifest(
     errors.extend(timestamp_errors)
     errors.extend(_validate_split_ranges(data, path))
 
-    if status in {"VALIDATION", "VALIDATED", "OOS_OPENED", "FINAL"}:
+    # Apenas os estados que sao *sobre* a validacao exigem o intervalo. Um
+    # desenho de duas etapas (research -> final OOS, sem validacao intermediaria)
+    # e admissivel quando declarado na specification e aprovado antes do freeze;
+    # ver contexts/research/oos_policy.md. OOS_OPENED e FINAL ja exigem o
+    # intervalo de OOS em _validate_oos_state.
+    if status in {"VALIDATION", "VALIDATED"}:
         if not data.get("validation_start") or not data.get("validation_end"):
             errors.append(f"{path}: {status} status requires a validation date range")
 

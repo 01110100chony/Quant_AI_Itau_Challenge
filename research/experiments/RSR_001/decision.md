@@ -2,17 +2,21 @@
 
 ## Current decision
 
-`RESEARCH`  (equivalente a READY_FOR_FREEZE no vocabulario do harness)
+`NO-GO`  (status do harness: `FINAL`)
 
-A specification esta completa. Nenhum campo permanece `TBD` e o criterio de
-decisao esta escrito. O experimento **ainda nao esta congelado**: o estado so
-passa a `FROZEN` apos aprovacao humana registrada e commit da specification,
-que e o carimbo temporal que da validade ao holdout.
+O Final OOS foi aberto uma unica vez em 14/08/2026 e o criterio pre-registrado
+falhou nas seis condicoes. `ScientificPass = False` e `EconomicPass = False`,
+o que da `NO-GO` de forma mecanica, sem margem de interpretacao.
 
-Nem `GO`, nem `CONDITIONAL GO`, nem `NO-GO` foi decidido, porque o Final OOS
-nao foi aberto.
+Numeros e proveniencia em `results.md`. Reauditoria estatica dos artefatos
+congelados em `reauditoria.md`.
 
-    READY_FOR_FREEZE -> human approval -> commit -> FROZEN -> open OOS once
+    RESEARCH -> human approval -> commit H1 -> FROZEN -> open OOS once -> FINAL
+                                                                          NO-GO
+
+A decisao encerra o construct. `RSR_001` nao e recomendado para capital, e as
+proibicoes pos-OOS da `spec.md` seguem em vigor: nenhum parametro, fronteira,
+custo, universo ou criterio pode ser reajustado a partir daqui.
 
 ## Required human approvals
 
@@ -37,11 +41,12 @@ aprovados por referencia a `spec.md` atraves dos itens 2, 6 e 12.
 
 ## OOS state
 
-`Closed`. 89 meses, de 2019-03-29 a 2026-07-31, nunca observados sob nenhuma
-metrica.
+`Opened`, e **consumido**. 89 meses, de 2019-03-29 a 2026-07-31, observados uma
+unica vez em 14/08/2026. Nao existe segunda abertura possivel para esta
+specification.
 
-O periodo de 2018-11-30 a 2019-02-28 esta em quarentena permanente e nao
-integra o OOS. Ver `spec.md`, secao 10.
+O periodo de 2018-11-30 a 2019-02-28 permanece em quarentena permanente e nao
+integrou o OOS. Ver `spec.md`, secao 10.
 
 ## Predecessor
 
@@ -49,11 +54,14 @@ integra o OOS. Ver `spec.md`, secao 10.
 por identidade algebrica de OLS verificada numericamente. Ver `spec.md`,
 secao 9.
 
-## Abertura
-
-Apos as aprovacoes acima estarem marcadas e commitadas:
+## Abertura — executada
 
     python scripts/rsr_001.py --abrir-oos
 
-O script exige confirmacao digitada, registra `oos_opened_at` no manifesto e
-grava o resultado bruto antes de qualquer interpretacao. Uma unica execucao.
+Executado em 14/08/2026, apos as 13 aprovacoes acima estarem marcadas e
+commitadas em `H1`, com confirmacao digitada `ABRIR OOS` e `git status --short`
+vazio no momento da abertura. Execucao unica.
+
+A gravacao dos artefatos falhou depois de o veredito ter sido impresso, e os
+CSVs nao existem. A decisao registrada foi nao reexecutar. Numeros transcritos
+em `results.md`, analise da falha em `reauditoria.md`, achados F1 e F4.

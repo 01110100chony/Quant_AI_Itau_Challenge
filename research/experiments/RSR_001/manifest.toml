@@ -7,16 +7,18 @@ spec_version = "v1.0"
 # commit de conformidade.
 created_at = "2026-08-14T20:27:13-03:00"
 
-# Fluxo: RESEARCH -> approval -> commit H1 -> FROZEN -> abrir OOS -> OOS_OPENED
+# Fluxo: RESEARCH -> approval -> commit H1 -> FROZEN -> abrir OOS -> FINAL
 # Congelado por H1 em 2026-08-14T21:00:44-03:00, com as 13 aprovacoes humanas
-# registradas em decision.md.
-status = "FROZEN"
+# registradas em decision.md. OOS aberto uma unica vez em 14/08/2026, veredito
+# NO-GO. Ver decision.md, results.md e reauditoria.md.
+status = "FINAL"
 
 research_start = "2001-02-28"
 research_end   = "2018-10-31"
 
-# Nao ha amostra de validacao intermediaria. O desenho vai de research
-# direto ao final OOS, com uma unica abertura.
+# Nao ha amostra de validacao intermediaria. O desenho de duas etapas vai de
+# research direto ao final OOS, com uma unica abertura. Declarado aqui desde a
+# criacao e aprovado antes do freeze. Ver contexts/research/oos_policy.md.
 validation_start = ""
 validation_end   = ""
 
@@ -28,9 +30,16 @@ contaminated_end   = "2019-02-28"
 oos_start = "2019-03-29"
 oos_end   = "2026-07-31"
 oos_months = 89
-oos_opened = false
-oos_opened_at = ""
-oos_approval_ref = ""
+
+# Abertura unica em 14/08/2026, confirmacao digitada "ABRIR OOS", arvore limpa.
+# Proveniencia de oos_opened_at: mtime de reports/rsr_001_oos_terminal.txt,
+# criado manualmente logo apos a execucao. Nao e o horario impresso pelo script,
+# que nao foi preservado: a execucao levantou excecao na gravacao dos artefatos
+# depois de imprimir o veredito. Ver reauditoria.md, achados F1 e F5.
+oos_opened = true
+oos_opened_at = "2026-08-14T21:09:04-03:00"
+oos_approval_ref = "66bd72831eb803beeeefe63686ef915385f00b0c"
+oos_verdict = "NO_GO"
 
 predecessor = "Residual Momentum 12-1"
 predecessor_status = "NO_GO_CONSTRUCT"

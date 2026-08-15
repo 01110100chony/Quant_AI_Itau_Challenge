@@ -30,7 +30,7 @@ O status descreve estágio, não qualidade econômica. `VALIDATED` não signific
 | AFN_001 | Adaptive Factor Neutralization | v0.5.1 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook corrigido`](../../notebooks/01_er_feasibility_v0_5_1.ipynb) |
 | CM_001 | Cross-Market Information Transmission | v0.1-draft | DRAFT | NONE | CLOSED | Specification incompleta; nenhuma execução autorizada | [`artifact`](../../research/experiments/CM_001/spec.md) |
 | RM_001 | Residual Momentum 12–1, construct in-sample | v0.4 | NO_GO | 2001–out/2018 research | CLOSED | Construct refutado por identidade de OLS; sinal era reversão de curto prazo | [`artifact`](../../research/experiments/RSR_001/spec.md) |
-| RSR_001 | Residual Short-Term Reversal in Sector ETFs | v1.0 | FROZEN | 2001-02 a out/2018 research | CLOSED | Specification congelada em `66bd728`; OOS de 89 meses autorizado para abertura única | [`artifact`](../../research/experiments/RSR_001/spec.md) |
+| RSR_001 | Residual Short-Term Reversal in Sector ETFs | v1.0 | FINAL | 2001-02 a out/2018 research | OPENED | Specification congelada em `66bd728`; OOS de 89 meses aberto uma única vez em 14/08/2026: `NO-GO`, mean IC `−0,0476`, `p_P1 = 0,8980` | [`artifact`](../../research/experiments/RSR_001/spec.md) |
 
 ## Legacy artifact policy
 

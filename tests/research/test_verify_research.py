@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -87,6 +88,59 @@ class OOSValidationTests(unittest.TestCase):
 
         self.assertTrue(any("timezone-aware timestamp" in error for error in errors))
         self.assertTrue(any("oos_approval_ref" in error for error in errors))
+
+
+TWO_STAGE_MANIFEST = """\
+experiment_id = "XX_001"
+thesis = "Two-stage design"
+spec_version = "v1.0"
+created_at = "2026-08-14T20:27:13-03:00"
+status = "{status}"
+research_start = "2001-02-28"
+research_end = "2018-10-31"
+validation_start = ""
+validation_end = ""
+oos_start = "2019-03-29"
+oos_end = "2026-07-31"
+oos_opened = true
+oos_opened_at = "2026-08-14T21:09:04-03:00"
+oos_approval_ref = "66bd72831eb803beeeefe63686ef915385f00b0c"
+git_commit = "66bd72831eb803beeeefe63686ef915385f00b0c"
+"""
+
+
+class TwoStageDesignTests(unittest.TestCase):
+    """Research -> final OOS, sem amostra de validacao intermediaria."""
+
+    def _manifest(self, root: Path, status: str) -> Path:
+        experiment = root / "XX_001"
+        experiment.mkdir()
+        for name in ("spec.md", "results.md", "decision.md"):
+            (experiment / name).write_text("placeholder\n", encoding="utf-8")
+        path = experiment / "manifest.toml"
+        path.write_text(TWO_STAGE_MANIFEST.format(status=status), encoding="utf-8")
+        return path
+
+    def test_final_status_accepts_empty_validation_range(self) -> None:
+        registry = {"XX_001": {"spec_version": "v1.0", "status": "FINAL",
+                               "oos_status": "OPENED"}}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._manifest(Path(tmp), "FINAL")
+
+            experiment_id, errors = verify_research._validate_manifest(path, registry)
+
+        self.assertEqual(experiment_id, "XX_001")
+        self.assertEqual(errors, [])
+
+    def test_validated_status_still_requires_validation_range(self) -> None:
+        registry = {"XX_001": {"spec_version": "v1.0", "status": "VALIDATED",
+                               "oos_status": "OPENED"}}
+        with tempfile.TemporaryDirectory() as tmp:
+            path = self._manifest(Path(tmp), "VALIDATED")
+
+            _, errors = verify_research._validate_manifest(path, registry)
+
+        self.assertTrue(any("validation date range" in error for error in errors))
 
 
 if __name__ == "__main__":

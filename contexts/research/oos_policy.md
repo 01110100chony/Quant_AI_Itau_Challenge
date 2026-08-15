@@ -23,6 +23,8 @@
 
 Definir datas de split é decisão metodológica material. O agente não pode inventá-las nem movê-las retroativamente.
 
+**Desenho de duas etapas.** Um experimento pode ir de research direto ao final OOS, sem amostra de validação intermediária, desde que a ausência esteja declarada na specification e aprovada por humano **antes** do freeze. Nesse caso `validation_start` e `validation_end` ficam vazios no manifesto e o verificador não exige o intervalo para os status `OOS_OPENED` e `FINAL` — que já exigem intervalo de OOS. Os status `VALIDATION` e `VALIDATED` continuam exigindo o intervalo, porque são estados sobre a própria validação. O desenho de duas etapas gasta o único holdout numa só decisão e não deve ser escolhido por conveniência de prazo.
+
 ## Access sequence
 
 Antes de abrir validation ou final OOS:
