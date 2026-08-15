@@ -22,21 +22,30 @@ No thesis is officially promoted or validated.
 ## Active candidate
 
 `LAF_001 — Liquidity Absorption Fragility` is the active DRAFT candidate. It is
-not promoted, frozen, empirically tested or validated. Human authorization is
-limited to documentary preparation for a future Stage A1 data/timing
-feasibility audit.
+not promoted, scientifically frozen, predictively tested or validated. Human
+authorization covered the completed Stage A1 structural audit and the limited
+Stage A1c boundary/provenance correction; it does not cover Stage A2.
 
 The fixed candidate universe is `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, with `SPY`
 as candidate target asset. Warm-up is limited to 2003 and Research to
 2004–2016. Every date from `2017-01-01` onward remains CLOSED and 2026 is
-excluded. Yahoo Finance Chart API and XNYS are only candidate inputs for a
-future structural audit. No LAF_001 market data or empirical result exists.
+excluded from historical arrays. The immutable raw response nevertheless
+contained dynamic 2026 metadata, which the original artifact emitted and
+Stage A1c disclosed and excluded from corrective canonical outputs. Yahoo
+Finance Chart API and XNYS remain candidate inputs only. The structural audit
+is feasibility evidence, not a predictive or economic result.
 
 The decision timestamp is after the close of the last monthly session. Any
 eventual economic execution could occur only at the next session open. Feature,
 target, normalization, missingness, statistical gates and portfolio choices
 remain unresolved unless the DRAFT specification records otherwise as `TBD —
 requires human decision`.
+
+Stage A1c verified zero historical rows and zero corporate actions dated 2017
+or later and all five raw hashes unchanged. Its 41-session IWM event audit was
+consistent with local continuity but did not prove Volume-unit semantics.
+`SAFE_TO_RUN_LAF_STAGE_A2 = NO`; human review and a separate order remain
+required.
 
 ## Most recently closed experiment
 

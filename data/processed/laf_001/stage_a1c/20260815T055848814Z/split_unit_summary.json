@@ -1,0 +1,28 @@
+{
+  "symbol": "IWM",
+  "event_date": "2005-06-09",
+  "pre_sessions": 20,
+  "event_sessions": 1,
+  "post_sessions": 20,
+  "metrics": {
+    "reported_volume": {
+      "pre_median": 22928200.0,
+      "post_median": 20160900.0,
+      "post_pre_ratio": 0.8793058329916871,
+      "classification": "CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF"
+    },
+    "provider_close_x_reported_volume": {
+      "pre_median": 1378819367.7696228,
+      "post_median": 1269132289.1220093,
+      "post_pre_ratio": 0.9204485509765915,
+      "classification": "CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF"
+    },
+    "adj_close_div_provider_close": {
+      "pre_median": 0.7556178857008546,
+      "post_median": 0.7573448595699901,
+      "post_pre_ratio": 1.00228551216404,
+      "classification": "CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF"
+    }
+  },
+  "VOLUME_UNIT_SEMANTICS": "UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION"
+}

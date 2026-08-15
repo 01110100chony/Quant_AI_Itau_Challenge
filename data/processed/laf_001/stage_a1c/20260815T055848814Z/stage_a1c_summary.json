@@ -1,0 +1,23 @@
+{
+  "experiment_id": "LAF_001",
+  "retrieval_id": "20260815T055848814Z",
+  "parser_version": "laf-stage-a1-v1.0.1",
+  "corrective_audit_code_commit": "176bb12b2413edb866cdcc38e86a497021cebd6c",
+  "verdict": "PASS_CORRECTIVE_AUDIT_READY_FOR_HUMAN_REVIEW",
+  "symbols_required": 5,
+  "symbols_parsed": 5,
+  "expected_xnys_sessions": 3525,
+  "observed_rows_total": 17625,
+  "calendar_exception_count": 0,
+  "corporate_action_count": 390,
+  "hard_stop_reasons": [],
+  "decision_reasons": [],
+  "prohibited_calculations_performed": false,
+  "safe_to_run_stage_a2": false,
+  "historical_rows_2017_or_later": 0,
+  "corporate_actions_2017_or_later": 0,
+  "out_of_scope_dynamic_metadata_detected_in_raw": true,
+  "out_of_scope_dynamic_metadata_emitted": false,
+  "boundary_incident_disclosed": true,
+  "raw_hashes_unchanged": true
+}

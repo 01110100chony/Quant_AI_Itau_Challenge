@@ -1089,3 +1089,36 @@ secundário, políticas de missing/volume/ajustes/corporate actions, completude
 da cesta, calendário, retorno zero, MAD zero e autorização de feature-side
 continuam decisões humanas. Stage A2, Stage B, Validation, Final OOS, target,
 associação, estratégia e backtest permanecem proibidos.
+
+---
+
+# 33. LAF_001 — Stage A1c corrective boundary and provenance audit
+
+Em 15/08/2026, uma revisão independente identificou que as respostas
+históricas do Yahoo continham metadados dinâmicos correntes. Esses campos foram
+materializados no resultado original, inclusive em `metadata_json`, tornando a
+flag `boundary_2017_or_later_loaded=false` incompleta. O incidente foi
+registrado sem apagar nem reescrever o resultado original.
+
+A autorização humana limitou a correção a: reutilizar os mesmos cinco raws,
+sanitizar metadados, registrar proveniência exata e auditar mecanicamente a
+unidade preço-volume em 41 sessões ao redor do split do IWM. O código/testes e
+contrato foram congelados antes da reexecução em H0-A1c
+`176bb12b2413edb866cdcc38e86a497021cebd6c`.
+
+O parser `laf-stage-a1-v1.0.1` confirmou zero linhas OHLCV e zero corporate
+actions de 2017+, detectou metadados dinâmicos no raw, emitiu zero valores
+dinâmicos e verificou os cinco hashes originais. A proveniência separou H0 de
+aquisição `01cc8408a83024663cc7cb7d434f82292072a945`, resultados originais
+`f549a1a8d8e4b06028100b22a450fa0e5c46473b` e código corretivo H0-A1c.
+
+As razões pós/pré das três quantidades mecânicas do split foram classificadas
+como `CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF`. Sem documentação do provider
+ou fonte independente, `VOLUME_UNIT_SEMANTICS` permanece
+`UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`.
+
+O `PASS_READY_FOR_STAGE_A2_DECISIONS` original foi preservado e superseded para
+revisão pela auditoria A1c. O corretivo encerrou com feasibility, remediação de
+fronteira e proveniência em PASS, mas `SAFE_TO_RUN_LAF_STAGE_A2 = NO`. Nenhuma
+feature, target, associação, estratégia ou backtest foi calculado; Validation e
+Final OOS permaneceram fechados.

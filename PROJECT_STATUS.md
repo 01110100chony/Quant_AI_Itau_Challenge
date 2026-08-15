@@ -2,27 +2,38 @@
 
 ## Desafio Quant AI 2026 — Estado Atual
 
-**Fase:** `LAF_001 v0.1-draft` — Stage A1 estrutural concluída; decisões de Stage A2 pendentes
+**Fase:** `LAF_001 v0.1-draft` — Stage A1c corretiva concluída; revisão humana pendente
 **Status:** `DRAFT`
 **Última atualização:** 15/08/2026
 
 Nenhuma tese está oficialmente promovida ou validada.
 
 `LAF_001 — Liquidity Absorption Fragility` é a candidata DRAFT atual. A Stage
-A1 estrutural autorizada foi executada sobre `SPY`, `QQQ`, `IWM`, `DIA` e
-`MDY`, exclusivamente entre 2003 e 2016. O veredito literal foi
-`PASS_READY_FOR_STAGE_A2_DECISIONS`: os campos e a cobertura são
-estruturalmente utilizáveis, mas nenhuma associação, evidência preditiva ou
-promoção foi produzida. Stage A2 ainda não está autorizada.
+A1c corretiva reutilizou exclusivamente os cinco raws imutáveis da Stage A1 e
+remediou o incidente de metadados fora da fronteira e a proveniência do código.
+O `PASS_READY_FOR_STAGE_A2_DECISIONS` original permanece preservado, mas foi
+superseded para revisão pela auditoria independente A1c. Nenhuma associação,
+evidência preditiva ou promoção foi produzida. Stage A2 ainda não está
+autorizada.
 
-## LAF_001 — Stage A1 concluída
+## LAF_001 — Stage A1c corretiva concluída
 
 - Retrieval imutável: `20260815T055848814Z`.
-- H0-A1 pré-dados: `01cc8408a83024663cc7cb7d434f82292072a945`.
+- Aquisição H0-A1: `01cc8408a83024663cc7cb7d434f82292072a945`.
+- Resultados originais: `f549a1a8d8e4b06028100b22a450fa0e5c46473b`.
+- Código corretivo H0-A1c: `176bb12b2413edb866cdcc38e86a497021cebd6c`.
+- Parser corretivo: `laf-stage-a1-v1.0.1`.
 - Cobertura por símbolo: 3.525/3.525 sessões XNYS, `2003-01-02`–`2016-12-30`.
 - Exceções de calendário, nulls, zeros, negativos e violações OHLC: zero.
 - Corporate actions: 389 dividendos e um split IWM, todos enumerados.
-- Nenhuma data observada de 2017 em diante foi carregada.
+- Linhas OHLCV de 2017+: zero; corporate actions de 2017+: zero.
+- Metadados dinâmicos de 2026 estavam no raw e no artefato original; a A1c os
+  detectou e não emitiu seus valores em nenhum artefato canônico corretivo.
+- Cinco hashes raw permaneceram idênticos.
+- Auditoria do split: 20 sessões pré + evento + 20 pós; as três razões foram
+  consistentes com continuidade local, sem constituir prova semântica.
+- `VOLUME_UNIT_SEMANTICS = UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`.
+- `SAFE_TO_RUN_LAF_STAGE_A2 = NO`; revisão humana pendente.
 - Nenhum retorno geral, `PI`, `LAF`, `RV`, Corwin-Schultz, `TailLoss`, feature
   ou target foi calculado.
 

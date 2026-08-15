@@ -2,33 +2,56 @@
 
 ## Current decision
 
-The explicitly authorized Stage A1 structural acquisition and audit has been
-completed. Its literal verdict is `PASS_READY_FOR_STAGE_A2_DECISIONS`.
+The independently executed Stage A1c corrective audit has remediated the
+metadata-boundary disclosure and code-provenance defects. The original
+`PASS_READY_FOR_STAGE_A2_DECISIONS` remains in Git history and in the preserved
+original snapshot, but is superseded for review purposes by Stage A1c.
 
-This verdict establishes only that the required raw fields exist, cover the
-authorized candidate window and are structurally reproducible. It does not
-authorize Stage A2 and makes no predictive or economic claim.
+Stage A1c establishes historical-data feasibility only. It found zero OHLCV
+rows and zero corporate actions dated 2017 or later, detected out-of-scope
+dynamic metadata in the immutable raw responses, emitted none of those values
+to the corrective canonical artifacts, verified all five registered raw
+hashes and disclosed the incident in the corrective erratum.
+
+The corrective runner recorded H0-A1c
+`176bb12b2413edb866cdcc38e86a497021cebd6c` as its exact code commit. Raw
+acquisition H0 remains `01cc8408a83024663cc7cb7d434f82292072a945`; the
+original results commit remains
+`f549a1a8d8e4b06028100b22a450fa0e5c46473b`.
+
+## Split-unit decision
+
+The event-only IWM audit contains exactly 20 XNYS sessions before the
+`2005-06-09` split, the event session and 20 sessions after it. All three
+pre-specified post/pre ratios are classified
+`CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF`.
+
+This local pattern does not prove what the provider's historical Volume unit
+means. No provider documentation or independent source was authorized for
+this correction. Therefore:
+
+`VOLUME_UNIT_SEMANTICS = UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`
 
 ## Human decision required
 
-Stage A2 remains pending the choices listed in
-[`stage_a2_decision_request.md`](stage_a2_decision_request.md). In particular,
-the provider role, any secondary provider, missing/volume/corporate-action
-policies, adjusted-return policy, universe completeness, calendar use,
-zero-return rule and MAD-zero rule remain human decisions.
+Stage A2 remains pending every material choice in
+[`stage_a2_decision_request.md`](stage_a2_decision_request.md), including a
+human source decision for Volume semantics. The corrective result does not
+authorize feature-side construction, target construction or any later stage.
 
 ## Prohibited stages
 
-- Stage A2 feature-side construction remains prohibited until a new explicit
-  human order resolves the required decisions.
+- Stage A2 remains prohibited until a separate explicit human order.
 - Stage B remains prohibited.
-- Validation remains CLOSED and undefined operationally.
-- Final OOS remains CLOSED and undefined operationally.
+- Validation and Final OOS remain CLOSED and undefined operationally.
 - Strategy, portfolio and backtest remain prohibited.
-- Feature or target calculation and any feature–target association remain
-  prohibited.
+- Feature, target and feature–target association remain prohibited.
 
-## Status
+## Corrective verdict
 
-`DRAFT` — Stage A1 structurally completed; not frozen, not promoted and not
-validated.
+HISTORICAL_DATA_FEASIBILITY = PASS
+BOUNDARY_INCIDENT_REMEDIATION = PASS
+PROVENANCE_REMEDIATION = PASS
+VOLUME_UNIT_SEMANTICS = UNRESOLVED
+SAFE_TO_RUN_LAF_STAGE_A2 = NO
+READY_FOR_HUMAN_REVIEW = YES

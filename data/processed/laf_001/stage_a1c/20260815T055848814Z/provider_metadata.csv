@@ -1,0 +1,6 @@
+symbol,currency,exchangeName,fullExchangeName,instrumentType,exchangeTimezoneName,timezone,gmtoffset,dataGranularity,firstTradeDate,priceHint,hasPrePostMarketData,validRanges
+SPY,USD,PCX,NYSEArca,ETF,America/New_York,EDT,-14400,1d,728317800,2,True,"[""1d"",""5d"",""1mo"",""3mo"",""6mo"",""1y"",""2y"",""5y"",""10y"",""ytd"",""max""]"
+QQQ,USD,NGM,NasdaqGM,ETF,America/New_York,EDT,-14400,1d,921076200,2,True,"[""1d"",""5d"",""1mo"",""3mo"",""6mo"",""1y"",""2y"",""5y"",""10y"",""ytd"",""max""]"
+IWM,USD,PCX,NYSEArca,ETF,America/New_York,EDT,-14400,1d,959347800,2,True,"[""1d"",""5d"",""1mo"",""3mo"",""6mo"",""1y"",""2y"",""5y"",""10y"",""ytd"",""max""]"
+DIA,USD,PCX,NYSEArca,ETF,America/New_York,EDT,-14400,1d,885306600,2,True,"[""1d"",""5d"",""1mo"",""3mo"",""6mo"",""1y"",""2y"",""5y"",""10y"",""ytd"",""max""]"
+MDY,USD,PCX,NYSEArca,ETF,America/New_York,EDT,-14400,1d,799594200,2,True,"[""1d"",""5d"",""1mo"",""3mo"",""6mo"",""1y"",""2y"",""5y"",""10y"",""ytd"",""max""]"

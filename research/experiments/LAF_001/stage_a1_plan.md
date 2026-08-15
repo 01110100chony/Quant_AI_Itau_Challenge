@@ -1,5 +1,10 @@
 # LAF_001 — Future Stage A1 data/timing feasibility plan
 
+> **Historical plan:** Stage A1 was later executed, and its original result was
+> subsequently superseded for review by the independent Stage A1c corrective
+> audit. This file is retained as the pre-execution plan; current state is in
+> [`results.md`](results.md).
+
 ## Purpose
 
 Define the outputs that a later, separately authorized empirical Stage A1 must

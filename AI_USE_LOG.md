@@ -92,3 +92,16 @@ Registre somente contribuições materiais de GenAI que sejam relevantes para au
 - **Human decision:** Researchers fixed the symbols, period, endpoint contract, candidate calendar, allowed outputs and hard stops, and prohibited returns/features/targets, associations, holdouts, strategy and backtest. Source/policy/Stage A2 choices remain human decisions.
 - **Verification:** Five independent raw SHA-256 checks; synthetic boundary and integrity cases; full unit suite; research harness verifier; calendar regression; artifact and Git diff review.
 - **Impact on project:** Stage A1 recorded `PASS_READY_FOR_STAGE_A2_DECISIONS` from structural evidence only. No raw request was repeated, no provider value was repaired, no date from 2017 onward was observed, and no return, LAF, target or predictive result was calculated.
+- **Corrective note:** “No date from 2017 onward” referred only to dated
+  historical rows/actions. Dynamic 2026 metadata was present and materialized;
+  the following Stage A1c entry records its disclosure and remediation.
+
+## 2026-08-15 — LAF_001 Stage A1c corrective audit
+
+- **Date:** 2026-08-15
+- **Tool/model:** OpenAI Codex
+- **Task:** Remediate the Stage A1 metadata-boundary incident, make audit-code provenance exact and execute the limited IWM event-only unit audit.
+- **AI contribution:** Implemented the metadata whitelist and field-name-only boundary audit; separated acquisition, original-result and corrective-code commits; added synthetic boundary/sentinel/window tests; regenerated corrective artifacts from unchanged raws; mechanically summarized the 41 authorized split sessions; synchronized the erratum and research records.
+- **Human decision:** Researchers explicitly limited the correction, fixed the metadata whitelist, provenance roles, split date/window/calculations/classifications, prohibited all Stage A2/feature/target/strategy work and required exactly two local commits without push.
+- **Verification:** Five independent SHA-256 checks; 27 LAF synthetic tests; full unit suite; manual split-row calculations; CSV/JSON schema and boundary audits; research harness verifier; `git diff --check`; scoped Git review.
+- **Impact on project:** The original result remains preserved but is superseded for review by Stage A1c. Boundary and provenance remediation passed; Volume-unit semantics remains unresolved; Stage A2, Validation, Final OOS, strategy and backtest remain closed.

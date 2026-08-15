@@ -1,11 +1,18 @@
 # TASKS.md
 
-## NOW — LAF_001 Stage A2 decisions
+## NOW — LAF_001 Stage A1c human review
 
 - [x] Freeze the Stage A1 collector/auditor before market-data acquisition.
 - [x] Acquire one immutable Yahoo Chart API payload for each authorized symbol.
 - [x] Audit schema, OHLCV, timestamps, XNYS coverage and corporate actions.
-- [x] Record literal verdict `PASS_READY_FOR_STAGE_A2_DECISIONS`.
+- [x] Preserve the original literal verdict `PASS_READY_FOR_STAGE_A2_DECISIONS`.
+- [x] Disclose and remediate the out-of-boundary dynamic-metadata incident.
+- [x] Freeze corrective code/tests/contract at H0-A1c
+  `176bb12b2413edb866cdcc38e86a497021cebd6c`.
+- [x] Regenerate Stage A1c from the same five immutable raw payloads.
+- [x] Audit the IWM split on exactly 20 pre/event/20 post XNYS sessions.
+- [x] Record `VOLUME_UNIT_SEMANTICS = UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`.
+- [ ] Complete human review of Stage A1c.
 - [ ] Obtain explicit human decisions listed in `stage_a2_decision_request.md`.
 - [ ] Obtain a separate explicit order before any Stage A2 construction.
 
@@ -13,6 +20,11 @@
 
 - Raw Stage A1 `20260815T055848814Z` is immutable and cannot be overwritten or
   silently repaired.
+- Original processed Stage A1 remains immutable and is superseded only in
+  documentation by the independent Stage A1c audit.
+- Dynamic metadata values may not be emitted by corrective canonical artifacts.
+- The event-only price-volume calculations are limited to the 41 authorized IWM
+  sessions and cannot be extended to the full sample.
 - Nenhum retorno, `PI`, `LAF`, `RV`, Corwin-Schultz ou `TailLoss` pode ser calculado.
 - Nenhuma feature pode ser cruzada com target.
 - Stage A2, Stage B, Validation, Final OOS, estratégia, carteira e backtest

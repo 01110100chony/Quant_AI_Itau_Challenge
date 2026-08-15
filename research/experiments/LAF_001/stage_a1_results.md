@@ -1,5 +1,11 @@
 # LAF_001 — Stage A1 structural results
 
+> **Corrective status (2026-08-15):** This original result is preserved but
+> superseded for review by the independent Stage A1c audit documented in
+> [`results.md`](results.md) and
+> [`stage_a1_corrective_erratum.md`](stage_a1_corrective_erratum.md). The
+> original processed files were not changed.
+
 ## Objective and method
 
 Stage A1 tested only whether the provider fields required by the candidate
@@ -54,7 +60,9 @@ completeness was 100%, and `calendar_exceptions.csv` contains zero rows.
 
 The provider reported USD ETFs at daily granularity in
 `America/New_York`; exchange codes were PCX for SPY, IWM, DIA and MDY and NGM
-for QQQ. Metadata was preserved without reinterpretation.
+for QQQ. The original artifact also materialized dynamic current metadata,
+including through `metadata_json`. That boundary incident was omitted from the
+original flag and is disclosed and remediated by Stage A1c.
 
 ## Corporate actions
 
@@ -66,12 +74,13 @@ for QQQ. Metadata was preserved without reinterpretation.
 | DIA | 168 | 0 | 0 |
 | MDY | 56 | 0 | 0 |
 
-The single split was IWM on `2005-06-09`, provider factor 2.0. The raw Close
+The single split was IWM on `2005-06-09`, provider factor 2.0. Provider Close
 before the event was `61.71500015258789`, event Open
-`61.66999816894531`, event Close `62.31999969482422`, and next raw Close
-`62.45000076293945`; the permitted mechanical check classified the raw series
-as `RAW_SERIES_ALREADY_SCALE_CONTINUOUS`. This classification does not select
-an adjusted-return or distribution policy.
+`61.66999816894531`, event Close `62.31999969482422`, and next provider Close
+`62.45000076293945`; the original mechanical check classified the series as
+`RAW_SERIES_ALREADY_SCALE_CONTINUOUS`. That label is historical and superseded
+by the Stage A1c unit audit; it never selected an adjusted-return or
+distribution policy.
 
 ## Anomalies and limitations
 
@@ -92,5 +101,19 @@ statistical gate.
 
 `PASS_READY_FOR_STAGE_A2_DECISIONS`
 
-No structural failure remains unclassified. This verdict is not evidence of
-association, prediction, economic performance or thesis validity.
+This was the literal original verdict. It is preserved, not erased, and is
+superseded for review by the independent Stage A1c correction. It is not
+evidence of association, prediction, economic performance or thesis validity.
+
+## Stage A1c corrective disposition
+
+- Historical rows dated 2017 or later: zero.
+- Corporate actions dated 2017 or later: zero.
+- Out-of-scope dynamic metadata detected in raw: yes.
+- Out-of-scope dynamic metadata emitted by Stage A1c: no.
+- Five registered raw hashes unchanged: yes.
+- Exact corrective code commit:
+  `176bb12b2413edb866cdcc38e86a497021cebd6c`.
+- Volume-unit semantics:
+  `UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`.
+- Safe to run Stage A2: no.

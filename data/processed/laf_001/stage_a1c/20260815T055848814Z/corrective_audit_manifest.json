@@ -1,0 +1,67 @@
+{
+  "experiment_id": "LAF_001",
+  "retrieval_id": "20260815T055848814Z",
+  "provider": "Yahoo Finance Chart API",
+  "parser_version": "laf-stage-a1-v1.0.1",
+  "raw_acquisition_h0_commit": "01cc8408a83024663cc7cb7d434f82292072a945",
+  "original_results_commit": "f549a1a8d8e4b06028100b22a450fa0e5c46473b",
+  "corrective_audit_code_commit": "176bb12b2413edb866cdcc38e86a497021cebd6c",
+  "request_contract": {
+    "symbols": [
+      "SPY",
+      "QQQ",
+      "IWM",
+      "DIA",
+      "MDY"
+    ],
+    "endpoint": "https://query1.finance.yahoo.com/v8/finance/chart",
+    "parameters": {
+      "interval": "1d",
+      "period1": "1041379200",
+      "period2": "1483228800",
+      "events": "div,splits,capitalGains",
+      "includeAdjustedClose": "true",
+      "includePrePost": "false"
+    },
+    "period1_utc": "2003-01-01T00:00:00+00:00",
+    "period2_utc_exclusive": "2017-01-01T00:00:00+00:00"
+  },
+  "raw_payloads": [
+    {
+      "symbol": "SPY",
+      "raw_payload_file": "SPY_response.json",
+      "payload_sha256": "306c43087e3a33048d29b47746250cfeaca6a0ec69532084d3e12e7cb2393153",
+      "payload_size_bytes": 394680,
+      "payload_sha256_verified": true
+    },
+    {
+      "symbol": "QQQ",
+      "raw_payload_file": "QQQ_response.json",
+      "payload_sha256": "1d747eb4f1fc4b7f22e1cfdae40ad4932a9301324c666e101e3bebcd41a9e479",
+      "payload_size_bytes": 390234,
+      "payload_sha256_verified": true
+    },
+    {
+      "symbol": "IWM",
+      "raw_payload_file": "IWM_response.json",
+      "payload_sha256": "ee972d8c9d5ad737370df7f30d4954e8065316218ae08d64430f28b9f3feb0b3",
+      "payload_size_bytes": 385312,
+      "payload_sha256_verified": true
+    },
+    {
+      "symbol": "DIA",
+      "raw_payload_file": "DIA_response.json",
+      "payload_sha256": "30f7b0370a61be244cd0425602c7c4821dbc4ddef9d3598e267f6aaf8e6fbe53",
+      "payload_size_bytes": 394576,
+      "payload_sha256_verified": true
+    },
+    {
+      "symbol": "MDY",
+      "raw_payload_file": "MDY_response.json",
+      "payload_sha256": "5dba651a9fa9100ef740eaa27f4a8221b63371a8a44b22b1bf29113a46a41fc5",
+      "payload_size_bytes": 386581,
+      "payload_sha256_verified": true
+    }
+  ],
+  "structural_errors": []
+}
