@@ -22,10 +22,10 @@ No thesis is officially promoted or validated.
 ## Active candidate
 
 `LAF_001 — Liquidity Absorption Fragility` is the active Research candidate.
-Its `v1.0-frozen` scientific content is human-approved and awaiting exact
-H1-LAF registration plus a separate metadata authorization commit before the
-single Research association execution. It is not predictively tested,
-validated or promoted.
+Its `v1.0-frozen` scientific content is frozen at H1-LAF
+`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`; the separate metadata authorization
+permits its single Research association execution. It is not yet predictively
+tested, validated or promoted.
 
 The fixed universe is `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, with `SPY` as target.
 Warm-up is 2003 and Research target months are 2004-01–2016-12. Validation

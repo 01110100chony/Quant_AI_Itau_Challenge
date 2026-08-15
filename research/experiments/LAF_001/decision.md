@@ -9,9 +9,11 @@ Research specification: Yahoo inputs, five-ETF universe, 2003 warm-up,
 SPY TailLoss target, RV control, OLS/HAC(3), prospective gates and literal
 GO/CONDITIONAL_GO/NO_GO rule.
 
-The scientific-content commit is H1-LAF. Its exact hash must be recorded in a
-separate metadata/provenance commit before the one authorized Research
-association execution. No result has been observed at this point.
+The scientific-content commit H1-LAF is
+`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`. This exact hash is now registered
+by the separate metadata/provenance commit authorized in the same human order.
+The one frozen Research association execution is authorized. No result has
+been observed at this point.
 
 ## A1d closure
 
@@ -46,8 +48,8 @@ respective frozen gates.
 
 ## Current hard stop
 
-Research association may run only once after H1-LAF is registered and the
-separate authorization commit exists. Validation, Final OOS, strategy,
-portfolio and backtest remain prohibited.
+H1-LAF is registered and the separate authorization commit authorizes exactly
+one Research association execution. Validation, Final OOS, strategy, portfolio
+and backtest remain prohibited.
 
 SAFE_TO_RUN_VALIDATION = NO

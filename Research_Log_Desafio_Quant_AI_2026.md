@@ -1150,5 +1150,7 @@ A missingness literal produziu apenas 8 complete cases dos 156 target months,
 zero em 2004–2010 e zero com estado Q80 classificável. Essa fragilidade foi
 registrada antes de qualquer regressão e não motivou relaxamento de regra.
 Bloco não estimável e contagem de estados insuficiente não podem passar os
-gates congelados. H1-LAF e a autorização metadata-only ainda precedem a única
-execução Research.
+gates congelados. H1-LAF
+`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b` registrou o conteúdo científico; a
+autorização metadata-only subsequente permite exatamente uma execução Research,
+ainda não realizada neste ponto.

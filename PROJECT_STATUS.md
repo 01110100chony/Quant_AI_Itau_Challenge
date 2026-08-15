@@ -2,16 +2,16 @@
 
 ## Desafio Quant AI 2026 — Estado Atual
 
-**Fase:** `LAF_001 v1.0-frozen` — conteúdo Research congelado; H1-LAF pendente de registro
-**Status:** `DRAFT`
+**Fase:** `LAF_001 v1.0-frozen` — execução Research única autorizada
+**Status:** `FROZEN`
 **Última atualização:** 15/08/2026
 
 Nenhuma tese está oficialmente promovida ou validada.
 
 `LAF_001 — Liquidity Absorption Fragility` é a candidata Research atual. A
-ordem humana final aprovou a specification `v1.0-frozen`, mas nenhuma
-associação foi executada. O próximo marco é registrar H1-LAF em commit separado
-de autorização/proveniência antes da execução Research única.
+ordem humana final aprovou a specification `v1.0-frozen`; H1-LAF
+`cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b` foi registrado e a execução Research
+única está autorizada. Nenhuma associação foi executada neste ponto.
 
 ## LAF_001 — freeze Research pré-associação
 
@@ -43,6 +43,8 @@ de autorização/proveniência antes da execução Research única.
 - Grid Research: 156 target months; 8 complete cases mecânicos, nenhum em
   2004–2010 e nenhum com estado Q80 classificável.
 - Nenhuma regressão, associação ou gate Research foi observado antes de H1-LAF.
+- H1-LAF: `cfbdff048ae8b0f7d9b8a1a804558bf59b656c1b`; execução Research única
+  autorizada por commit separado de metadata/proveniência.
 
 ## LAF_001 — escopo e fronteiras vigentes
 
