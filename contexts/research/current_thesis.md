@@ -21,31 +21,29 @@ No thesis is officially promoted or validated.
 
 ## Active candidate
 
-`LAF_001 — Liquidity Absorption Fragility` is the active DRAFT candidate. It is
-not promoted, scientifically frozen, predictively tested or validated. Human
-authorization covered the completed Stage A1 structural audit and the limited
-Stage A1c boundary/provenance correction; it does not cover Stage A2.
+`LAF_001 — Liquidity Absorption Fragility` is the active Research candidate.
+Its `v1.0-frozen` scientific content is human-approved and awaiting exact
+H1-LAF registration plus a separate metadata authorization commit before the
+single Research association execution. It is not predictively tested,
+validated or promoted.
 
-The fixed candidate universe is `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, with `SPY`
-as candidate target asset. Warm-up is limited to 2003 and Research to
-2004–2016. Every date from `2017-01-01` onward remains CLOSED and 2026 is
-excluded from historical arrays. The immutable raw response nevertheless
-contained dynamic 2026 metadata, which the original artifact emitted and
-Stage A1c disclosed and excluded from corrective canonical outputs. Yahoo
-Finance Chart API and XNYS remain candidate inputs only. The structural audit
-is feasibility evidence, not a predictive or economic result.
+The fixed universe is `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, with `SPY` as target.
+Warm-up is 2003 and Research target months are 2004-01–2016-12. Validation
+2017-01–2021-12 and Final OOS 2022-01–2025-12 are CLOSED; 2026 is excluded.
+Only the five immutable Yahoo snapshots and XNYS are authorized.
 
-The decision timestamp is after the close of the last monthly session. Any
-eventual economic execution could occur only at the next session open. Feature,
-target, normalization, missingness, statistical gates and portfolio choices
-remain unresolved unless the DRAFT specification records otherwise as `TBD —
-requires human decision`.
+The frozen construction uses prior-only 252-session robust normalization,
+split-regime embargo, at least four ETFs for daily median aggregation, one
+21-session monthly mean, contemporaneous SPY RV and next-month adjusted
+entry-to-low TailLoss. Decision is after month-end close and informational
+execution is the next month's first SPY open. OLS/HAC(3) and all gates are
+frozen in the canonical specification.
 
-Stage A1c verified zero historical rows and zero corporate actions dated 2017
-or later and all five raw hashes unchanged. Its 41-session IWM event audit was
-consistent with local continuity but did not prove Volume-unit semantics.
-`SAFE_TO_RUN_LAF_STAGE_A2 = NO`; human review and a separate order remain
-required.
+Stage A1d ended without payload and has no scientific result. Positive-scale
+invariance and target independence passed pre-association. The literal
+missingness contract yields only 8 complete Research months, zero in the first
+stability block and zero state-classified complete rows; these limitations were
+not used to alter the frozen design. Validation and Final OOS remain closed.
 
 ## Most recently closed experiment
 

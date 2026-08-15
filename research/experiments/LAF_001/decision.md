@@ -1,57 +1,53 @@
 # LAF_001 — Decision record
 
-## Current decision
+## Human Research decision
 
-The independently executed Stage A1c corrective audit has remediated the
-metadata-boundary disclosure and code-provenance defects. The original
-`PASS_READY_FOR_STAGE_A2_DECISIONS` remains in Git history and in the preserved
-original snapshot, but is superseded for review purposes by Stage A1c.
+On 2026-08-15 the researchers approved the complete `v1.0-frozen` LAF_001
+Research specification: Yahoo inputs, five-ETF universe, 2003 warm-up,
+2004-2016 Research target months, closed Validation/Final OOS, point-in-time
+252-session robust normalization, split embargo, unique 21-session aggregation,
+SPY TailLoss target, RV control, OLS/HAC(3), prospective gates and literal
+GO/CONDITIONAL_GO/NO_GO rule.
 
-Stage A1c establishes historical-data feasibility only. It found zero OHLCV
-rows and zero corporate actions dated 2017 or later, detected out-of-scope
-dynamic metadata in the immutable raw responses, emitted none of those values
-to the corrective canonical artifacts, verified all five registered raw
-hashes and disclosed the incident in the corrective erratum.
+The scientific-content commit is H1-LAF. Its exact hash must be recorded in a
+separate metadata/provenance commit before the one authorized Research
+association execution. No result has been observed at this point.
 
-The corrective runner recorded H0-A1c
-`176bb12b2413edb866cdcc38e86a497021cebd6c` as its exact code commit. Raw
-acquisition H0 remains `01cc8408a83024663cc7cb7d434f82292072a945`; the
-original results commit remains
-`f549a1a8d8e4b06028100b22a450fa0e5c46473b`.
+## A1d closure
 
-## Split-unit decision
+H0-A1d remains
+`74e53946e9e2fbd07dce15e77d527fd5cd0d1f38`. Two private transport-failure
+receipts are preserved. No Tiingo payload or scientific gate was observed and
+no retry remains authorized.
 
-The event-only IWM audit contains exactly 20 XNYS sessions before the
-`2005-06-09` split, the event session and 20 sessions after it. All three
-pre-specified post/pre ratios are classified
-`CONSISTENT_WITH_LOCAL_CONTINUITY_NOT_PROOF`.
+```text
+A1D_STATUS = INCONCLUSIVE_TRANSPORT_NO_PAYLOAD
+A1D_SCIENTIFIC_RESULT = NONE
+A1D_RETRY_AUTHORIZED = NO
+```
 
-This local pattern does not prove what the provider's historical Volume unit
-means. No provider documentation or independent source was authorized for
-this correction. Therefore:
+The independent audit is no longer required for Research because the approved
+estimator is invariant to positive constant Close/Volume scales within each
+split regime and excludes transition-crossing windows. The remaining proxy
+limitation is recorded in [`construct_volume_erratum.md`](construct_volume_erratum.md).
 
-`VOLUME_UNIT_SEMANTICS = UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`
+## Pre-association disposition
 
-## Human decision required
+All five Yahoo hashes remain unchanged; 3,525 XNYS rows per symbol end on
+`2016-12-30`; no historical row from 2017 onward was loaded. Scale-invariance
+and target-independence checks passed.
 
-Stage A2 remains pending every material choice in
-[`stage_a2_decision_request.md`](stage_a2_decision_request.md), including a
-human source decision for Volume semantics. The corrective result does not
-authorize feature-side construction, target construction or any later stage.
+The literal missingness rule produces 8 primary complete Research months, zero
+in 2004–2010 and 8 in 2011–2016. No complete row has the required prior-only
+state classification. These mechanical facts were observed without fitting a
+feature-target association and were not used to relax any rule. An
+unestimable stability block and insufficient state counts cannot pass their
+respective frozen gates.
 
-## Prohibited stages
+## Current hard stop
 
-- Stage A2 remains prohibited until a separate explicit human order.
-- Stage B remains prohibited.
-- Validation and Final OOS remain CLOSED and undefined operationally.
-- Strategy, portfolio and backtest remain prohibited.
-- Feature, target and feature–target association remain prohibited.
+Research association may run only once after H1-LAF is registered and the
+separate authorization commit exists. Validation, Final OOS, strategy,
+portfolio and backtest remain prohibited.
 
-## Corrective verdict
-
-HISTORICAL_DATA_FEASIBILITY = PASS
-BOUNDARY_INCIDENT_REMEDIATION = PASS
-PROVENANCE_REMEDIATION = PASS
-VOLUME_UNIT_SEMANTICS = UNRESOLVED
-SAFE_TO_RUN_LAF_STAGE_A2 = NO
-READY_FOR_HUMAN_REVIEW = YES
+SAFE_TO_RUN_VALIDATION = NO

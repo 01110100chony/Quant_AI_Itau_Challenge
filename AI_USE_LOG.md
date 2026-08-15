@@ -105,3 +105,13 @@ Registre somente contribuições materiais de GenAI que sejam relevantes para au
 - **Human decision:** Researchers explicitly limited the correction, fixed the metadata whitelist, provenance roles, split date/window/calculations/classifications, prohibited all Stage A2/feature/target/strategy work and required exactly two local commits without push.
 - **Verification:** Five independent SHA-256 checks; 27 LAF synthetic tests; full unit suite; manual split-row calculations; CSV/JSON schema and boundary audits; research harness verifier; `git diff --check`; scoped Git review.
 - **Impact on project:** The original result remains preserved but is superseded for review by Stage A1c. Boundary and provenance remediation passed; Volume-unit semantics remains unresolved; Stage A2, Validation, Final OOS, strategy and backtest remain closed.
+
+## 2026-08-15 — LAF_001 provider-invariant Research freeze
+
+- **Date:** 2026-08-15
+- **Tool/model:** OpenAI Codex
+- **Task:** Materialize the human-approved LAF_001 Research specification and falsification checks before association.
+- **AI contribution:** Implemented point-in-time robust normalization, split-regime embargo, unique LAF/RV aggregation, adjusted TailLoss, HAC(3) estimator, prospective gates, one-shot execution guard and real/synthetic invariance/target-independence tests; surfaced severe mechanical attrition before regression.
+- **Human decision:** Researchers fixed every material field, sample, timestamp, formula, missingness rule, split protection, model, threshold and verdict, closed Tiingo/A1d without a scientific result and prohibited variants, holdouts, portfolio and backtest.
+- **Verification:** Five immutable Yahoo hashes; XNYS boundary; scale factors `0.5` and `2.0`; target-only mutation; synthetic manual cases; LAF/full tests; harness verifier; Git diff review.
+- **Impact on project:** Prepared `v1.0-frozen` without observing a feature-target association. Only 8 complete Research months remain under the literal rules; no rule was relaxed, and Validation/Final OOS remain closed.

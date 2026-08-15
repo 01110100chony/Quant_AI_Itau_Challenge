@@ -1122,3 +1122,33 @@ revisão pela auditoria A1c. O corretivo encerrou com feasibility, remediação 
 fronteira e proveniência em PASS, mas `SAFE_TO_RUN_LAF_STAGE_A2 = NO`. Nenhuma
 feature, target, associação, estratégia ou backtest foi calculado; Validation e
 Final OOS permaneceram fechados.
+
+---
+
+# 34. LAF_001 — freeze Research provider-invariant
+
+Em 15/08/2026, a decisão humana final encerrou A1d como
+`INCONCLUSIVE_TRANSPORT_NO_PAYLOAD`: H0-A1d
+`74e53946e9e2fbd07dce15e77d527fd5cd0d1f38` e os dois receipts privados foram
+preservados, nenhum payload/gate foi observado e nenhum retry adicional foi
+autorizado. A1d não é PASS nem FAIL científico.
+
+Foi aprovada a specification `v1.0-frozen` para testar se LAF agregado no
+fechamento de `t` informa incrementalmente o TailLoss SPY em `t+1` além de RV.
+A construção usa os cinco raws Yahoo imutáveis, retornos por Adj Close,
+`Close*Volume` como proxy monetária consistente com o provider, z robusto com
+252 sessões estritamente anteriores, embargo de janelas que atravessam o split
+IWM, mediana diária de ao menos quatro ETFs e média única das últimas 21 sessões.
+
+Antes de associação, mudanças positivas de escala `0.5`/`2.0` em Close e/ou
+Volume pré-split deixaram `A_d` e `LAF_t` idênticos fora do embargo em tolerância
+`1e-12`; mudança target-only deixou features exatamente iguais. Os cinco hashes
+foram confirmados, nenhuma linha 2017+ foi carregada e Validation/Final OOS
+permaneceram fechados.
+
+A missingness literal produziu apenas 8 complete cases dos 156 target months,
+zero em 2004–2010 e zero com estado Q80 classificável. Essa fragilidade foi
+registrada antes de qualquer regressão e não motivou relaxamento de regra.
+Bloco não estimável e contagem de estados insuficiente não podem passar os
+gates congelados. H1-LAF e a autorização metadata-only ainda precedem a única
+execução Research.

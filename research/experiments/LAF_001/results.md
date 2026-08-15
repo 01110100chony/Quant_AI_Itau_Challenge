@@ -92,3 +92,30 @@ PROVENANCE_REMEDIATION = PASS
 VOLUME_UNIT_SEMANTICS = UNRESOLVED
 SAFE_TO_RUN_LAF_STAGE_A2 = NO
 READY_FOR_HUMAN_REVIEW = YES
+
+## Stage A1d operational closure
+
+Stage A1d code was frozen at
+`74e53946e9e2fbd07dce15e77d527fd5cd0d1f38`. Its acquisition ended after two
+transport failures with private receipts but no payload. No A1d gate was
+evaluated and no scientific result exists.
+
+```text
+A1D_STATUS = INCONCLUSIVE_TRANSPORT_NO_PAYLOAD
+A1D_SCIENTIFIC_RESULT = NONE
+A1D_RETRY_AUTHORIZED = NO
+```
+
+## Frozen Research preflight — no association
+
+The approved provider-invariant construction passed positive-scale tests for
+pre-split Close and Volume factors `0.5` and `2.0`; maximum observed difference
+outside the IWM embargo was zero at tolerance `1e-12`. Target-only alteration
+left all features exactly unchanged. The five raw hashes matched, every symbol
+contained 3,525 XNYS rows ending `2016-12-30`, and zero historical rows from
+2017 onward were loaded.
+
+The 156 target-month grid has 8 primary complete cases: zero in 2004–2010 and
+8 in 2011–2016. State-classified complete cases are zero. These are mechanical
+pre-association counts. No coefficient, p-value, adjusted R-squared, state
+mean or Research verdict has yet been calculated.

@@ -2,21 +2,18 @@
 
 ## Desafio Quant AI 2026 — Estado Atual
 
-**Fase:** `LAF_001 v0.1-draft` — Stage A1c corretiva concluída; revisão humana pendente
+**Fase:** `LAF_001 v1.0-frozen` — conteúdo Research congelado; H1-LAF pendente de registro
 **Status:** `DRAFT`
 **Última atualização:** 15/08/2026
 
 Nenhuma tese está oficialmente promovida ou validada.
 
-`LAF_001 — Liquidity Absorption Fragility` é a candidata DRAFT atual. A Stage
-A1c corretiva reutilizou exclusivamente os cinco raws imutáveis da Stage A1 e
-remediou o incidente de metadados fora da fronteira e a proveniência do código.
-O `PASS_READY_FOR_STAGE_A2_DECISIONS` original permanece preservado, mas foi
-superseded para revisão pela auditoria independente A1c. Nenhuma associação,
-evidência preditiva ou promoção foi produzida. Stage A2 ainda não está
-autorizada.
+`LAF_001 — Liquidity Absorption Fragility` é a candidata Research atual. A
+ordem humana final aprovou a specification `v1.0-frozen`, mas nenhuma
+associação foi executada. O próximo marco é registrar H1-LAF em commit separado
+de autorização/proveniência antes da execução Research única.
 
-## LAF_001 — Stage A1c corretiva concluída
+## LAF_001 — freeze Research pré-associação
 
 - Retrieval imutável: `20260815T055848814Z`.
 - Aquisição H0-A1: `01cc8408a83024663cc7cb7d434f82292072a945`.
@@ -35,24 +32,34 @@ autorizada.
 - `VOLUME_UNIT_SEMANTICS = UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`.
 - `SAFE_TO_RUN_LAF_STAGE_A2 = NO`; revisão humana pendente.
 - Nenhum retorno geral, `PI`, `LAF`, `RV`, Corwin-Schultz, `TailLoss`, feature
-  ou target foi calculado.
+  ou target havia sido calculado em A1/A1c.
+- H0-A1d: `74e53946e9e2fbd07dce15e77d527fd5cd0d1f38`.
+- A1d: `INCONCLUSIVE_TRANSPORT_NO_PAYLOAD`; dois receipts privados preservados,
+  nenhum gate científico e nenhum retry autorizado.
+- Construção Research aprovada: prior-only robust z em 252 sessões, embargo de
+  split, mediana diária com ao menos 4 ETFs e média mensal das últimas 21 sessões.
+- Invariância real/sintética a escalas positivas pré-split: PASS em `1e-12`.
+- Independência sintética do target: PASS exato.
+- Grid Research: 156 target months; 8 complete cases mecânicos, nenhum em
+  2004–2010 e nenhum com estado Q80 classificável.
+- Nenhuma regressão, associação ou gate Research foi observado antes de H1-LAF.
 
 ## LAF_001 — escopo e fronteiras vigentes
 
-- Universo fixo candidato: `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`.
-- Ativo-alvo candidato: `SPY`.
+- Universo fixo: `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`.
+- Ativo-alvo: `SPY`.
 - Warm-up permitido: `2003-01-01`–`2003-12-31`.
 - Research permitido: `2004-01-01`–`2016-12-31`.
-- `2017-01-01` em diante: CLOSED; não adquirir, carregar, processar ou exibir.
+- Validation `2017-01`–`2021-12`: CLOSED.
+- Final OOS `2022-01`–`2025-12`: CLOSED.
 - 2026: integralmente excluído.
-- Fonte primária candidata auditada estruturalmente: Yahoo Finance Chart API;
-  aprovação como fonte final ainda requer decisão humana.
+- Fonte Research: os cinco snapshots imutáveis Yahoo Finance Chart API já auditados.
 - Raw OHLCV, Adj Close e corporate actions devem permanecer separados.
 - Calendário candidato: XNYS via `exchange-calendars`.
-- A decisão ocorre após o close da última sessão do mês; eventual execução
-  econômica só poderia ocorrer no open da primeira sessão seguinte.
-- Validation, Final OOS, Stage B, estratégia, carteira e backtest permanecem
-  não autorizados.
+- A decisão ocorre após o close da última sessão do mês; execução informacional
+  é a primeira abertura SPY do mês seguinte.
+- Modelo único: OLS completo LAF+RV e controle RV-only, HAC(3), gates prospectivos.
+- Validation, Final OOS, estratégia, carteira e backtest permanecem não autorizados.
 
 ## CM_001 — encerramento definitivo
 

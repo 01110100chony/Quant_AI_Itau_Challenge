@@ -29,7 +29,7 @@ O status descreve estágio, não qualidade econômica. `VALIDATED` não signific
 | OS_001 | Opportunity Set → Residual Momentum | v0.4 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook`](../../notebooks/01_er_feasibility_v0_4.ipynb) |
 | AFN_001 | Adaptive Factor Neutralization | v0.5.1 | NO_GO | 2001–2018 research | CLOSED | Hipótese falsificada no research sample | [`notebook corrigido`](../../notebooks/01_er_feasibility_v0_5_1.ipynb) |
 | CM_001 | Cross-Market Information Transmission | v1.0.1-frozen | NO_GO | 2010–2018 Research Stage B once | CLOSED | CorePass false; frozen verdict NO_GO; holdouts not opened | [`results`](../../research/experiments/CM_001/results.md) |
-| LAF_001 | Liquidity Absorption Fragility | v0.1-draft | DRAFT | Stage A1/A1c structural 2003–2016 | CLOSED | A1c remedia fronteira/proveniência; Volume semântico unresolved; Stage A2 NO | [`results`](../../research/experiments/LAF_001/results.md) |
+| LAF_001 | Liquidity Absorption Fragility | v1.0-frozen | DRAFT | Research preflight only; no association | CLOSED | Content frozen; 8 complete months; H1-LAF registration/authorization pending | [`results`](../../research/experiments/LAF_001/results.md) |
 
 ## Legacy artifact policy
 

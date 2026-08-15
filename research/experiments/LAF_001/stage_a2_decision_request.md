@@ -1,5 +1,10 @@
 # LAF_001 — Stage A2 human decision request
 
+> **Superseded on 2026-08-15:** the final human Research order resolved these
+> construction/model decisions through `v1.0-frozen`. This historical request
+> is preserved; it no longer blocks the single authorized Research execution.
+> Validation, Final OOS, strategy and portfolio remain closed.
+
 Stage A1 produced the literal structural verdict
 `PASS_READY_FOR_STAGE_A2_DECISIONS`, now preserved but superseded for review by
 the independent Stage A1c corrective audit. Stage A1c passed boundary and

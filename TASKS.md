@@ -1,6 +1,6 @@
 # TASKS.md
 
-## NOW — LAF_001 Stage A1c human review
+## NOW — LAF_001 frozen Research execution
 
 - [x] Freeze the Stage A1 collector/auditor before market-data acquisition.
 - [x] Acquire one immutable Yahoo Chart API payload for each authorized symbol.
@@ -12,9 +12,17 @@
 - [x] Regenerate Stage A1c from the same five immutable raw payloads.
 - [x] Audit the IWM split on exactly 20 pre/event/20 post XNYS sessions.
 - [x] Record `VOLUME_UNIT_SEMANTICS = UNRESOLVED_REQUIRES_HUMAN_SOURCE_DECISION`.
-- [ ] Complete human review of Stage A1c.
-- [ ] Obtain explicit human decisions listed in `stage_a2_decision_request.md`.
-- [ ] Obtain a separate explicit order before any Stage A2 construction.
+- [x] Preserve H0-A1d
+  `74e53946e9e2fbd07dce15e77d527fd5cd0d1f38` and close A1d as
+  `INCONCLUSIVE_TRANSPORT_NO_PAYLOAD`.
+- [x] Human-approve the complete provider-invariant `v1.0-frozen` Research design.
+- [x] Implement 252-session prior-only construction, split embargo, LAF/RV,
+  TailLoss, OLS/HAC(3), gates and one-shot execution guard.
+- [x] Pass real/synthetic scale invariance and target-independence preflight.
+- [ ] Create H1-LAF scientific-content commit.
+- [ ] Record exact H1-LAF and authorization in a metadata-only commit.
+- [ ] Execute the frozen Research association exactly once.
+- [ ] Record literal Research result without optimization or variant.
 
 ## Invariantes vigentes — LAF_001
 
@@ -23,13 +31,17 @@
 - Original processed Stage A1 remains immutable and is superseded only in
   documentation by the independent Stage A1c audit.
 - Dynamic metadata values may not be emitted by corrective canonical artifacts.
-- The event-only price-volume calculations are limited to the 41 authorized IWM
-  sessions and cannot be extended to the full sample.
-- Nenhum retorno, `PI`, `LAF`, `RV`, Corwin-Schultz ou `TailLoss` pode ser calculado.
-- Nenhuma feature pode ser cruzada com target.
-- Stage A2, Stage B, Validation, Final OOS, estratégia, carteira e backtest
-  permanecem proibidos até nova autorização explícita aplicável.
-- Políticas ainda marcadas como `TBD — requires human decision` não podem ser inferidas.
+- A1d has no payload or scientific gate; its two private receipts stay preserved
+  and untracked, and no retry is authorized.
+- Research uses only `SPY`, `QQQ`, `IWM`, `DIA`, `MDY`, 2003 warm-up and target
+  months 2004-01–2016-12.
+- Validation 2017-01–2021-12 and Final OOS 2022-01–2025-12 remain CLOSED.
+- No 2017+ historical row may be loaded for Research.
+- The 252/21 lookbacks, robust normalization, split embargo, target, HAC(3),
+  controls, thresholds and gates are immutable after H1-LAF.
+- No missingness relaxation or variant may rescue the mechanically observed
+  8-complete-month sample.
+- Strategy, portfolio and backtest remain prohibited.
 
 ## Archived — CM_001 v1.0.1-frozen provenance and Stage B
 
